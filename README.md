@@ -25,11 +25,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 3. Deploy the app
 
    `npm run deploy`
-
-## Contribute
-
-Pull Requests are welcome :)
-
-## Show your support
-
-Give a ⭐ if you like this website!
