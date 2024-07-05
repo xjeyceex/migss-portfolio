@@ -20,7 +20,7 @@ export const ProjectList = [
   {
     img: "/cloud.png",
     title: "Decentralized Cloud",
-    description: "A React application that retrieves monster pictures, names, and emails from a REST API endpoint and presents them in the user interface.",
+    description: "Introducing decentralized cloud: Access data securely from any device, maintain complete privacy with AES encryption, and share seamlessly with friends—all. Welcome to the future of cloud storage, where simplicity meets security.",
     tech_stack: ["React", "Javascript", "HTML", "CSS", "Solidity"],
     github_url: "",
     demo_url: "",
