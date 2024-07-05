@@ -5,7 +5,7 @@ export const ProjectList = [
     title: "Jeonsoft",
     description: 
     "My work at Jeonsoft involved optimizing, enhancing, fixing, and redesigning various applications. I also created promotional materials to capture our clients' interest, ensuring an improved user experience.",    
-    tech_stack: ["PostgreSQL", "React.js", "SourceTree", "Git", "Express.js", "Node.js", "HTML", "CSS", "JavaScript", "Figma"],
+    tech_stack: ["PostgreSQL", "React.js", "SourceTree", "Git", "Express.js", "Node.js", "HTML", "CSS", "Material UI", "JavaScript", "Figma"],
     github_url: "",
     demo_url: "https://jeonsoft.com",
   },
