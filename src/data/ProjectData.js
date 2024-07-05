@@ -17,6 +17,14 @@ export const ProjectList = [
     github_url: "https://github.com/xjeyceex/gym-app",
     demo_url: "https://gym-app-azure.vercel.app/",
   },
+  {
+    img: "/blog-ninja.jpg",
+    title: "Ninja Blog",
+    description: "This blog website showcases the implementation of cutting-edge technologies such as Node.js, Express.js, EJS (Embedded JavaScript), and MongoDB to deliver a dynamic and feature-rich experience",
+    tech_stack: ["Node.js", "MongoDB", "EJS"],
+    github_url: "",
+    demo_url: "",
+  },
 ];
 
 // --------------------------------------- Skills
