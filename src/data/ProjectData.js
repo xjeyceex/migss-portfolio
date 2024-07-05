@@ -18,6 +18,14 @@ export const ProjectList = [
     demo_url: "https://gym-app-azure.vercel.app/",
   },
   {
+    img: "/cloud.png",
+    title: "Decentralized Cloud",
+    description: "A React application that retrieves monster pictures, names, and emails from a REST API endpoint and presents them in the user interface.",
+    tech_stack: ["React", "Javascript", "HTML", "CSS", "Solidity"],
+    github_url: "",
+    demo_url: "",
+  },
+  {
     img: "/blog-ninja.jpg",
     title: "Ninja Blog",
     description: "This blog website showcases the implementation of cutting-edge technologies such as Node.js, Express.js, EJS (Embedded JavaScript), and MongoDB to deliver a dynamic and feature-rich experience",
