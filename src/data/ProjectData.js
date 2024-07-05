@@ -3,8 +3,7 @@ export const ProjectList = [
   {
     img: "/Jeonsoft.png",
     title: "Jeonsoft",
-    description: 
-    ""At Jeonsoft, I worked extensively with Jeonsoft Support Central, Jeonsoft WebHR, and Jeonsoft Work from Home Auditor. My responsibilities included optimizing, enhancing, fixing, and redesigning these applications. Additionally, I created promotional materials aimed at capturing our clients' interest, ensuring an enhanced user experience."",    
+    description: "At Jeonsoft, I focused on optimizing, enhancing, fixing, and redesigning applications using both front-end and back-end technologies. I also created promotional materials to capture our clients' interest, ensuring an improved user experience.",
     tech_stack: ["PostgreSQL", "React.js", "SourceTree", "Git", "Express.js", "Node.js", "HTML", "CSS", "Material UI", "JavaScript", "Figma"],
     github_url: "",
     demo_url: "https://jeonsoft.com",
