@@ -1,7 +1,7 @@
 // --------------------------------------- Project List
 export const ProjectList = [
   {
-    img: "/Ticketing.png",
+    img: "/image.png",
     title: "Freelancing as a Software Developer",
     description: "In my work with a direct client as a software developer, I specialized in optimizing, enhancing, fixing, and redesigning applications using both front-end and back-end technologies. I also created engaging promotional materials to attract client interest, ensuring an enhanced user experience. I collaborated on projects including a time ticketing app and web HR systems.",
     tech_stack: ["PostgreSQL", "React.js", "Next.js", "SourceTree", "Git", "Express.js", "Node.js", "HTML", "CSS", "Tailwind CSS", "Material UI", "JavaScript", "TypeScript", "Figma"],
