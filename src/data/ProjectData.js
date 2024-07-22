@@ -1,12 +1,12 @@
 // --------------------------------------- Project List
 export const ProjectList = [
   {
-    img: "/Jeonsoft.png",
-    title: "Jeonsoft",
-    description: "At Jeonsoft, I focused on optimizing, enhancing, fixing, and redesigning applications using both front-end and back-end technologies. I also created promotional materials to capture our clients' interest, ensuring an improved user experience.",
-    tech_stack: ["PostgreSQL", "React.js", "SourceTree", "Git", "Express.js", "Node.js", "HTML", "CSS", "Material UI", "JavaScript", "Figma"],
+    img: "/Ticketing.png",
+    title: "Freelancing as a Software Developer",
+    description: "In my work with a direct client as a software developer, I specialized in optimizing, enhancing, fixing, and redesigning applications using both front-end and back-end technologies. I also created engaging promotional materials to attract client interest, ensuring an enhanced user experience. I collaborated on projects including a time ticketing app and web HR systems.",
+    tech_stack: ["PostgreSQL", "React.js", "Next.js", "SourceTree", "Git", "Express.js", "Node.js", "HTML", "CSS", "Tailwind CSS", "Material UI", "JavaScript", "TypeScript", "Figma"],
     github_url: "",
-    demo_url: "https://jeonsoft.com",
+    demo_url: "",
   },
   {
     img: "/gym-app.jpg",
