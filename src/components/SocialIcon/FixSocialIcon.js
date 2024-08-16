@@ -83,6 +83,15 @@ function FixSocialIcon() {
               <FaFacebook />
             </a>
           </li>
+          <li className="item">
+            <a
+              href="https://github.com/xjeyceex/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub />
+            </a>
+          </li>
         </ul>
       </ScrollAnimation>
     </SocialContainer>
