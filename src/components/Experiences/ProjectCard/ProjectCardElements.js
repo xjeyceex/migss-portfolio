@@ -21,7 +21,7 @@ export const CardLeft = styled.div`
   img {
     height: 100%;
     width: auto;
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 
