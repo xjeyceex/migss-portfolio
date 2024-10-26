@@ -14,7 +14,7 @@ export const ProjectList = [
     description: "As a full stack developer, I designed and developed a web application that provides climate change information specific to users' states and counties across the U.S. My responsibilities included enhancing the front-end with responsive designs and optimizing the back-end for seamless data access, addressing bug fixes from start to finish to ensure a reliable user experience.",
     tech_stack: ["NextJS", "NodeJS", "TypeScript", "NoSQL", "Prisma", "Tailwind CSS"],
     github_url: "https://github.com/xjeyceex/help-earth-now",
-    demo_url: "https://help-earth-now.vercel.app/v4",
+    demo_url: "https://help-earth-now.vercel.app",
   },
   {
     img: "/gym-app.jpg",
