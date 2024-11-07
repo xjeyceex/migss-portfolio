@@ -125,4 +125,10 @@ export const stackList = [
     name: "Prisma",
   },
 
+  {
+    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/sqlite/sqlite-original.svg",
+    name: "SQLite",
+  },
+
+
 ];
