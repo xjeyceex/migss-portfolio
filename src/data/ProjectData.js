@@ -1,20 +1,20 @@
 // --------------------------------------- Project List
 export const ProjectList = [
   {
+    img: "/help-earth.png",
+    title: "Help You",
+    description: "As a full stack developer, I designed and developed a web application that provides climate change information specific to users' states and counties across the U.S. My responsibilities included enhancing the front-end with responsive designs and optimizing the back-end for seamless data access, addressing bug fixes from start to finish to ensure a reliable user experience.",
+    tech_stack: ["NextJS", "NodeJS", "TypeScript", "NoSQL", "Prisma", "Tailwind CSS"],
+    github_url: "https://github.com/xjeyceex/help-earth-now",
+    demo_url: "https://help-earth-now.vercel.app",
+  },
+  {
     img: "/image.png",
     title: "Direct Client",
     description: "In my work with a direct client as a software developer, I specialized in optimizing, enhancing, fixing, and redesigning applications using both front-end and back-end technologies. I also created engaging promotional materials to attract client interest, ensuring an enhanced user experience. I collaborated on projects including a time ticketing app and web HR systems.",
     tech_stack: ["PostgreSQL", "React.js", "Next.js", "SourceTree", "Git", "Express.js", "Node.js", "HTML", "CSS", "Tailwind CSS", "Material UI", "JavaScript", "TypeScript", "Figma"],
     github_url: "",
     demo_url: "",
-  },
-  {
-    img: "/help-earth.png",
-    title: "Help U",
-    description: "As a full stack developer, I designed and developed a web application that provides climate change information specific to users' states and counties across the U.S. My responsibilities included enhancing the front-end with responsive designs and optimizing the back-end for seamless data access, addressing bug fixes from start to finish to ensure a reliable user experience.",
-    tech_stack: ["NextJS", "NodeJS", "TypeScript", "NoSQL", "Prisma", "Tailwind CSS"],
-    github_url: "https://github.com/xjeyceex/help-earth-now",
-    demo_url: "https://help-earth-now.vercel.app",
   },
   {
     img: "/gym-app.jpg",
@@ -60,9 +60,9 @@ export const stackList = [
     name: "JavaScript",
   },
 
-    {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
-    name: "TypeScript",
+  {
+  img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
+  name: "TypeScript",
   },
 
   {
@@ -111,7 +111,18 @@ export const stackList = [
   },
 
   {
+    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg",
+    name: "MySQL",
+  },
+
+  {
     img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg",
     name: "Figma",
   },
+  
+  {
+    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/prisma/prisma-original.svg",
+    name: "Prisma",
+  },
+
 ];
