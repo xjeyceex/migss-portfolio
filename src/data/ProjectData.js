@@ -1,7 +1,15 @@
 // --------------------------------------- Project List
 export const ProjectList = [
   {
-    img: "/help-earth.png",
+    img: "/canvassing.jpg",
+    title: "Sourcing and Canvassing App",
+    description: "Sourcing and Canvassing App simplifies procurement by streamlining canvassing, supplier comparison, and purchase approvals. Built with Next.js, Supabase, and Mantine, it ensures an efficient and transparent sourcing process.",
+    tech_stack: ["NextJS", "NodeJS", "TypeScript", "Supabase", "PostgreSQL", "Mantine"],
+    github_url: "https://github.com/xjeyceex/help-earth-now",
+    demo_url: "https://canvassing-app-dev.vercel.app",
+  },
+  {
+    img: "/help-earth.jpg",
     title: "Help You",
     description: "As a full stack developer, I designed and developed a web application that provides climate change information specific to users' states and counties across the U.S. My responsibilities included enhancing the front-end with responsive designs and optimizing the back-end for seamless data access, addressing bug fixes from start to finish to ensure a reliable user experience.",
     tech_stack: ["NextJS", "NodeJS", "TypeScript", "NoSQL", "Prisma", "Tailwind CSS"],
