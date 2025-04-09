@@ -5,7 +5,7 @@ export const ProjectList = [
     title: "Sourcing and Canvassing App",
     description: "Sourcing and Canvassing App simplifies procurement by streamlining canvassing, supplier comparison, and purchase approvals. Built with Next.js, Supabase, and Mantine, it ensures an efficient and transparent sourcing process.",
     tech_stack: ["NextJS", "NodeJS", "TypeScript", "Supabase", "PostgreSQL", "Mantine"],
-    github_url: "https://github.com/xjeyceex/help-earth-now",
+    github_url: "https://github.com/xjeyceex/canvassing-app-dev",
     demo_url: "https://canvassing-app-dev.vercel.app",
   },
   {
