@@ -32,11 +32,16 @@ export const CardRight = styled.div`
   align-items: flex-start; 
   padding: 0 1rem;
 
-  h4 {
+ h4 {
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
-    text-align: center; 
+    text-align: left;
+
+    @media (max-width: 480px) {
+      text-align: center;
+      width: 100%;
+    }
   }
 
   p {
