@@ -29,11 +29,14 @@ export const CardRight = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; 
+  padding: 0 1rem;
 
   h4 {
     font-size: 1.5rem;
     font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-align: center; 
   }
 
   p {
@@ -42,14 +45,10 @@ export const CardRight = styled.div`
     margin-top: 10px;
     margin-bottom: 1rem;
     color: rgba(0, 0, 0, 0.815);
-    text-align: center;
-
-    @media (min-width: 992px) {
-      text-align: start;
-    }
+    text-align: left;
   }
+
   @media (min-width: 992px) {
-    align-items: flex-start;
     margin-top: 1rem;
   }
 `;
