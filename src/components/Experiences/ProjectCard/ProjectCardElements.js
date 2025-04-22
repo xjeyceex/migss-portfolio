@@ -21,7 +21,6 @@ export const CardLeft = styled.div`
   img {
     height: 100%;
     width: auto;
-    object-fit: contain;
   }
 `;
 
@@ -59,14 +58,15 @@ export const CardRight = styled.div`
 `;
 
 export const BtnGroup = styled.div`
-  height: 70px;
   display: flex;
   align-items: center;
+  padding-bottom: 1rem;
 `;
 
 
 export const TechCardContainer = styled.div`
   display: flex;
+  padding-bottom: 1rem;
   flex-wrap: wrap;
   justify-content: center;
   @media (min-width: 992px) {
