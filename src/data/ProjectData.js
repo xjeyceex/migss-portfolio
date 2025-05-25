@@ -4,7 +4,7 @@ export const ProjectList = [
     img: "/canvassing.jpg",
     title: "Canvassly",
     description: "Canvassly simplifies procurement by streamlining canvassing, supplier comparison, and purchase approvals. Built with Next.js, Supabase, and Mantine, it ensures an efficient and transparent sourcing process.",
-    tech_stack: ["NextJS", "NodeJS", "TypeScript", "Supabase", "PostgreSQL", "Mantine"],
+    tech_stack: ["NextJS", "NodeJS", "TypeScript", "Supabase", "PostgreSQL", "Mantine", "Zustand"],
     github_url: "https://github.com/xjeyceex/canvassing-app-dev",
     demo_url: "https://canvassly.vercel.app",
   },
