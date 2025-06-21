@@ -46,7 +46,7 @@ export const ProjectList = [
       "TypeScript",
       "Vercel",
       "PWA",
-      "LocalStorage",
+      "IndexedDB",
     ],
     github_url: "https://github.com/xjeyceex/financial-app",
     demo_url: "https://financial-app-mocha.vercel.app",
