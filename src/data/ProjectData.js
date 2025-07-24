@@ -34,6 +34,23 @@ export const ProjectList = [
     demo_url: "https://help-earth-now.vercel.app",
   },
   {
+    img: "/certify.png",
+    title: "Certify",
+    description:
+      "Certify is a full-stack platform for creating, delivering, and managing certifications. It enables teams to build structured learning paths, issue verified certificates, and track learner progress across interactive content like documents, videos, and quizzes.",
+    tech_stack: [
+      "NextJS",
+      "NodeJS",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Mantine",
+      "Zustand",
+    ],
+    github_url: "https://github.com/alberto-linao/certify",
+    demo_url: "",
+  },
+  {
     img: "/pesowise.png",
     title: "PesoWise",
     description:
