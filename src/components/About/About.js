@@ -17,8 +17,9 @@ const AboutContainer = styled.div`
 
 const SectionTitle = styled.h2`
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 2.5rem;
+  font-size: 2.8rem;
+  font-weight: 500;
+  margin-bottom: 5.5rem;
   position: relative;
 `;
 
@@ -73,8 +74,8 @@ const TechSection = styled.div`
 `;
 
 const Tagline = styled.p`
-  font-weight: 600; 
-  font-size: 1.2rem;
+  font-weight: 500;
+  font-size: 1.4rem;
   margin-bottom: 1.5rem; 
 `;
 
