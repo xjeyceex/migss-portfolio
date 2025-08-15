@@ -15,7 +15,7 @@ export const ProjectList = [
       "Zustand",
     ],
     github_url: "https://github.com/xjeyceex/canvassing-app-dev",
-    demo_url: "",
+    demo_url: "https://canvassly.vercel.app",
   },
   {
     img: "/help-earth.jpg",
