@@ -48,7 +48,7 @@ export const ProjectList = [
       "Zustand",
     ],
     github_url: "https://github.com/alberto-linao/certify",
-    demo_url: "",
+    demo_url: "https://certify.com.ph/",
   },
   {
     img: "/pesowise.png",
@@ -89,33 +89,6 @@ export const ProjectList = [
       "TypeScript",
       "Figma",
     ],
-    github_url: "",
-    demo_url: "",
-  },
-  {
-    img: "/gym-app.jpg",
-    title: "Evo Gym",
-    description:
-      "A state-of-the-art gym app, powered by TypeScript, Tailwind CSS, and React JS. It offers a seamless user experience, a responsive design that looks great on any device, and a wide range of features to help users stay on track and achieve their fitness goals.",
-    tech_stack: ["TypeScript", "React", "Tailwind"],
-    github_url: "https://github.com/xjeyceex/gym-app",
-    demo_url: "https://gym-app-azure.vercel.app/",
-  },
-  {
-    img: "/cloud.png",
-    title: "Decentralized Cloud",
-    description:
-      "Introducing decentralized cloud: Access data securely from any device, maintain complete privacy with AES encryption, and share seamlessly with friends—all. Welcome to the future of cloud storage, where simplicity meets security.",
-    tech_stack: ["React", "Javascript", "HTML", "CSS", "Solidity"],
-    github_url: "",
-    demo_url: "",
-  },
-  {
-    img: "/blog-ninja.jpg",
-    title: "Ninja Blog",
-    description:
-      "This blog website showcases the implementation of cutting-edge technologies such as Node.js, Express.js, EJS (Embedded JavaScript), and MongoDB to deliver a dynamic and feature-rich experience",
-    tech_stack: ["Node.js", "MongoDB", "EJS"],
     github_url: "",
     demo_url: "",
   },

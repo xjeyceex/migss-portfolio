@@ -1,137 +1,184 @@
 import styled from "@emotion/styled";
 
-export const Card = styled.div`
+export const ProjectGrid = styled.div`
   display: grid;
-  grid-gap: 2rem;
-  margin-bottom: 4rem;
-  grid-template-columns: 1fr;
-  border-radius: 16px;
-  background: #ffffff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: #fff;
   overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid #e5e7eb;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
-  @media (min-width: 992px) {
-    grid-template-columns: 1fr 1fr;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    height: 180px;
   }
 `;
 
 export const CardLeft = styled.div`
+  flex: 1;
+  min-height: 180px;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  background: #f8fafc;
 
   img {
-    width: auto;
+    width: 100%;
     height: 100%;
-    border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 
     &:hover {
       transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
     }
+  }
+
+  @media (min-width: 768px) {
+    min-height: auto;
   }
 `;
 
 export const CardRight = styled.div`
+  flex: 1;
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
+  justify-content: space-between;
 
   h4 {
-    font-size: 1.8rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 1rem;
-    color: #1f2937; // dark text
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, #3b82f6, #60a5fa); // blue accent
-      border-radius: 3px;
-      transition: width 0.3s ease;
-    }
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+    line-height: 1.4;
   }
+`;
 
-  p {
-    font-weight: 400;
-    line-height: 1.7;
-    margin: 1rem 0;
-    color: #1f2937; // dark text
-  }
+export const DescriptionText = styled.p`
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-  @media (max-width: 768px) {
-    padding: 1.5rem;
-
-    h4 {
-      font-size: 1.6rem;
-      text-align: center;
-
-      &::after {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-
-    p {
-      text-align: center;
-    }
+  @media (min-width: 768px) {
+    -webkit-line-clamp: 4;
   }
 `;
 
 export const BtnGroup = styled.div`
   display: flex;
-  gap: 0; // buttons still close together
+  gap: 0.8rem;
   margin-top: 1rem;
-  flex-wrap: wrap; // wrap if really tiny screen
 
-  a, button {
-    flex: unset; // keep natural size
-    min-width: auto;
-    padding: 0.5rem 1rem; // slightly bigger padding
-    font-size: 0.9375rem; // slightly bigger text (~15px)
+  .btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  @media (max-width: 480px) {
-    flex-direction: row;
-    gap: 0.25rem; // tight spacing on mobile
+  .PrimaryBtn {
+    background: #3b82f6;
+    color: white;
+    border: 1px solid #3b82f6;
+
+    &:hover {
+      background: #2563eb;
+      border-color: #2563eb;
+      transform: translateY(-2px);
+    }
+  }
+
+  .SecondaryBtn {
+    background: white;
+    color: #3b82f6;
+    border: 1px solid #d1d5db;
+
+    &:hover {
+      background: #f3f4f6;
+      border-color: #9ca3af;
+      transform: translateY(-2px);
+    }
   }
 `;
 
-export const TechCardContainer = styled.div`
+export const MobileBtnGroup = styled.div`
   display: flex;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
   flex-wrap: wrap;
-  gap: 0.5rem; // compact spacing
-  margin: 0.75rem 0;
-`;
 
-export const TechCard = styled.div`
-  border-radius: 6px;
-  background: #f3f4f6; // light gray background instead of blue
-  padding: 0.3rem 0.8rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #1f2937; // dark text
-  border: 1px solid #e5e7eb; // subtle gray border
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  .btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+  }
 
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); // subtle shadow on hover
+  .PrimaryBtn {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+
+    &:hover {
+      background: #2563eb;
+    }
+  }
+
+  .SecondaryBtn {
+    background: white;
+    color: #3b82f6;
+    border-color: #d1d5db;
+
+    &:hover {
+      background: #f3f4f6;
+    }
+  }
+
+  .TertiaryBtn {
+    background: #f3f4f6;
+    color: #4b5563;
+    border-color: #e5e7eb;
+
+    &:hover {
+      background: #e5e7eb;
+    }
   }
 `;
