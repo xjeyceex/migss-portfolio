@@ -6,32 +6,48 @@ export const ProjectList = [
     description:
       "Canvassly simplifies procurement by streamlining canvassing, supplier comparison, and purchase approvals. Built with Next.js, Supabase, and Mantine, it ensures an efficient and transparent sourcing process.",
     tech_stack: [
-      "NextJS",
-      "NodeJS",
-      "TypeScript",
-      "Supabase",
-      "PostgreSQL",
-      "Mantine",
-      "Zustand",
+      { name: "NextJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "NodeJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "Mantine", icon: "https://mantine.dev/favicon.svg" },
+      { name: "Zustand", icon: "https://zustand-demo.pmnd.rs/favicon.ico" },
     ],
     github_url: "https://github.com/xjeyceex/canvassing-app-dev",
     demo_url: "https://canvassly.vercel.app",
+    features: [
+      "Automated supplier comparison",
+      "Real-time collaboration",
+      "Purchase approval workflows",
+      "Responsive design"
+    ],
+    role: "Full-stack Developer",
+    year: 2023
   },
   {
     img: "/help-earth.jpg",
-    title: "Help You",
+    title: "Help Earth",
     description:
-      "a responsive web app delivering climate change data by U.S. state and county. Handled front-end design, back-end optimization, and end-to-end bug fixing for a smooth user experience.",
+      "A responsive web app delivering climate change data by U.S. state and county. Handled front-end design, back-end optimization, and end-to-end bug fixing for a smooth user experience.",
     tech_stack: [
-      "NextJS",
-      "NodeJS",
-      "TypeScript",
-      "NoSQL",
-      "Prisma",
-      "Tailwind CSS",
+      { name: "NextJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "NodeJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "NoSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+      { name: "Prisma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
     ],
     github_url: "https://github.com/xjeyceex/help-earth-now",
     demo_url: "https://help-earth-now.vercel.app",
+    features: [
+      "Interactive climate data visualization",
+      "Location-based data filtering",
+      "Responsive mobile-first design",
+      "Performance optimization"
+    ],
+    role: "Full-stack Developer",
+    year: 2023
   },
   {
     img: "/certify.png",
@@ -39,64 +55,82 @@ export const ProjectList = [
     description:
       "Certify is a full-stack platform for creating, delivering, and managing certifications. It enables teams to build structured learning paths, issue verified certificates, and track learner progress across interactive content like documents, videos, and quizzes.",
     tech_stack: [
-      "NextJS",
-      "NodeJS",
-      "TypeScript",
-      "Supabase",
-      "PostgreSQL",
-      "Mantine",
-      "Zustand",
+      { name: "NextJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "NodeJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "Mantine", icon: "https://mantine.dev/favicon.svg" },
+      { name: "Zustand", icon: "https://zustand-demo.pmnd.rs/favicon.ico" },
     ],
     github_url: "https://github.com/alberto-linao/certify",
     demo_url: "https://certify.com.ph/",
+    features: [
+      "Custom certification creation",
+      "Interactive learning paths",
+      "Progress tracking dashboard",
+      "Multi-media content support"
+    ],
+    role: "Full-stack Developer (Collaborator)",
+    year: 2023
   },
   {
     img: "/pesowise.png",
     title: "PesoWise",
     description:
-      "Pesowise is a personal finance progressive web app designed to help individuals make informed spending decisions and track their money with clarity. It includes modules like a Worth It Calculator, Money Tracker, Budget Dashboard, and Decision Assistant. I built this project solo, using full-stack technologies and UI libraries to deliver a seamless user experience across devices.",
+      "Pesowise is a personal finance progressive web app designed to help individuals make informed spending decisions and track their money with clarity. It includes modules like a Worth It Calculator, Money Tracker, Budget Dashboard, and Decision Assistant.",
     tech_stack: [
-      "Next.js",
-      "React",
-      "Tailwind CSS",
-      "Shadcn/ui",
-      "TypeScript",
-      "Vercel",
-      "PWA",
-      "IndexedDB",
+      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "Shadcn/ui", icon: "https://ui.shadcn.com/favicon.ico" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "IndexedDB", icon: "https://w3c.github.io/IndexedDB/logo-db.svg" },
+      { name: "PWA", icon: "https://webmaxru.github.io/progressive-web-apps-logo/pwalogo.svg" }
     ],
     github_url: "https://github.com/xjeyceex/financial-app",
     demo_url: "https://financial-app-mocha.vercel.app",
+    features: [
+      "Offline-first PWA functionality",
+      "Interactive financial calculators",
+      "Visual spending analytics",
+      "Cross-device synchronization"
+    ],
+    role: "Solo Full-stack Developer",
+    year: 2024
   },
   {
     img: "/image.png",
-    title: "Direct Client",
+    title: "Direct Client Projects",
     description:
-      "In my work with a direct client as a software developer, I specialized in optimizing, enhancing, fixing, and redesigning applications using both front-end and back-end technologies. I also created engaging promotional materials to attract client interest, ensuring an enhanced user experience. I collaborated on projects including a time ticketing app and web HR systems.",
+      "Specialized in optimizing, enhancing, fixing, and redesigning applications for direct clients. Worked on various projects including a time ticketing app and web HR systems, while also creating promotional materials to enhance client engagement.",
     tech_stack: [
-      "PostgreSQL",
-      "React.js",
-      "Next.js",
-      "SourceTree",
-      "Git",
-      "Express.js",
-      "Node.js",
-      "HTML",
-      "CSS",
-      "Tailwind CSS",
-      "Material UI",
-      "JavaScript",
-      "TypeScript",
-      "Figma",
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "React.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "Express.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+      { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "Material UI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" },
+      { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
     ],
     github_url: "",
     demo_url: "",
-  },
+    features: [
+      "Application optimization",
+      "UI/UX redesign",
+      "Bug fixing and maintenance",
+      "Promotional material creation"
+    ],
+    role: "Software Developer",
+    year: "2022-2024"
+  }
 ];
 
 // --------------------------------------- Skills
 
 export const stackList = [
+  // 🌐 Frontend
   {
     img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg",
     name: "HTML",
@@ -122,10 +156,6 @@ export const stackList = [
     name: "NextJS",
   },
   {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
-    name: "Python",
-  },
-  {
     img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
     name: "Tailwind CSS",
   },
@@ -133,10 +163,8 @@ export const stackList = [
     img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/materialui/materialui-original.svg",
     name: "Material UI",
   },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg",
-    name: "Git",
-  },
+
+  // ⚙️ Backend
   {
     img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg",
     name: "NodeJS",
@@ -146,6 +174,12 @@ export const stackList = [
     name: "Express",
   },
   {
+    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
+    name: "Python",
+  },
+
+  // 🗄️ Databases & ORM
+  {
     img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg",
     name: "PostgreSQL",
   },
@@ -154,20 +188,26 @@ export const stackList = [
     name: "MySQL",
   },
   {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg",
-    name: "Figma",
+    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/sqlite/sqlite-original.svg",
+    name: "SQLite",
   },
   {
     img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/prisma/prisma-original.svg",
     name: "Prisma",
   },
   {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/sqlite/sqlite-original.svg",
-    name: "SQLite",
-  },
-  {
     img: "https://www.vectorlogo.zone/logos/supabase/supabase-icon.svg",
     name: "Supabase",
+  },
+
+  // 🛠 Tools & Design
+  {
+    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg",
+    name: "Git",
+  },
+  {
+    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg",
+    name: "Figma",
   },
 ];
 

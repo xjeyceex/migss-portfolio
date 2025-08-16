@@ -101,12 +101,14 @@ const TechStack = styled.div`
   }
 `;
 
-const TechItem = styled.span`
-  background: #e0f2fe;
-  color: #0369a1;
-  font-size: 0.75rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 999px;
+const TechItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f5f5f5;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
 `;
 
 const ButtonGroup = styled.div`
@@ -153,60 +155,84 @@ const Button = styled.a`
   }
 `;
 
+const CardMeta = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+`;
+
+const TechIcon = styled.img`
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+`;
+
 function ProjectCard() {
   return (
     <ProjectGrid>
-      {ProjectList.map((project, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: index * 0.1 }}
-        >
-          <Card>
-            <CardImage>
-              <img 
-                src={project.img} 
-                alt={project.title}
-                loading="lazy"
-              />
-            </CardImage>
-            <CardContent>
-              <CardTitle>{project.title}</CardTitle>
-              <CardDescription>
-                {project.description}
-              </CardDescription>
-              <TechStack>
-                {project.tech_stack.map((tech, idx) => (
-                  <TechItem key={idx}>{tech}</TechItem>
-                ))}
-              </TechStack>
-              <ButtonGroup>
-                {project.github_url && (
-                  <Button
-                    className="secondary"
-                    href={project.github_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Code
-                  </Button>
-                )}
-                {project.demo_url && (
-                  <Button
-                    className="primary"
-                    href={project.demo_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live Demo
-                  </Button>
-                )}
-              </ButtonGroup>
-            </CardContent>
-          </Card>
-        </motion.div>
-      ))}
+    {ProjectList.map((project, index) => (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: index * 0.1 }}
+      >
+        <Card>
+          <CardImage>
+            <img 
+              src={project.img} 
+              alt={project.title}
+              loading="lazy"
+            />
+          </CardImage>
+          <CardContent>
+            <CardTitle>{project.title}</CardTitle>
+            <CardMeta>
+              <span>{project.role}</span>
+              <span>{project.year}</span>
+            </CardMeta>
+            <CardDescription>
+              {project.description}
+            </CardDescription>
+            
+            {/* Tech stack with icons */}
+            <TechStack>
+              {project.tech_stack.map((tech, idx) => (
+                <TechItem key={idx}>
+                  <TechIcon src={tech.icon} alt={tech.name} />
+                  <span>{tech.name}</span>
+                </TechItem>
+              ))}
+            </TechStack>
+            
+            <ButtonGroup>
+              {project.github_url && (
+                <Button
+                  className="secondary"
+                  href={project.github_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Code
+                </Button>
+              )}
+              {project.demo_url && (
+                <Button
+                  className="primary"
+                  href={project.demo_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live Demo
+                </Button>
+              )}
+            </ButtonGroup>
+          </CardContent>
+        </Card>
+      </motion.div>
+    ))}
     </ProjectGrid>
   );
 }
