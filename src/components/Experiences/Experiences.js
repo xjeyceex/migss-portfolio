@@ -17,7 +17,7 @@ const ExperienceWrapper = styled.div`
   overflow: hidden;
 
   @media (max-width: 768px) {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
   }
 `;
 
@@ -48,7 +48,14 @@ const SectionTitle = styled.h2`
 
   @media (max-width: 768px) {
     font-size: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    width: 100%;
+    
+    &::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 `;
 

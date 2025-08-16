@@ -1,248 +1,213 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { ProjectList } from "../../../data/ProjectData";
-import {
-  Card,
-  CardLeft,
-  CardRight,
-  BtnGroup,
-  ProjectGrid,
-  MobileBtnGroup,
-  DescriptionText,
-} from "./ProjectCardElements";
-import { motion, AnimatePresence } from "framer-motion";
 import styled from "@emotion/styled";
 
-const ModalOverlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
+// Styled Components
+const ProjectGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 1rem;
-`;
-
-const ModalContent = styled(motion.div)`
-  background: #fff;
-  padding: 2.5rem;
-  max-width: 900px;
-  width: 100%;
-  border-radius: 20px;
-  overflow-y: auto;
-  max-height: 90vh;
-  position: relative;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
   @media (max-width: 768px) {
-    padding: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 `;
 
-const CloseBtn = styled.button`
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: #f3f4f6;
-  color: #6b7280;
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+const Card = styled.div`
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: all 0.2s ease;
+  flex-direction: column;
+  height: 100%;
 
   &:hover {
-    background: #e5e7eb;
-    color: #4b5563;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+
+  @media (max-width: 768px) {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    &:hover {
+      transform: none;
+    }
+  }
+`;
+
+const CardImage = styled.div`
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    height: 180px;
+  }
+`;
+
+const CardContent = styled.div`
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  @media (max-width: 768px) {
+    padding: 1.2rem;
+  }
+`;
+
+const CardTitle = styled.h3`
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #1e293b;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+`;
+
+const CardDescription = styled.p`
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  flex-grow: 1;
+  font-size: 0.95rem;
+`;
+
+const TechStack = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.2rem;
+  }
+`;
+
+const TechItem = styled.span`
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 0.8rem;
+  margin-top: auto;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    gap: 0.6rem;
+  }
+`;
+
+const Button = styled.a`
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  flex: 1;
+
+  &.primary {
+    background: #3b82f6;
+    color: white;
+    &:hover {
+      background: #2563eb;
+    }
+  }
+
+  &.secondary {
+    background: #e0f2fe;
+    color: #0369a1;
+    &:hover {
+      background: #bae6fd;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.7rem;
+    font-size: 0.85rem;
   }
 `;
 
 function ProjectCard() {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") setSelectedProject(null);
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
-
   return (
-   <>
-      <ProjectGrid>
-        {ProjectList.map((project, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            whileHover={{ scale: isMobile ? 1 : 1.03 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Card onClick={() => !isMobile && setSelectedProject(project)}>
-              <CardLeft>
-                <img 
-                  src={project.img} 
-                  alt={project.title} 
-                  loading="lazy"
-                  onClick={(e) => {
-                    if (isMobile) {
-                      e.stopPropagation();
-                      setSelectedProject(project);
-                    }
-                  }}
-                />
-              </CardLeft>
-              <CardRight>
-                <h4>{project.title}</h4>
-                <DescriptionText>
-                  {project.description.substring(0, 100)}...
-                </DescriptionText>
-                
-                {isMobile && (
-                  <MobileBtnGroup>
-                    {project.github_url && (
-                      <a
-                        href={project.github_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn SecondaryBtn"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Code
-                      </a>
-                    )}
-                    {project.demo_url && (
-                      <a
-                        href={project.demo_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn PrimaryBtn"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Demo
-                      </a>
-                    )}
-                    <button 
-                      className="btn TertiaryBtn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedProject(project);
-                      }}
-                    >
-                      More
-                    </button>
-                  </MobileBtnGroup>
-                )}
-              </CardRight>
-            </Card>
-          </motion.div>
-        ))}
-      </ProjectGrid>
-
-      <AnimatePresence>
-        {selectedProject && (
-          <ModalOverlay
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedProject(null)}
-          >
-            <ModalContent
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", damping: 20 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <CloseBtn onClick={() => setSelectedProject(null)}>
-                ×
-              </CloseBtn>
-
-              <img
-                src={selectedProject.img}
-                alt={selectedProject.title}
-                style={{
-                  width: "100%",
-                  borderRadius: "12px",
-                  marginBottom: "1.5rem",
-                  objectFit: "cover",
-                  maxHeight: "300px",
-                }}
+    <ProjectGrid>
+      {ProjectList.map((project, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: index * 0.1 }}
+        >
+          <Card>
+            <CardImage>
+              <img 
+                src={project.img} 
+                alt={project.title}
+                loading="lazy"
               />
-
-              <h2 style={{ fontSize: "1.8rem", fontWeight: 700, marginBottom: "1rem" }}>
-                {selectedProject.title}
-              </h2>
-
-              <p style={{ fontSize: "1.05rem", lineHeight: 1.7, color: "#4b5563", marginBottom: "1.5rem" }}>
-                {selectedProject.description}
-              </p>
-
-              <div style={{ marginBottom: "1.5rem" }}>
-                <h3 style={{ fontSize: "1.1rem", fontWeight: 600, marginBottom: "0.5rem" }}>Technologies Used:</h3>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                  {selectedProject.tech_stack.map((tech, idx) => (
-                    <span key={idx} style={{
-                      background: "#e0f2fe",
-                      color: "#0369a1",
-                      fontSize: "0.8rem",
-                      padding: "0.3rem 0.7rem",
-                      borderRadius: "6px",
-                    }}>
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <BtnGroup>
-                {selectedProject.github_url && (
-                  <a
-                    href={selectedProject.github_url}
+            </CardImage>
+            <CardContent>
+              <CardTitle>{project.title}</CardTitle>
+              <CardDescription>
+                {project.description}
+              </CardDescription>
+              <TechStack>
+                {project.tech_stack.map((tech, idx) => (
+                  <TechItem key={idx}>{tech}</TechItem>
+                ))}
+              </TechStack>
+              <ButtonGroup>
+                {project.github_url && (
+                  <Button
+                    className="secondary"
+                    href={project.github_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn SecondaryBtn"
                   >
                     View Code
-                  </a>
+                  </Button>
                 )}
-                {selectedProject.demo_url && (
-                  <a
-                    href={selectedProject.demo_url}
+                {project.demo_url && (
+                  <Button
+                    className="primary"
+                    href={project.demo_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn PrimaryBtn"
                   >
-                    Live Demo ➜
-                  </a>
+                    Live Demo
+                  </Button>
                 )}
-              </BtnGroup>
-            </ModalContent>
-          </ModalOverlay>
-        )}
-      </AnimatePresence>
-    </>
+              </ButtonGroup>
+            </CardContent>
+          </Card>
+        </motion.div>
+      ))}
+    </ProjectGrid>
   );
 }
 

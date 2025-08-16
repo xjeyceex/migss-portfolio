@@ -5,23 +5,24 @@ import ScrollAnimation from "react-animate-on-scroll";
 
 // Unified color palette
 const COLORS = {
-  primary: "#3b82f6",       // Blue-500
-  primaryLight: "#93c5fd",   // Blue-300
-  primaryDark: "#1d4ed8",    // Blue-700
-  background: "#f8fafc",     // Slate-50
-  textDark: "#1e293b",       // Slate-800
-  textLight: "#64748b",      // Slate-500
-  accent: "#6366f1",         // Indigo-500
+  primary: "#3b82f6",
+  primaryLight: "#93c5fd",
+  primaryDark: "#1d4ed8",
+  background: "#f8fafc",
+  textDark: "#1e293b",
+  textLight: "#64748b",
+  accent: "#6366f1",
   white: "#ffffff"
 };
 
 const AboutContainer = styled.div`
-  padding: 0 2rem 6rem 2rem; // top 0, right 2rem, bottom 6rem, left 2rem
-  background: ${COLORS.background};
+  padding: 0 2rem 6rem 2rem;
+  background: '${COLORS.background}';
+  padding-top: 2rem;
   position: relative;
 
   @media (max-width: 768px) {
-    padding: 0 1rem 4rem 1rem; // top 0 on mobile
+    padding: 0 1rem 4rem 1rem;
   }
 `;
 
@@ -29,6 +30,7 @@ const SectionTitle = styled.h2`
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
+  margin-top: 2rem;
   margin-bottom: 4rem;
   color: ${COLORS.textDark};
   position: relative;
@@ -47,7 +49,7 @@ const SectionTitle = styled.h2`
 
   @media (max-width: 768px) {
     font-size: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -75,9 +77,7 @@ const ProfileImage = styled.img`
   box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
   
   @media (max-width: 992px) {
-    width: 220px;
-    height: 220px;
-    margin-bottom: 1rem;
+    display: none;
   }
 `;
 
@@ -89,10 +89,14 @@ const AboutBio = styled.div`
     line-height: 1.7;
     margin-bottom: 1.5rem;
     color: ${COLORS.textDark};
+    text-align: left; /* Default to left-aligned */
     
     @media (max-width: 768px) {
       font-size: 1rem;
-      text-align: center;
+      text-align: left; /* Changed from center to left for mobile */
+      line-height: 1.6;
+      max-width: 100%;
+      word-break: break-word;
     }
   }
 `;
@@ -107,6 +111,10 @@ const TechSection = styled.div`
   margin: 4rem auto 0;
   padding: 0 1rem;
   text-align: center;
+
+  @media (max-width: 768px) {
+    margin: 3rem auto 0;
+  }
 `;
 
 const Tagline = styled.p`
@@ -114,6 +122,12 @@ const Tagline = styled.p`
   font-size: 1.3rem;
   margin-bottom: 2rem;
   color: ${COLORS.textDark};
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const Technologies = styled.div`
@@ -139,6 +153,11 @@ const Tech = styled.div`
     box-shadow: 0 10px 15px rgba(59, 130, 246, 0.1);
     background: ${COLORS.primaryLight};
   }
+
+  @media (max-width: 768px) {
+    width: 70px;
+    padding: 0.8rem;
+  }
 `;
 
 const TechImg = styled.img`
@@ -146,6 +165,11 @@ const TechImg = styled.img`
   width: 40px;
   margin-bottom: 0.5rem;
   object-fit: contain;
+
+  @media (max-width: 768px) {
+    height: 30px;
+    width: 30px;
+  }
 `;
 
 const TechName = styled.div`
@@ -153,28 +177,41 @@ const TechName = styled.div`
   font-weight: 500;
   text-align: center;
   color: ${COLORS.textDark};
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  }
+`;
+
+const StyledSVG = styled.svg`
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: -6rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: -3rem;
+  }
 `;
 
 function About() {
   return (
     <>
-      <svg
-          height="100%"
-          width="100%"
-          id="svg"
-          viewBox="0 0 1440 400"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M 0,400 C 0,400 0,200 0,200 C 114.35714285714289,156.53571428571428 228.71428571428578,113.07142857142858 351,131 C 473.2857142857142,148.92857142857142 603.4999999999998,228.25 713,248 C 822.5000000000002,267.75 911.2857142857144,227.92857142857142 1029,210 C 1146.7142857142856,192.07142857142858 1293.3571428571427,196.03571428571428 1440,200 C 1440,200 1440,400 1440,400 Z"
-            stroke="none"
-            strokeWidth="0"
-            fill="#151418ff"
-            transform="rotate(-180 720 200)"
-          ></path>
-        </svg>
+      <StyledSVG
+        viewBox="0 0 1440 400"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 0,400 C 0,400 0,200 0,200 C 114.35714285714289,156.53571428571428 228.71428571428578,113.07142857142858 351,131 C 473.2857142857142,148.92857142857142 603.4999999999998,228.25 713,248 C 822.5000000000002,267.75 911.2857142857144,227.92857142857142 1029,210 C 1146.7142857142856,192.07142857142858 1293.3571428571427,196.03571428571428 1440,200 C 1440,200 1440,400 1440,400 Z"
+          stroke="none"
+          strokeWidth="0"
+          fill="#151418ff"
+          transform="rotate(-180 720 200)"
+        ></path>
+      </StyledSVG>
       
-      <AboutContainer id="about" style={{ marginTop: '-6rem' }}>
+      <AboutContainer id="about">
         <SectionTitle>About Me</SectionTitle>
         
         <BioSection>
