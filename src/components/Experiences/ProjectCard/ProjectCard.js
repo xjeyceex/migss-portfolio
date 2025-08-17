@@ -124,7 +124,7 @@ const ButtonGroup = styled.div`
 
 const Button = styled.a`
   padding: 0.6rem 1rem;
-  border-radius: 6px;
+  border-radius: 10px;
   font-size: 0.9rem;
   font-weight: 500;
   text-align: center;
