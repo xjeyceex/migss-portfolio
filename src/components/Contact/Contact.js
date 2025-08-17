@@ -102,7 +102,7 @@ const EmailText = styled.span`
 
 const ActionButtons = styled.div`
   display: flex;
-  gap: 0.5rem; /* reduce space between buttons */
+  gap: 1rem; /* reduce space between buttons */
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
