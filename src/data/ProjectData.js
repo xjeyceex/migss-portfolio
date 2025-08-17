@@ -23,7 +23,7 @@ export const ProjectList = [
       "Responsive design"
     ],
     role: "Full-stack Developer",
-    year: 2023
+    year: 2025
   },
   {
     img: "/help-earth.jpg",
@@ -47,7 +47,7 @@ export const ProjectList = [
       "Performance optimization"
     ],
     role: "Full-stack Developer",
-    year: 2023
+    year: 2024
   },
   {
     img: "/certify.png",
@@ -72,7 +72,7 @@ export const ProjectList = [
       "Multi-media content support"
     ],
     role: "Full-stack Developer (Collaborator)",
-    year: 2023
+    year: 2025
   },
   {
     img: "/pesowise.png",
@@ -123,7 +123,7 @@ export const ProjectList = [
       "Promotional material creation"
     ],
     role: "Software Developer",
-    year: "2022-2024"
+    year: "2023-2024"
   }
 ];
 
