@@ -158,12 +158,15 @@ export const stackList = [
   },
   {
     category: { name: "Tools & Design" },
-    items: [
-      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", name: "Git" },
-      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", name: "Figma" },
-      { img: "https://www.vectorlogo.zone/logos/canva/canva-icon.svg", name: "Canva" },
-      { img: "https://cdn.worldvectorlogo.com/logos/adobe-photoshop-2.svg", name: "Photoshop" },
-    ],
+      items: [
+        { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", name: "Git" },
+        { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg", name: "VS Code" },
+        { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", name: "Figma" },
+        { img: "https://www.vectorlogo.zone/logos/canva/canva-icon.svg", name: "Canva" },
+        { img: "https://cdn.worldvectorlogo.com/logos/adobe-photoshop-2.svg", name: "Photoshop" },
+        { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg", name: "Jira" },
+        { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg", name: "Slack" },
+      ]
   },
 ];
 
