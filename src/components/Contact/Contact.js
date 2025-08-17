@@ -20,109 +20,173 @@ const pulse = keyframes`
 
 // Styled Components
 const ContactWrapper = styled.section`
-  margin: 6rem 0;
-  padding: 4rem 0;
+  margin: 3rem 0;
+  padding: 2rem 0;
   background: #fafafa;
   position: relative;
+
+  @media (min-width: 768px) {
+    margin: 6rem 0;
+    padding: 4rem 0;
+  }
 `;
 
 const BigCard = styled.div`
   background: white;
   border-radius: 12px;
-  padding: 3rem 2rem;
+  padding: 2rem 1rem;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  max-width: 800px;
+  max-width: 95%;
   margin: 0 auto;
   animation: ${fadeIn} 0.6s ease-out forwards;
   border: 1px solid #eee;
+
+  @media (min-width: 576px) {
+    padding: 2.5rem 1.5rem;
+    max-width: 90%;
+  }
+
+  @media (min-width: 768px) {
+    padding: 3rem 2rem;
+    max-width: 800px;
+  }
 `;
 
 const EmailContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+
+  @media (min-width: 576px) {
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
 `;
 
 const EmailText = styled.span`
-  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-size: 0.9rem;
   font-weight: 500;
   color: #333;
   background: #f5f5f5;
-  padding: 0.8rem 1.5rem;
+  padding: 0.6rem 1rem;
   border-radius: 8px;
   transition: all 0.3s ease;
   border: 1px solid #e0e0e0;
+  word-break: break-all;
+  text-align: center;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 10px rgba(0, 100, 255, 0.1);
   }
+
+  @media (min-width: 400px) {
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    word-break: normal;
+  }
+
+  @media (min-width: 576px) {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const ActionButtons = styled.div`
   display: flex;
-  gap: 1.5rem;
+  gap: 0.5rem; /* reduce space between buttons */
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
+
+  @media (min-width: 576px) {
+    gap: 0.75rem; /* slightly larger on bigger screens */
+  }
 `;
 
 const StyledButton = styled.a`
   display: flex;
   align-items: center;
-  padding: 0.9rem 2rem;
+  padding: 0.5rem 1rem; /* smaller padding */
   border-radius: 8px;
   font-weight: 600;
+  font-size: 0.85rem; /* smaller font */
   transition: all 0.3s ease;
   text-decoration: none;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+
   &:hover {
-    transform: translateY(-3px);
-    animation: ${pulse} 0.6s ease;
+    transform: translateY(-2px);
+    animation: ${pulse} 0.5s ease;
   }
 
   &.PrimaryBtn {
-    background: #1976d2;  // Primary blue accent
+    background: #1976d2;
     color: white;
-    
+
     &:hover {
       background: #1565c0;
-      box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
     }
   }
-  
+
   &.SecondaryBtn {
     background: white;
-    color: #1976d2;  // Blue text for consistency
+    color: #1976d2;
     border: 2px solid #e0e0e0;
-    
+
     &:hover {
       border-color: #1976d2;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
+  }
+
+  @media (min-width: 576px) {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 `;
 
 const SectionTitle = styled.h2`
   text-align: center;
   color: #333;
-  margin-bottom: 2.5rem;
-  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
   position: relative;
   
   &::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
+    width: 50px;
+    height: 2px;
     background: #333;  
     border-radius: 3px;
+  }
+
+  @media (min-width: 576px) {
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
+    
+    &::after {
+      bottom: -10px;
+      height: 3px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
   }
 `;
 
@@ -161,15 +225,16 @@ function Contact() {
                 onClick={copyToClipboard}
                 aria-label="Copy email to clipboard"
                 sx={{
-                  color: '#1976d2',  // Blue accent
+                  color: '#1976d2',
                   '&:hover': {
                     backgroundColor: 'rgba(25, 118, 210, 0.1)',
                     transform: 'scale(1.1)'
                   },
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  padding: '8px'
                 }}
               >
-                <MdContentCopy size={25} color="black" />
+                <MdContentCopy size={20} color="black" />
               </IconButton>
             </Tooltip>
           </EmailContainer>
@@ -182,7 +247,7 @@ function Contact() {
               rel="noopener noreferrer"
               aria-label="Send email"
             >
-              <MdEmail style={{ marginRight: '10px', fontSize: '1.2rem' }} />
+              <MdEmail style={{ marginRight: '8px', fontSize: '1rem' }} />
               Send Email
             </StyledButton>
 
@@ -194,8 +259,8 @@ function Contact() {
               aria-label="Download resume"
               download="Miguel_Beltran_Resume.pdf"
             >
-              <MdDownload style={{ marginRight: '10px', fontSize: '1.2rem' }} />
-              Download Resume
+              <MdDownload style={{ marginRight: '8px', fontSize: '1rem' }} />
+              View Resume
             </StyledButton>
           </ActionButtons>
         </BigCard>
