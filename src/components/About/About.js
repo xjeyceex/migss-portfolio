@@ -78,8 +78,6 @@ const ProfileImage = styled.img`
   height: 280px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid ${COLORS.white};
-  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
   
   @media (max-width: 992px) {
     display: none;
