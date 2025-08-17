@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import Header from "../Header/Header";
 import {
@@ -17,29 +17,47 @@ function Hero() {
   const [isOpen, setIsOpen] = useState(false);
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [showScrollDown, setShowScrollDown] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const heroRef = useRef(null);
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleInView = () => {
+    setIsInView(true);
+  };
+
+  const handleOutOfView = () => {
+    setIsInView(false);
+  };
+
   return (
     <main>
       <Dropdown isOpen={isOpen} toggle={toggle} />
       <Header toggle={toggle} />
-      <HeroContainer>
+      <HeroContainer ref={heroRef}>
         <HeroWrapper>
           <HeroLeft>
-            <ScrollAnimation animateIn="fadeIn" >
-              <TypeAnimation
-                cursor={false}
-                sequence={[
-                  'Hello There! I\'m Migss.',
-                  () => setShowSubtitle(true)
-                ]}
-                speed={{ type: "keyStrokeDelayInMs", value: 150 }}
-                wrapper="h1"
-                repeat={0}
-              />
-              {showSubtitle &&
+            <ScrollAnimation 
+              animateIn="fadeIn"
+              afterAnimatedIn={handleInView}
+              afterAnimatedOut={handleOutOfView}
+            >
+              {isInView && (
+                <TypeAnimation
+                  cursor={false}
+                  sequence={[
+                    'Hello There! I\'m Migss.',
+                    () => setShowSubtitle(true)
+                  ]}
+                  speed={{ type: "keyStrokeDelayInMs", value: 150 }}
+                  wrapper="h1"
+                  repeat={0}
+                />
+              )}
+              
+              {showSubtitle && isInView && (
                 <TypeAnimation
                   cursor={true}
                   sequence={[
@@ -78,9 +96,8 @@ function Hero() {
                   wrapper="h5"
                   repeat={Infinity}
                 />
-              }
+              )}
             </ScrollAnimation>
-
           </HeroLeft>
           <HeroRight>
             <ScrollAnimation animateIn="fadeIn">
@@ -91,17 +108,19 @@ function Hero() {
             </ScrollAnimation>
           </HeroRight>
         </HeroWrapper>
-        {showScrollDown &&<ScrollAnimation animateIn="flipInX" offset={0}>
-        <ScrollDown to="about" id="scrollDown">
-          <ScrollLink>
-            Scroll down
-            <img
-              src="/scroll-down.svg"
-              alt="scroll-down"
-            />
-          </ScrollLink>
-        </ScrollDown>
-        </ScrollAnimation>}
+        {showScrollDown && isInView && (
+          <ScrollAnimation animateIn="flipInX" offset={0}>
+            <ScrollDown to="about" id="scrollDown">
+              <ScrollLink>
+                Scroll down
+                <img
+                  src="/scroll-down.svg"
+                  alt="scroll-down"
+                />
+              </ScrollLink>
+            </ScrollDown>
+          </ScrollAnimation>
+        )}
       </HeroContainer>
     </main>
   );
