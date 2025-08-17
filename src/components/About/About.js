@@ -17,14 +17,19 @@ const COLORS = {
 
 const AboutContainer = styled.div`
   padding: 0 2rem 6rem 2rem;
-  background: '${COLORS.background}';
+  background: ${COLORS.background};
   padding-top: 2rem;
-  position: relative;
 
-  @media (max-width: 768px) {
-    padding: 0 1rem 4rem 1rem;
+  /* default for mobile + tablets */
+  padding-left: 1rem;
+
+  /* for desktops */
+  @media (min-width: 1000px) {
+    padding-left: 5rem;
   }
 `;
+
+
 
 const SectionTitle = styled.h2`
   text-align: center;

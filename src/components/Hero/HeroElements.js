@@ -2,15 +2,13 @@ import styled, { keyframes } from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
 
 export const HeroContainer = styled.div`
-  padding-bottom: 2rem;
-  padding-top: 4rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding: 4rem 1rem 2rem 1rem; /* top right bottom left */
   margin-right: auto;
   margin-left: auto;
   display: flex;
   flex-direction: column;
 
+  /* responsive widths */
   @media (min-width: 576px) {
     max-width: 540px;
   }
@@ -22,6 +20,11 @@ export const HeroContainer = styled.div`
   }
   @media (min-width: 1200px) {
     max-width: 1000px;
+  }
+
+  /* only add extra left padding on wide desktops */
+  @media (min-width: 1000px) {
+    padding-left: 5rem;
   }
 `;
 

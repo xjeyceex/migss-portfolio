@@ -20,7 +20,7 @@ const FooterSection = styled.div`
   }
 
   @media (max-width: 768px) {
-    background-size: 100% 150%; 
+    background-size: 180% 100%; 
     background-position: top center; 
   }
 `;

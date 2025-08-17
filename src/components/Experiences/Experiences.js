@@ -11,13 +11,20 @@ const COLORS = {
 };
 
 const ExperienceWrapper = styled.div`
-  padding: 6rem 2rem;
+  /* mobile/tablet default */
+  padding: 3rem 1rem;
   background: ${COLORS.white};
   position: relative;
   overflow: hidden;
 
-  @media (max-width: 768px) {
-    padding: 3rem 1rem;
+  /* medium screens and up */
+  @media (min-width: 769px) {
+    padding: 6rem 2rem;
+  }
+
+  /* desktop only */
+  @media (min-width: 1000px) {
+    padding-left: 5rem;
   }
 `;
 
