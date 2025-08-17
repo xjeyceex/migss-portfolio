@@ -18,6 +18,11 @@ const FooterSection = styled.div`
       text-decoration: underline;
     }
   }
+
+  @media (max-width: 768px) {
+    background-size: 100% 150%; 
+    background-position: top center; 
+  }
 `;
 function Footer() {
   return (
