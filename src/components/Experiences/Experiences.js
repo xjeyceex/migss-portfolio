@@ -48,9 +48,10 @@ const SectionTitle = styled.h2`
     bottom: -12px;
     left: 0;
     width: 80px;
-    height: 4px;
+    height: 3px;
     background: ${COLORS.primary}; /* now #333 */
-    border-radius: 2px;
+    border-radius: 99px;
+    opacity: 0.6;
   }
 
   @media (max-width: 768px) {
