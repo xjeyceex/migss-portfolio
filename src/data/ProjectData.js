@@ -130,84 +130,49 @@ export const ProjectList = [
 // --------------------------------------- Skills
 
 export const stackList = [
-  // 🌐 Frontend
   {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg",
-    name: "HTML",
+    category: {
+      name: "Frontend",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    },
+    items: [
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", name: "HTML" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", name: "CSS" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", name: "JavaScript" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", name: "TypeScript" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", name: "ReactJS" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", name: "NextJS" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", name: "Tailwind CSS" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg", name: "Material UI" },
+    ],
   },
   {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg",
-    name: "CSS",
+    category: {
+      name: "Backend",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    },
+    items: [
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", name: "NodeJS" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg", name: "Express" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", name: "Python" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", name: "PostgreSQL" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", name: "MySQL" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg", name: "SQLite" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg", name: "Prisma" },
+      { img: "https://www.vectorlogo.zone/logos/supabase/supabase-icon.svg", name: "Supabase" },
+    ],
   },
   {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
-    name: "JavaScript",
-  },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
-    name: "TypeScript",
-  },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
-    name: "ReactJS",
-  },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg",
-    name: "NextJS",
-  },
-  {
-    img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
-    name: "Tailwind CSS",
-  },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/materialui/materialui-original.svg",
-    name: "Material UI",
-  },
-
-  // ⚙️ Backend
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg",
-    name: "NodeJS",
-  },
-  {
-    img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg",
-    name: "Express",
-  },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
-    name: "Python",
-  },
-
-  // 🗄️ Databases & ORM
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg",
-    name: "PostgreSQL",
-  },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg",
-    name: "MySQL",
-  },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/sqlite/sqlite-original.svg",
-    name: "SQLite",
-  },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/prisma/prisma-original.svg",
-    name: "Prisma",
-  },
-  {
-    img: "https://www.vectorlogo.zone/logos/supabase/supabase-icon.svg",
-    name: "Supabase",
-  },
-
-  // 🛠 Tools & Design
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg",
-    name: "Git",
-  },
-  {
-    img: "https://raw.githubusercontent.com/devicons/devicon/master/icons/figma/figma-original.svg",
-    name: "Figma",
+    category: {
+      name: "Tools & Design",
+      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobe.svg", // design-like icon
+    },
+    items: [
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", name: "Git" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", name: "Figma" },
+      { img: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/canva.svg", name: "Canva" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-line.svg", name: "Photoshop" },
+    ],
   },
 ];
 

@@ -135,24 +135,55 @@ const Tagline = styled.p`
   }
 `;
 
-const Technologies = styled.div`
+const Category = styled.div`
+  width: 100%;
+`;
+
+const CategoryTitle = styled.h3`
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: ${COLORS.textDark};
+  text-align: center;
+`;
+
+const CategoryHeader = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+`;
+
+const CategoryIcon = styled.img`
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+`;
+
+const CategoryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1.2rem;
+  width: 100%;
+`;
+
+const Technologies = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1.2rem;
+  width: 100%;
 `;
 
 const Tech = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90px;
   padding: 1rem;
   border-radius: 12px;
   background: ${COLORS.white};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px rgba(59, 130, 246, 0.1);
@@ -160,7 +191,6 @@ const Tech = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 70px;
     padding: 0.8rem;
   }
 `;
@@ -260,17 +290,27 @@ function About() {
           </ScrollAnimation>
 
           <Technologies>
-            {stackList.map((stack, index) => (
-              <ScrollAnimation 
-                animateIn="fadeIn" 
-                delay={100 * (index % 4)} 
-                key={index}
-              >
-                <Tech>
-                  <TechImg src={stack.img} alt={stack.name} />
-                  <TechName>{stack.name}</TechName>
-                </Tech>
-              </ScrollAnimation>
+            {stackList.map((group, groupIndex) => (
+              <Category key={groupIndex}>
+                <CategoryHeader>
+                  <CategoryIcon src={group.category.icon} alt={`${group.category.name} icon`} />
+                  <CategoryTitle>{group.category.name}</CategoryTitle>
+                </CategoryHeader>
+                <CategoryGrid>
+                  {group.items.map((stack, index) => (
+                    <ScrollAnimation
+                      animateIn="fadeIn"
+                      delay={100 * (index % 4)}
+                      key={stack.name}
+                    >
+                      <Tech>
+                        <TechImg src={stack.img} alt={stack.name} />
+                        <TechName>{stack.name}</TechName>
+                      </Tech>
+                    </ScrollAnimation>
+                  ))}
+                </CategoryGrid>
+              </Category>
             ))}
           </Technologies>
         </TechSection>
