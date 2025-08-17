@@ -76,7 +76,7 @@ function FixSocialIcon() {
           </li>
           <li className="item">
             <a
-              href="https://www.facebook.com/jcmigsss/"
+              href="https://www.facebook.com/migelgugel/"
               target="_blank"
               rel="noopener noreferrer"
             >
