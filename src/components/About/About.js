@@ -165,6 +165,13 @@ const CategoryGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1.2rem;
   width: 100%;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
 `;
 
 const Technologies = styled.div`
@@ -172,6 +179,12 @@ const Technologies = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1.2rem;
   width: 100%;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 const Tech = styled.div`
@@ -183,6 +196,7 @@ const Tech = styled.div`
   background: ${COLORS.white};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 100px;
 
   &:hover {
     transform: translateY(-5px);
@@ -192,6 +206,8 @@ const Tech = styled.div`
 
   @media (max-width: 768px) {
     padding: 0.8rem;
+    min-width: 80px;
+    flex-grow: 1;
   }
 `;
 
