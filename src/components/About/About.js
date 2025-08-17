@@ -37,7 +37,7 @@ const SectionTitle = styled.h2`
   font-weight: 700;
   margin-top: 2rem;
   margin-bottom: 4rem;
-  color: ${COLORS.textDark};
+  color: #111; /* solid black */
   position: relative;
   
   &::after {
@@ -48,8 +48,9 @@ const SectionTitle = styled.h2`
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: ${COLORS.primary};
+    background: #555; /* subtle grey underline */
     border-radius: 2px;
+    opacity: 0.6; /* softer look */
   }
 
   @media (max-width: 768px) {
@@ -105,7 +106,7 @@ const AboutBio = styled.div`
 `;
 
 const HighlightText = styled.span`
-  color: ${COLORS.primary};
+  color: #333; /* dark grey for subtle highlight */
   font-weight: 600;
 `;
 
@@ -140,22 +141,26 @@ const Category = styled.div`
 const CategoryTitle = styled.h3`
   font-weight: 600;
   font-size: 1.1rem;
-  color: ${COLORS.textDark};
+  color: #333;  
   text-align: center;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #000; /* black underline */
+    margin: 0.4rem auto 0;
+    border-radius: 2px;
+    opacity: 0.5; /* subtle */
+  }
 `;
 
 const CategoryHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 1rem;
-  gap: 0.5rem;
-`;
-
-const CategoryIcon = styled.img`
-  height: 20px;
-  width: 20px;
-  object-fit: contain;
 `;
 
 const CategoryGrid = styled.div`
@@ -307,7 +312,6 @@ function About() {
             {stackList.map((group, groupIndex) => (
               <Category key={groupIndex}>
                 <CategoryHeader>
-                  <CategoryIcon src={group.category.icon} alt={`${group.category.name} icon`} />
                   <CategoryTitle>{group.category.name}</CategoryTitle>
                 </CategoryHeader>
                 <CategoryGrid>

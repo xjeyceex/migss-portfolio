@@ -80,8 +80,9 @@ export const AboutBio = styled.div`
 `;
 
 export const HighlightText = styled.span`
-  color: ${props => props.theme.colors.accent1};
-  font-weight: bold;
+  color: #444;              /* softer than #333 */
+  font-weight: 600;         /* gives subtle emphasis */
+  letter-spacing: 0.3px;    /* touch of refinement */
 `;
 
 export const Tagline = styled.p`

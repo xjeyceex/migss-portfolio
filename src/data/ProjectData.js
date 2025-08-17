@@ -131,10 +131,7 @@ export const ProjectList = [
 
 export const stackList = [
   {
-    category: {
-      name: "Frontend",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    },
+  category: { name: "Frontend" },
     items: [
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", name: "HTML" },
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", name: "CSS" },
@@ -147,10 +144,7 @@ export const stackList = [
     ],
   },
   {
-    category: {
-      name: "Backend",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-    },
+    category: { name: "Backend" },
     items: [
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", name: "NodeJS" },
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg", name: "Express" },
@@ -163,15 +157,12 @@ export const stackList = [
     ],
   },
   {
-    category: {
-      name: "Tools & Design",
-      icon: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobe.svg", // design-like icon
-    },
+    category: { name: "Tools & Design" },
     items: [
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", name: "Git" },
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", name: "Figma" },
-      { img: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/canva.svg", name: "Canva" },
-      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-line.svg", name: "Photoshop" },
+      { img: "https://www.vectorlogo.zone/logos/canva/canva-icon.svg", name: "Canva" },
+      { img: "https://cdn.worldvectorlogo.com/logos/adobe-photoshop-2.svg", name: "Photoshop" },
     ],
   },
 ];

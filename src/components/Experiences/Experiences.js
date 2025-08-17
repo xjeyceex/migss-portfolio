@@ -2,9 +2,9 @@ import React from "react";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import styled from "@emotion/styled";
 
-// Using the same color palette
+// Updated color palette
 const COLORS = {
-  primary: "#3b82f6",
+  primary: "#333",          // Replaced blue with dark gray
   background: "#f8fafc",
   textDark: "#1e293b",
   white: "#ffffff"
@@ -49,7 +49,7 @@ const SectionTitle = styled.h2`
     left: 0;
     width: 80px;
     height: 4px;
-    background: ${COLORS.primary};
+    background: ${COLORS.primary}; /* now #333 */
     border-radius: 2px;
   }
 
