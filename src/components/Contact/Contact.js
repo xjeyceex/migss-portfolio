@@ -1,179 +1,96 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { MdContentCopy, MdEmail, MdDownload } from "react-icons/md";
-import { IconButton, Tooltip } from "@mui/material";
-import Zoom from '@mui/material/Zoom';
-import { keyframes } from "@emotion/react";
+import { IconButton, Tooltip, Zoom } from "@mui/material";
 import PDF from '../../assets/resume/Migss_resume.pdf';
 
-// Animations
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
-
-const pulse = keyframes`
-  0% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-  100% { transform: scale(1); }
-`;
-
-// Styled Components
 const ContactWrapper = styled.section`
-  padding: 2rem 0;
+  padding: 4rem;
   background: #fafafa;
-  position: relative;
+  display: flex;
+  justify-content: center;
+`;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
 `;
 
 const BigCard = styled.div`
-  background: white;
-  border-radius: 12px;
-  padding: 2rem 1rem;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  max-width: 95%;
-  margin: 0 auto;
-  animation: ${fadeIn} 0.6s ease-out forwards;
-  border: 1px solid #eee;
-
-  @media (min-width: 576px) {
-    padding: 2.5rem 1.5rem;
-    max-width: 90%;
-  }
-
-  @media (min-width: 768px) {
-    padding: 3rem 2rem;
-    max-width: 800px;
-  }
-`;
-
-// Email + Copy container
-const EmailContainer = styled.div`
   display: flex;
+  flex-wrap: wrap; /* allow groups to wrap on small screens */
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  flex-wrap: nowrap;
-  margin-bottom: 2rem;
-  width: 100%;
-  overflow-x: hidden;
+  gap: 2rem;
+  background: white;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  max-width: 900px;
+  border: 1px solid #eee;
+`;
 
-  @media (min-width: 576px) {
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
-  }
+const EmailGroup = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap; /* keep email + copy together */
+  align-items: center;
 `;
 
 const EmailText = styled.span`
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: #333;
   background: #f5f5f5;
-  padding: 0.6rem 1rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 8px;
   border: 1px solid #e0e0e0;
-  word-break: break-all;
-  text-align: center;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(0, 100, 255, 0.1);
-  }
-
-  @media (min-width: 400px) {
-    font-size: 1rem;
-    padding: 0.8rem 1.2rem;
-    word-break: normal;
-  }
-
-  @media (min-width: 576px) {
-    font-size: 1.1rem;
-    padding: 0.8rem 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    font-size: 1.3rem;
-  }
-`;
-
-// Container for buttons
-const ActionButtons = styled.div`
   display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 0.75rem; /* spacing between buttons */
-  width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-
-  @media (max-width: 576px) {
-    gap: 0.5rem; /* slightly smaller gap on mobile */
-  }
+  align-items: center;
 `;
 
-// Button styles
+const Actions = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap; /* keep buttons together */
+  align-items: center;
+`;
+
 const StyledButton = styled.a`
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 1rem;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  text-align: center;
-  transition: all 0.3s ease;
-  flex-shrink: 1;
-  min-width: 0;
-  box-sizing: border-box;
   border: 2px solid transparent;
+  transition: all 0.3s ease;
 
-  &:hover {
-    transform: translateY(-2px);
-    animation: ${pulse} 0.5s ease;
-  }
-
-  &.PrimaryBtn {
+  &.primary {
     background: #1976d2;
-    color: white;
+    color: #fff;
     border-color: #1976d2;
-
     &:hover {
       background: #1565c0;
-      border-color: #1565c0;
-      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+      box-shadow: 0 4px 12px rgba(25,118,210,0.3);
     }
   }
 
-  &.SecondaryBtn {
-    background: white;
+  &.secondary {
+    background: #fff;
     color: #1976d2;
-    border-color: #e0e0e0; /* visible border */
-  }
-
-  @media (max-width: 450px) {
-    flex: 1 1 0;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.75rem;
-  }
-
-  @media (min-width: 450px) {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-  }
-
-  @media (min-width: 768px) {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+    border: 1px solid #e0e0e0;
   }
 `;
 
 const SectionTitle = styled.h2`
   text-align: center;
   color: #333;
-  margin-bottom: 2rem;
   font-size: 1.5rem;
   position: relative;
 
@@ -191,7 +108,6 @@ const SectionTitle = styled.h2`
 
   @media (min-width: 576px) {
     font-size: 1.75rem;
-    margin-bottom: 2.5rem;
     &::after {
       bottom: -10px;
       height: 3px;
@@ -204,80 +120,46 @@ const SectionTitle = styled.h2`
 `;
 
 function Contact() {
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltip, setTooltip] = useState(false);
   const email = "jcmiguel.beltran@gmail.com";
 
-  const copyToClipboard = () => {
+  const copyEmail = () => {
     navigator.clipboard.writeText(email);
-    setShowTooltip(true);
-    setTimeout(() => setShowTooltip(false), 700);
+    setTooltip(true);
+    setTimeout(() => setTooltip(false), 700);
   };
 
   return (
     <ContactWrapper id="contact">
-      <div className="Container">
+      <Container>
         <SectionTitle>Get In Touch</SectionTitle>
         <BigCard>
-          {/* Email + Copy */}
-          <EmailContainer>
+          <EmailGroup>
             <EmailText>{email}</EmailText>
             <Tooltip
-              PopperProps={{ disablePortal: true }}
-              open={showTooltip}
-              onClose={() => setShowTooltip(false)}
+              open={tooltip}
+              onClose={() => setTooltip(false)}
               title="Copied!"
               TransitionComponent={Zoom}
-              disableFocusListener
-              disableHoverListener
-              disableTouchListener
               placement="bottom"
               arrow
             >
-              <IconButton
-                onClick={copyToClipboard}
-                aria-label="Copy email"
-                sx={{
-                  color: '#1976d2',
-                  '&:hover': {
-                    backgroundColor: 'rgba(25, 118, 210, 0.1)',
-                    transform: 'scale(1.1)'
-                  },
-                  transition: 'all 0.3s ease',
-                  padding: '8px'
-                }}
-              >
-                <MdContentCopy size={20} color="black" />
+              <IconButton onClick={copyEmail} sx={{ color: '#1976d2' }}>
+                <MdContentCopy size={25} />
               </IconButton>
             </Tooltip>
-          </EmailContainer>
+          </EmailGroup>
 
-          {/* Action Buttons */}
-          <ActionButtons>
-            <StyledButton
-              className="PrimaryBtn"
-              href={`mailto:${email}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Send email"
-            >
-              <MdEmail style={{ marginRight: '8px', fontSize: '1rem' }} />
-              Send Email
+          <Actions>
+            <StyledButton className="primary" href={`mailto:${email}`}>
+              <MdEmail /> Send Email
             </StyledButton>
-
-            <StyledButton
-              className="SecondaryBtn"
-              href={PDF}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download resume"
-              download="Miguel_Beltran_Resume.pdf"
-            >
-              <MdDownload style={{ marginRight: '8px', fontSize: '1rem' }} />
-              View Resume
+            <StyledButton className="secondary" href={PDF} download="Miguel_Beltran_Resume.pdf">
+              <MdDownload /> View Resume
             </StyledButton>
-          </ActionButtons>
+          </Actions>
         </BigCard>
-      </div>
+      </Container>
     </ContactWrapper>
   );
 }
