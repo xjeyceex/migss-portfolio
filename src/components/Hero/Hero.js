@@ -44,55 +44,39 @@ function Hero() {
               afterAnimatedIn={handleInView}
               afterAnimatedOut={handleOutOfView}
             >
-              {isInView && (
+             {isInView && (
                 <TypeAnimation
                   cursor={false}
-                  sequence={[
-                    'Hello There! I\'m Migss.',
-                    () => setShowSubtitle(true)
-                  ]}
-                  speed={{ type: "keyStrokeDelayInMs", value: 150 }}
+                  sequence={["Hello There! I'm Migss.", () => setShowSubtitle(true)]}
+                  speed={150}          // simpler, same effect
                   wrapper="h1"
                   repeat={0}
+                  style={{ whiteSpace: "nowrap" }} // ensure it stays on one line
                 />
               )}
-              
               {showSubtitle && isInView && (
                 <TypeAnimation
                   cursor={true}
                   sequence={[
-                    500,
-                    'A Full Stack Developer.',
-                    1000,
-                    'A Computer Science graduate.',
-                    1000,
-                    'A problem solver.',
-                    1000,
-                    'An innovative thinker.',
-                    1000,
-                    'Passionate about creating meaningful experiences.',
-                    1000,
-                    'Always learning and growing.',
-                    1000,
-                    "Let's build something amazing together!",
-                    1000,
-                    "Okay...",
-                    1000,
-                    "Okay... I'm running out of ideas...",
-                    1000,
-                    "Hmm...",
-                    1000,
-                    "Hmm... Why not scroll down to explore my portfolio?",
-                    300,
-                    () => setShowScrollDown(true),
-                    1000,
-                    "Alright, let's loop this again!",
-                    1000,
-                    "Catch you later! :)",
-                    500,
-                  ]}                
+                    // Array of subtitle lines with delays
+                    ...[
+                      { text: "A Full Stack Developer.", delay: 1000 },
+                      { text: "A Computer Science graduate.", delay: 1000 },
+                      { text: "A problem solver.", delay: 1000 },
+                      { text: "An innovative thinker.", delay: 1000 },
+                      { text: "Passionate about creating meaningful experiences.", delay: 1000 },
+                      { text: "Always learning and growing.", delay: 1000 },
+                      { text: "Let's build something amazing together!", delay: 1000 },
+                      { text: "Okay...", delay: 1000 },
+                      { text: "Okay... I'm running out of ideas...", delay: 1000 },
+                      { text: "Hmm...", delay: 1000 },
+                      { text: "Hmm... Why not scroll down to explore my portfolio?", delay: 300, callback: () => setShowScrollDown(true) },
+                      { text: "Alright, let's loop this again!", delay: 1000 },
+                      { text: "Catch you later! :)", delay: 500 },
+                    ].flatMap(item => [item.text, item.delay, item.callback || undefined])
+                  ]}
                   speed={50}
-                  deletionSpeed={65}
+                  deletionSpeed={60}
                   wrapper="h5"
                   repeat={Infinity}
                 />
