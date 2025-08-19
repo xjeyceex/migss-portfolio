@@ -108,7 +108,6 @@ const ActionButtons = styled.div`
   justify-content: center;
   flex-wrap: nowrap;
   gap: 0.75rem; /* spacing between buttons */
-  background: red; /* debug, can remove */
   width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
