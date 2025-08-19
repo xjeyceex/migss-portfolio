@@ -14,7 +14,7 @@ export const ProjectList = [
       { name: "Mantine", icon: "https://mantine.dev/favicon.svg" },
       { name: "Zustand", icon: "https://zustand-demo.pmnd.rs/favicon.ico" },
     ],
-    github_url: "https://github.com/xjeyceex/canvassing-app-dev",
+    github_url: "",
     demo_url: "https://canvassly.vercel.app",
     features: [
       "Automated supplier comparison",
@@ -63,7 +63,7 @@ export const ProjectList = [
       { name: "Mantine", icon: "https://mantine.dev/favicon.svg" },
       { name: "Zustand", icon: "https://zustand-demo.pmnd.rs/favicon.ico" },
     ],
-    github_url: "https://github.com/alberto-linao/certify",
+    github_url: "",
     demo_url: "https://certify.com.ph/",
     features: [
       "Custom certification creation",
