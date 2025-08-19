@@ -20,15 +20,10 @@ const pulse = keyframes`
 
 // Styled Components
 const ContactWrapper = styled.section`
-  margin: 3rem 0;
   padding: 2rem 0;
   background: #fafafa;
   position: relative;
 
-  @media (min-width: 768px) {
-    margin: 6rem 0;
-    padding: 4rem 0;
-  }
 `;
 
 const BigCard = styled.div`

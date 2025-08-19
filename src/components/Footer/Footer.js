@@ -2,38 +2,38 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const FooterSection = styled.div`
-  background-image: url(/footer_wave.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 100%;
   height: 300px;
   position: relative;
+  overflow: hidden;
 
-  span {
+  svg {
     position: absolute;
-    bottom: 4rem;
-    color: #fff;
-
-    a {
-      text-decoration: underline;
-    }
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   @media (max-width: 768px) {
-    background-size: 200% 100%; 
-    background-position: top center; 
+    height: 200px; /* shrink height for mobile */
   }
 `;
 
 function Footer() {
   return (
     <FooterSection>
-      <div style={{ display: 'flex', alignItems: 'center', columnGap: '20px', rowGap: '10px', flexWrap: 'wrap', justifyContent: 'center' }} >
-      <p style={{ textAlign: 'center', maxWidth: '600px' }}>
-      <br />
-      Thank you for Viewing my Portfolio!
-      </p>
-      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 200"
+        preserveAspectRatio="none"
+      >
+        <path
+          fill="#141419"
+          fillOpacity="1"
+          d="M0,160L48,152C96,144,192,128,288,112C384,96,480,80,576,88C672,96,768,120,864,130C960,140,1056,136,1152,140C1248,144,1344,160,1392,168L1440,176L1440,200L1392,200C1344,200,1248,200,1152,200C1056,200,960,200,864,200C768,200,672,200,576,200C480,200,384,200,288,200C192,200,96,200,48,200L0,200Z"
+        ></path>
+      </svg>
     </FooterSection>
   );
 }
