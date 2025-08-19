@@ -1,69 +1,46 @@
 import React from "react";
-import ProjectCard from "./ProjectCard/ProjectCard";
 import styled from "@emotion/styled";
+import { Container } from "@mui/material";
+import ProjectCard from "./ProjectCard/ProjectCard";
+import ExperienceSection from "./Experiences/ExperienceSection";
 
-// Updated color palette
 const COLORS = {
-  primary: "#333",          // Replaced blue with dark gray
+  primary: "#333",          // dark gray
   background: "#f8fafc",
   textDark: "#1e293b",
   white: "#ffffff"
 };
 
-const ExperienceWrapper = styled.div`
-  /* mobile/tablet default */
-  padding: 3rem 1rem;
-  background: ${COLORS.white};
-  position: relative;
-  overflow: hidden;
+const ExperienceWrapper = styled.section`
+  background-color: ${COLORS.white}; 
+  color: ${COLORS.textDark};
+  min-height: 100vh;
+  padding: 4rem 0 2rem; 
 
-  /* medium screens and up */
-  @media (min-width: 769px) {
-    padding: 6rem 2rem;
+  @media (max-width: 768px) {
+    padding: 3rem 1.5rem 2rem; /* top 3rem, sides 1.5rem, bottom 2rem */
   }
-
-  /* desktop only */
-  @media (min-width: 1000px) {
-    padding-left: 5rem;
-  }
-`;
-
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
 `;
 
 const SectionTitle = styled.h2`
   font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 4rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: left;      /* 👈 aligned to the left */
+  letter-spacing: 2px;
   color: ${COLORS.textDark};
-  position: relative;
-  display: inline-block;
-  
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -12px;
-    left: 0;
-    width: 80px;
-    height: 3px;
-    background: ${COLORS.primary}; /* now #333 */
-    border-radius: 99px;
-    opacity: 0.6;
-  }
 
   @media (max-width: 768px) {
     font-size: 2rem;
-    margin-bottom: 2.5rem;
-    text-align: center;
-    width: 100%;
-    
-    &::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    margin-bottom: 1.5rem;
+  }
+`;
+
+const SectionBlock = styled.div`
+  margin-bottom: 5rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 3rem;
   }
 `;
 
@@ -71,9 +48,16 @@ function Experiences() {
   return (
     <ExperienceWrapper id="projects">
       <Container>
-        <SectionTitle>Projects & Experiences</SectionTitle>
-        <ProjectCard />
+        <SectionBlock>
+          <SectionTitle>Experiences</SectionTitle>
+          <ExperienceSection />
+        </SectionBlock>
+        <SectionBlock>
+          <SectionTitle>Projects</SectionTitle>
+        </SectionBlock>
       </Container>
+                <ProjectCard />
+
     </ExperienceWrapper>
   );
 }

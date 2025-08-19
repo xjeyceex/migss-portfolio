@@ -71,7 +71,7 @@ export const ProjectList = [
       "Progress tracking dashboard",
       "Multi-media content support"
     ],
-    role: "Full-stack Developer (Collaborator)",
+    role: "Full-stack Developer",
     year: 2025
   },
   {

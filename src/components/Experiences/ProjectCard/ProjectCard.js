@@ -1,240 +1,305 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { ProjectList } from "../../../data/ProjectData";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import styled from "@emotion/styled";
+import { ProjectList } from "../../../data/ProjectData";
+import { FaChevronLeft, FaChevronRight, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
-// Styled Components
-const ProjectGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-  width: 100%;
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  @media(min-width:768px){ padding: 0 20px; }
+`;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+const Wrapper = styled.div`
+  display:flex; justify-content:center; position:relative; padding:0 15px;
 `;
 
 const Card = styled.div`
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  &:hover {
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    transform: translateY(-5px);
-  }
-
-  @media (max-width: 768px) {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    &:hover {
-      transform: none;
-    }
+  display:flex; 
+  flex-direction:column; 
+  background:#fff; 
+  border-radius:12px; 
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08); 
+  transition:.3s; 
+  width:100%; 
+  border:1px solid rgba(0,0,0,0.05); 
+  margin:0;
+  
+  &:hover{ box-shadow:0 8px 24px rgba(0,0,0,0.12); }
+  
+  @media(min-width:768px){ 
+    flex-direction:row; 
+    height:auto; 
+    max-width:1000px; 
+    margin:0 10px; 
+    border-radius:16px; 
   }
 `;
 
-const CardImage = styled.div`
+const Image = styled.div`
   width: 100%;
-  height: 200px;
+  height: 200px; // fixed height for mobile
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  position: relative;
+  background: #000;
 
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    object-fit: cover; // changed from 'contain' to 'cover' to fill the space
+    object-position: center;
+    transition: transform 0.6s ease;
   }
 
   &:hover img {
     transform: scale(1.05);
   }
 
-  @media (max-width: 768px) {
-    height: 180px;
+  @media(min-width: 768px){
+    width: 50%;
+    height: auto; // let it grow with content on desktop
+    min-height: 300px;
   }
 `;
 
-const CardContent = styled.div`
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-
-  @media (max-width: 768px) {
-    padding: 1.2rem;
-  }
+const GradientOverlay = styled.div`
+  position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to top, rgba(0,0,0,0.5), transparent);
 `;
 
-const CardTitle = styled.h3`
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-  color: #1e293b;
-
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-  }
+const Badge = styled.span`
+  position:absolute; top:12px; left:12px; background:rgba(0,0,0,0.7); color:#fff; padding:.3rem .8rem; border-radius:20px;
+  font-size:.75rem; font-weight:500; backdrop-filter:blur(4px); z-index:2;
+  @media(min-width:768px){ top:16px; padding:.35rem .9rem; font-size:.85rem; }
 `;
 
-const CardDescription = styled.p`
-  color: #64748b;
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
-  flex-grow: 1;
-  font-size: 0.95rem;
+const Content = styled.div`
+  padding:1.2rem; flex:1; display:flex; flex-direction:column; justify-content:space-between;
+  @media(min-width:768px){ width:50%; padding:2rem; }
+`;
+
+const Title = styled.h3`
+  font-size:1.3rem; margin-bottom:.5rem; color:#111827; font-weight:600; line-height:1.3;
+  @media(min-width:768px){ font-size:1.8rem; margin-bottom:.75rem; font-weight:700; }
+`;
+
+const Meta = styled.div`
+  display:flex; flex-wrap:wrap; gap:.5rem; font-size:.8rem; color:#6b7280; margin-bottom:1rem; align-items:center;
+  span:not(:first-of-type){ display:flex; align-items:center; &::before{ content:"•"; margin:0 0.3rem; color:#d1d5db; } }
+  @media(min-width:768px){ font-size:.95rem; gap:1rem; margin-bottom:1.25rem; }
+`;
+
+const Desc = styled.p`
+  color:#4b5563; line-height:1.6; margin-bottom:1.2rem; font-size:.9rem; word-wrap:break-word;
+  overflow-y:visible;
+  @media(min-width:768px){ font-size:1.05rem; margin-bottom:1.75rem; line-height:1.7; }
 `;
 
 const TechStack = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-
-  @media (max-width: 768px) {
-    margin-bottom: 1.2rem;
-  }
+  display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.2rem; overflow-x:auto; padding-bottom:5px;
+  @media(min-width:768px){ gap:.75rem; margin-bottom:1.5rem; overflow-x:visible; }
 `;
 
-const TechItem = styled.div`
+const Tech = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background: #f5f5f5;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 0.8rem;
-  margin-top: auto;
-
-  @media (max-width: 768px) {
-    flex-direction: row;
-    gap: 0.6rem;
-  }
-`;
-
-const Button = styled.a`
-  padding: 0.6rem 1rem;
-  border-radius: 10px;
-  font-size: 0.9rem;
+  gap: 0.3rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
   font-weight: 500;
-  text-align: center;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  text-decoration: none;
-  flex: 1;
+  color: #374151;
+  flex-shrink: 0;
 
-  &.primary {
-    background: #3b82f6;
-    color: white;
-    &:hover {
-      background: #2563eb;
-    }
+  &:hover {
+    background: #f3f4f6;
   }
 
-  &.secondary {
-    background: #e0f2fe;
-    color: #0369a1;
-    &:hover {
-      background: #bae6fd;
-    }
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.7rem;
+  @media(min-width:768px){
     font-size: 0.85rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    gap: 0.5rem;
   }
-`;
-
-const CardMeta = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-  color: #666;
-  font-size: 0.9rem;
 `;
 
 const TechIcon = styled.img`
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
+  width:14px; height:14px; object-fit:contain;
+  @media(min-width:768px){ width:16px; height:16px; }
 `;
 
-function ProjectCard() {
+const Buttons = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  overflow-x: auto;
+
+  @media(min-width:768px){
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    overflow-x: visible;
+  }
+`;
+
+const Btn = styled.a`
+  padding:.6rem 1rem; border-radius:8px; text-align:center; font-weight:600; min-width:100px;
+  display:inline-flex; align-items:center; justify-content:center; gap:.4rem; font-size:.85rem; transition:.2s ease;
+  &.primary{ background:linear-gradient(135deg,#3b82f6 0%,#2563eb 100%); color:white;
+    box-shadow:0 2px 4px rgba(59,130,246,.2);
+    &:hover{ background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%); transform:translateY(-1px); box-shadow:0 4px 8px rgba(59,130,246,.3); } }
+  &.secondary{ background:#fff; color:#374151; border:1px solid #e5e7eb;
+    &:hover{ background:#f9fafb; transform:translateY(-1px); border-color:#d1d5db; } }
+  @media(min-width:768px){ padding:.75rem 1.25rem; font-size:1rem; border-radius:10px; min-width:120px; }
+`;
+
+const NavButton = styled.button`
+  position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; border:none;
+  background:white; color:#3b82f6; cursor:pointer; font-size:16px; z-index:10; display:flex; align-items:center; justify-content:center;
+  transition:.2s ease; box-shadow:0 4px 12px rgba(0,0,0,.1); opacity:.9;
+  &:hover{ background:#3b82f6; color:#fff; transform:translateY(-50%) scale(1.05); opacity:1; }
+  &.prev{ left:0; } &.next{ right:0; }
+  &:disabled{ opacity:.3; cursor:not-allowed; &:hover{ background:white; color:#3b82f6; transform:translateY(-50%); } }
+  @media(min-width:768px){ width:44px; height:44px; font-size:18px; &.prev{ left:-22px; } &.next{ right:-22px; } }
+  @media(min-width:992px){ width:52px; height:52px; font-size:20px; &.prev{ left:-26px; } &.next{ right:-26px; } }
+`;
+
+const Dots = styled.div`
+  display:flex; justify-content:center; gap:.5rem; margin-top:1.5rem; padding:0 15px;
+  @media(min-width:768px){ margin-top:2rem; gap:.6rem; padding:0; }
+`;
+
+const Dot = styled.button`
+  width:10px; height:10px; border-radius:50%; border:none; cursor:pointer;
+  background:${p=>p.active?"#3b82f6":"#e5e7eb"}; transition:.2s ease;
+  &:hover{ background:${p=>p.active?"#2563eb":"#d1d5db"}; transform:scale(${p=>p.active?"1.1":"1.2"}); }
+  @media(min-width:768px){ width:12px; height:12px; }
+`;
+
+const Counter = styled.div`
+  position:absolute; top:12px; right:12px; background:rgba(0,0,0,.7); color:#fff; padding:.3rem .8rem;
+  border-radius:20px; font-size:.8rem; font-weight:500; backdrop-filter:blur(4px); z-index:2;
+  @media(min-width:768px){ top:16px; right:16px; padding:.4rem .9rem; font-size:.9rem; }
+`;
+
+export default function ProjectCarousel() {
+  const [current, setCurrent] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+  const touchStartX = useRef(0);
+
+  useEffect(() => {
+    if(!autoPlay) return;
+    const interval = setInterval(()=>setCurrent(prev => (prev+1)%ProjectList.length),6000);
+    return ()=>clearInterval(interval);
+  }, [autoPlay]);
+
+  const goSlide = i => { setAutoPlay(false); setCurrent(i); };
+  const goPrev = () => goSlide(current===0?ProjectList.length-1:current-1);
+  const goNext = () => goSlide((current+1)%ProjectList.length);
+  const handleTouch = e => {
+    const diff = e.changedTouches[0].clientX - touchStartX.current;
+    if(diff>50) goPrev(); else if(diff<-50) goNext();
+  };
+
+  const p = ProjectList[current];
+
+  const BtnLabel = ({ desktop, mobile }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  return <>{isMobile ? mobile : desktop}</>;
+};
+
+
   return (
-    <ProjectGrid>
-    {ProjectList.map((project, index) => (
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: index * 0.1 }}
+    <Container>
+      <Wrapper
+        onMouseEnter={()=>setAutoPlay(false)}
+        onMouseLeave={()=>setAutoPlay(true)}
+        onTouchStart={e=>touchStartX.current=e.touches[0].clientX}
+        onTouchEnd={handleTouch}
       >
-        <Card>
-          <CardImage>
-            <img 
-              src={project.img} 
-              alt={project.title}
-              loading="lazy"
-            />
-          </CardImage>
-          <CardContent>
-            <CardTitle>{project.title}</CardTitle>
-            <CardMeta>
-              <span>{project.role}</span>
-              <span>{project.year}</span>
-            </CardMeta>
-            <CardDescription>
-              {project.description}
-            </CardDescription>
-            
-            {/* Tech stack with icons */}
-            <TechStack>
-              {project.tech_stack.map((tech, idx) => (
-                <TechItem key={idx}>
-                  <TechIcon src={tech.icon} alt={tech.name} />
-                  <span>{tech.name}</span>
-                </TechItem>
-              ))}
-            </TechStack>
-            
-            <ButtonGroup>
-              {project.github_url && (
-                <Button
-                  className="secondary"
-                  href={project.github_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Code
-                </Button>
-              )}
-              {project.demo_url && (
-                <Button
-                  className="primary"
-                  href={project.demo_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Live Demo
-                </Button>
-              )}
-            </ButtonGroup>
-          </CardContent>
-        </Card>
-      </motion.div>
-    ))}
-    </ProjectGrid>
+        <Counter>{current+1}/{ProjectList.length}</Counter>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{opacity:0,x:50}}
+            animate={{opacity:1,x:0}}
+            exit={{opacity:0,x:-50}}
+            transition={{duration:.4,ease:"easeInOut"}}
+          >
+            <Card>
+              <Image>
+                <img src={p.img} alt={p.title} loading="lazy"/>
+                <GradientOverlay/>
+                {p.category && <Badge>{p.category}</Badge>}
+              </Image>
+              <Content>
+                <div>
+                  <Title>{p.title}</Title>
+                  <Meta>
+                    <span>{p.role}</span>
+                    <span>{p.year}</span>
+                    {p.duration && <span>{p.duration}</span>}
+                  </Meta>
+                  <Desc>{p.description}</Desc>
+                  <TechStack>
+                    {p.tech_stack.map((t,i)=>(
+                      <Tech key={i}>
+                        <TechIcon src={t.icon} alt={t.name}/>
+                        <span>{t.name}</span>
+                      </Tech>
+                    ))}
+                  </TechStack>
+                </div>
+                <Buttons>
+                  {p.github_url && (
+                    <Btn
+                      className="secondary"
+                      href={p.github_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaGithub size={14} /> <BtnLabel desktop="View Code" mobile="Code" />
+                    </Btn>
+                  )}
+                  {p.demo_url && (
+                    <Btn
+                      className="primary"
+                      href={p.demo_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaExternalLinkAlt size={14} /> <BtnLabel desktop="Live Demo" mobile="Demo" />
+                    </Btn>
+                  )}
+                </Buttons>
+              </Content>
+            </Card>
+          </motion.div>
+        </AnimatePresence>
+
+        {ProjectList.length>1 && <>
+          <NavButton className="prev" onClick={goPrev} aria-label="Previous project"><FaChevronLeft/></NavButton>
+          <NavButton className="next" onClick={goNext} aria-label="Next project"><FaChevronRight/></NavButton>
+        </>}
+      </Wrapper>
+
+      {ProjectList.length>1 && <Dots>
+        {ProjectList.map((_,i)=><Dot key={i} active={i===current} onClick={()=>goSlide(i)} aria-label={`Go to project ${i+1}`}/>)}
+      </Dots>}
+    </Container>
   );
 }
-
-export default ProjectCard;

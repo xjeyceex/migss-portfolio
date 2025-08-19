@@ -51,7 +51,7 @@ function Hero() {
                   speed={150}          // simpler, same effect
                   wrapper="h1"
                   repeat={0}
-                  style={{ whiteSpace: "nowrap" }} // ensure it stays on one line
+                  style={{ whiteSpace: "normal", wordWrap: "break-word" }}
                 />
               )}
               {showSubtitle && isInView && (
