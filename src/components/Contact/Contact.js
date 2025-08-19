@@ -109,7 +109,7 @@ const ActionButtons = styled.div`
   flex-wrap: nowrap;
   gap: 0.75rem; /* spacing between buttons */
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   box-sizing: border-box;
 
   @media (max-width: 576px) {
