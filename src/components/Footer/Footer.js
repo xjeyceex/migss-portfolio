@@ -10,13 +10,15 @@ const FooterSection = styled.div`
   svg {
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    min-width: 100%;
     height: 100%;
   }
 
   @media (max-width: 768px) {
-    height: 200px; /* shrink height for mobile */
+    height: 200px;
   }
 `;
 
@@ -26,7 +28,7 @@ function Footer() {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 200"
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMax slice"
       >
         <path
           fill="#141419"
