@@ -149,7 +149,17 @@ function ExperienceSection() {
         { name: "HelpYou", desc: "Location-aware U.S. climate data app" },
         { name: "WebHR", desc: "HR management system for records and workflows" },
       ],
-      techStack: ["PostgreSQL", "React", "TypeScript", "Node.js", "Material UI"]
+      techStack: [
+        "PostgreSQL",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Material UI",
+        "React.js",
+        "Next.js",
+        "Express.js",
+        "Tailwind CSS",
+      ]
     },
     {
       role: "BS Computer Science",

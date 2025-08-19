@@ -163,19 +163,7 @@ const CategoryHeader = styled.div`
   margin-bottom: 1rem;
 `;
 
-const CategoryGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1.2rem;
-  width: 100%;
 
-  @media (max-width: 768px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.8rem;
-  }
-`;
 
 const Technologies = styled.div`
   display: grid;
@@ -190,44 +178,56 @@ const Technologies = styled.div`
   }
 `;
 
+const CategoryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); /* moderate min-width */
+  gap: 0.8rem; /* enough breathing space */
+  width: 100%;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+`;
+
 const Tech = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  border-radius: 12px;
+  padding: 0.7rem; /* slightly smaller padding */
+  border-radius: 10px; /* slightly smaller rounding */
   background: ${COLORS.white};
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  min-width: 100px;
-
+  box-shadow: 0 3px 5px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  min-width: 85px; /* match grid min-width */
+  
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(59, 130, 246, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 12px rgba(59, 130, 246, 0.1);
     background: ${COLORS.primaryLight};
   }
 
   @media (max-width: 768px) {
-    padding: 0.8rem;
-    min-width: 80px;
-    flex-grow: 1;
+    padding: 0.6rem;
+    min-width: 70px;
   }
 `;
 
 const TechImg = styled.img`
-  height: 40px;
-  width: 40px;
-  margin-bottom: 0.5rem;
-  object-fit: contain;
+  height: 35px; /* slightly smaller */
+  width: 35px;
+  margin-bottom: 0.4rem;
 
   @media (max-width: 768px) {
-    height: 30px;
-    width: 30px;
+    height: 28px;
+    width: 28px;
   }
 `;
 
 const TechName = styled.div`
-  font-size: 0.85rem;
+  font-size: 0.8rem; /* slightly smaller */
   font-weight: 500;
   text-align: center;
   color: ${COLORS.textDark};
@@ -236,6 +236,7 @@ const TechName = styled.div`
     font-size: 0.7rem;
   }
 `;
+
 
 const StyledSVG = styled.svg`
   display: block;
