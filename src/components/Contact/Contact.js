@@ -5,7 +5,7 @@ import { IconButton, Tooltip, Zoom } from "@mui/material";
 import PDF from '../../assets/resume/Migss_resume.pdf';
 
 const ContactWrapper = styled.section`
-  padding: 4rem;
+  padding: 4rem 2rem;
   background: #fafafa;
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@ const Container = styled.div`
 
 const BigCard = styled.div`
   display: flex;
-  flex-wrap: wrap; /* allow groups to wrap on small screens */
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 2rem;
@@ -30,14 +30,16 @@ const BigCard = styled.div`
   padding: 3rem 2rem;
   box-shadow: 0 5px 20px rgba(0,0,0,0.05);
   max-width: 900px;
+  width: 100%;
   border: 1px solid #eee;
 `;
 
 const EmailGroup = styled.div`
   display: flex;
   gap: 0.5rem;
-  flex-wrap: nowrap; /* keep email + copy together */
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const EmailText = styled.span`
@@ -50,12 +52,18 @@ const EmailText = styled.span`
   border: 1px solid #e0e0e0;
   display: flex;
   align-items: center;
+
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.7rem;
+  }
 `;
 
 const Actions = styled.div`
   display: flex;
   gap: 1rem;
-  flex-wrap: nowrap; /* keep buttons together */
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -85,6 +93,12 @@ const StyledButton = styled.a`
     background: #fff;
     color: #1976d2;
     border: 1px solid #e0e0e0;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+    gap: 0.3rem;
   }
 `;
 
@@ -144,8 +158,15 @@ function Contact() {
               placement="bottom"
               arrow
             >
-              <IconButton onClick={copyEmail} sx={{ color: '#1976d2' }}>
-                <MdContentCopy size={25} />
+              <IconButton
+                onClick={copyEmail}
+                sx={{
+                  color: '#1976d2',
+                  padding: { xs: 0.3, sm: 0.5 }, // smaller on mobile
+                  '& svg': { fontSize: { xs: 18, sm: 25 } } // icon smaller on mobile
+                }}
+              >
+                <MdContentCopy />
               </IconButton>
             </Tooltip>
           </EmailGroup>
@@ -155,7 +176,7 @@ function Contact() {
               <MdEmail /> Send Email
             </StyledButton>
             <StyledButton className="secondary" href={PDF} download="Miguel_Beltran_Resume.pdf">
-              <MdDownload /> View Resume
+              <MdDownload /> Resume
             </StyledButton>
           </Actions>
         </BigCard>
