@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { MdContentCopy, MdEmail, MdDownload } from "react-icons/md";
+import { MdContentCopy } from "react-icons/md";
 import { IconButton, Tooltip, Zoom } from "@mui/material";
 import PDF from '../../assets/resume/Migss_resume.pdf';
 
@@ -54,8 +54,8 @@ const EmailText = styled.span`
   align-items: center;
 
   @media (max-width: 600px) {
-    font-size: 0.9rem;
-    padding: 0.35rem 0.7rem;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
   }
 `;
 
@@ -70,13 +70,16 @@ const Actions = styled.div`
 const StyledButton = styled.a`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
+  padding: 0.6rem 1.2rem;  /* Consistent padding */
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 500;          /* Consistent font weight */
   font-size: 1rem;
   text-decoration: none;
-  border: 2px solid transparent;
+  border: 2px solid transparent; /* Consistent border width */
+  min-height: 40px;
+  box-sizing: border-box;
   transition: all 0.3s ease;
 
   &.primary {
@@ -92,12 +95,16 @@ const StyledButton = styled.a`
   &.secondary {
     background: #fff;
     color: #1976d2;
-    border: 1px solid #e0e0e0;
+    border: 2px solid #e0e0e0; /* Changed to 2px to match primary */
+    &:hover {
+      background: #f5f5f5;
+    }
   }
 
   @media (max-width: 600px) {
-    font-size: 0.8rem;
-    padding: 0.35rem 0.7rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    min-height: 36px;
     gap: 0.3rem;
   }
 `;
@@ -162,8 +169,8 @@ function Contact() {
                 onClick={copyEmail}
                 sx={{
                   color: '#1976d2',
-                  padding: { xs: 0.3, sm: 0.5 }, // smaller on mobile
-                  '& svg': { fontSize: { xs: 18, sm: 25 } } // icon smaller on mobile
+                  padding: { xs: 0.3, sm: 0.5 },
+                  '& svg': { fontSize: { xs: 18, sm: 25 } }
                 }}
               >
                 <MdContentCopy />
@@ -173,10 +180,15 @@ function Contact() {
 
           <Actions>
             <StyledButton className="primary" href={`mailto:${email}`}>
-              <MdEmail /> Send Email
+              Email
             </StyledButton>
-            <StyledButton className="secondary" href={PDF} download="Miguel_Beltran_Resume.pdf">
-              <MdDownload /> Resume
+            <StyledButton
+              className="secondary"
+              href={PDF}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Resume
             </StyledButton>
           </Actions>
         </BigCard>
