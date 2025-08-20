@@ -138,6 +138,7 @@ export const stackList = [
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", name: "TypeScript" },
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", name: "Tailwind CSS" },
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg", name: "Material UI" },
+      { img: "https://avatars.githubusercontent.com/u/44215732?s=200&v=4", name: "Mantine" },
     ],
   },
   {
