@@ -1,194 +1,296 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { MdContentCopy } from "react-icons/md";
+import { MdContentCopy, MdEmail, MdDescription, MdPhone } from "react-icons/md";
 import { IconButton, Tooltip, Zoom } from "@mui/material";
-import PDF from '../../assets/resume/Migss_resume.pdf';
+import { motion } from "framer-motion";
+import PDF from "../../assets/resume/Migss_resume.pdf";
 
 const ContactWrapper = styled.section`
-  padding: 4rem 2rem;
-  background: #fafafa;
+  padding: 2.5rem 1.5rem;
+  background: #f9f9f9;
   display: flex;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: 1000px) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 `;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
   width: 100%;
+  max-width: 1000px;
+  position: relative;
+  z-index: 1;
 `;
 
-const BigCard = styled.div`
+const BigCard = styled(motion.div)`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  background: white;
-  border-radius: 12px;
-  padding: 3rem 2rem;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-  max-width: 900px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 2.5rem 2rem;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    0 6px 10px rgba(0, 0, 0, 0.03);
   width: 100%;
-  border: 1px solid #eee;
 `;
 
-const EmailGroup = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
+const CardHeader = styled.div`
+  text-align: center;
+  margin-bottom: 0.75rem;
 `;
 
-const EmailText = styled.span`
-  font-size: 1.2rem;
-  font-weight: 500;
+const SectionTitle = styled.h2`
   color: #333;
-  background: #f5f5f5;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+`;
+
+const Subtitle = styled.p`
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+const ContactInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 600px;
+`;
+
+const InfoGroup = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+`;
+
+const InfoLabel = styled.span`
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #555;
   display: flex;
   align-items: center;
+  gap: 0.4rem;
+`;
 
-  @media (max-width: 600px) {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
+const InfoRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #f1f5f9;
   }
 `;
 
-const Actions = styled.div`
+const InfoText = styled.span`
+  font-size: 1rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const CopyButton = styled(IconButton)`
+  color: #1976d2;
+  padding: 0.4rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(25, 118, 210, 0.1);
+  }
+
+  & svg {
+    font-size: 1.1rem;
+  }
+`;
+
+const Actions = styled(motion.div)`
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-top: 0.75rem;
 `;
 
-const StyledButton = styled.a`
+const StyledButton = styled(motion.a)`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.2rem;  /* Consistent padding */
-  border-radius: 8px;
-  font-weight: 500;          /* Consistent font weight */
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 500;
   font-size: 1rem;
   text-decoration: none;
-  border: 2px solid transparent; /* Consistent border width */
-  min-height: 40px;
-  box-sizing: border-box;
+  border: 2px solid transparent;
+  min-height: 44px;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &.primary {
-    background: #1976d2;
+    background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
     color: #fff;
-    border-color: #1976d2;
+    box-shadow: 0 4px 10px rgba(25, 118, 210, 0.25);
+    
     &:hover {
-      background: #1565c0;
-      box-shadow: 0 4px 12px rgba(25,118,210,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(25, 118, 210, 0.35);
     }
   }
 
   &.secondary {
     background: #fff;
     color: #1976d2;
-    border: 2px solid #e0e0e0; /* Changed to 2px to match primary */
+    border: 2px solid #e0e0e0;
+    
     &:hover {
-      background: #f5f5f5;
+      background: #f8f9fa;
+      border-color: #1976d2;
+      transform: translateY(-2px);
     }
-  }
-
-  @media (max-width: 600px) {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-    min-height: 36px;
-    gap: 0.3rem;
   }
 `;
 
-const SectionTitle = styled.h2`
-  text-align: center;
-  color: #333;
-  font-size: 1.5rem;
-  position: relative;
+// Animations
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 2px;
-    background: #333;
-    border-radius: 3px;
-  }
-
-  @media (min-width: 576px) {
-    font-size: 1.75rem;
-    &::after {
-      bottom: -10px;
-      height: 3px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-`;
+const pulseAnimation = {
+  scale: [1, 1.05, 1],
+  transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+};
 
 function Contact() {
-  const [tooltip, setTooltip] = useState(false);
-  const email = "jcmiguel.beltran@gmail.com";
+  const [tooltip, setTooltip] = useState(null);
 
-  const copyEmail = () => {
-    navigator.clipboard.writeText(email);
-    setTooltip(true);
-    setTimeout(() => setTooltip(false), 700);
+  const email = "jcmiguel.beltran@gmail.com";
+  const phone = "+63 981 396 5068"; 
+
+  const copyToClipboard = (text, type) => {
+    navigator.clipboard.writeText(text);
+    setTooltip(type);
+
+    setTimeout(() => {
+      setTooltip(null);
+    }, 1000);
   };
 
   return (
     <ContactWrapper id="contact">
-      <Container>
+      <Container 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeUp}
+      >
         <SectionTitle>Get In Touch</SectionTitle>
-        <BigCard>
-          <EmailGroup>
-            <EmailText>{email}</EmailText>
-            <Tooltip
-              open={tooltip}
-              onClose={() => setTooltip(false)}
-              title="Copied!"
-              TransitionComponent={Zoom}
-              placement="bottom"
-              arrow
-            >
-              <IconButton
-                onClick={copyEmail}
-                sx={{
-                  color: '#1976d2',
-                  padding: { xs: 0.3, sm: 0.5 },
-                  '& svg': { fontSize: { xs: 18, sm: 25 } }
-                }}
-              >
-                <MdContentCopy />
-              </IconButton>
-            </Tooltip>
-          </EmailGroup>
+        
+        <BigCard variants={fadeUp}>
+          <CardHeader>
+            <Subtitle>
+              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              Feel free to reach out through any of the channels below.
+            </Subtitle>
+          </CardHeader>
 
-          <Actions>
-            <StyledButton className="primary" href={`mailto:${email}`}>
-              Email
+          <ContactInfoContainer>
+            {/* Email */}
+            <InfoGroup variants={fadeUp}>
+              <InfoLabel>
+                <MdEmail /> Email Address
+              </InfoLabel>
+              <InfoRow>
+                <InfoText>{email}</InfoText>
+                <Tooltip
+                  open={tooltip === "email"}
+                  title="Copied!"
+                  TransitionComponent={Zoom}
+                  placement="top"
+                  arrow
+                >
+                  <CopyButton
+                    onClick={() => copyToClipboard(email, "email")}
+                    aria-label="Copy email address"
+                  >
+                    <MdContentCopy />
+                  </CopyButton>
+                </Tooltip>
+              </InfoRow>
+            </InfoGroup>
+
+            {/* Phone */}
+            <InfoGroup variants={fadeUp}>
+              <InfoLabel>
+                <MdPhone /> Phone Number
+              </InfoLabel>
+              <InfoRow>
+                <InfoText>{phone}</InfoText>
+                <Tooltip
+                  open={tooltip === "phone"}
+                  title="Copied!"
+                  TransitionComponent={Zoom}
+                  placement="top"
+                  arrow
+                >
+                  <CopyButton
+                    onClick={() => copyToClipboard(phone, "phone")}
+                    aria-label="Copy phone number"
+                  >
+                    <MdContentCopy />
+                  </CopyButton>
+                </Tooltip>
+              </InfoRow>
+            </InfoGroup>
+          </ContactInfoContainer>
+
+          {/* Actions */}
+          <Actions variants={fadeUp}>
+            <StyledButton
+              className="primary"
+              href={`mailto:${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              animate={pulseAnimation}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <MdEmail /> Send Email
             </StyledButton>
             <StyledButton
               className="secondary"
               href={PDF}
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
             >
-              View Resume
+              <MdDescription /> View Resume
             </StyledButton>
           </Actions>
         </BigCard>

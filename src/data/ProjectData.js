@@ -158,6 +158,7 @@ export const stackList = [
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", name: "Figma" },
       { img: "https://www.vectorlogo.zone/logos/canva/canva-icon.svg", name: "Canva" },
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg", name: "Jira" },
+      { img: "https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg", name: "VS Code" }
     ],
   },
 ];

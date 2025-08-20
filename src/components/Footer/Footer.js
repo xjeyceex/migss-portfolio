@@ -5,6 +5,7 @@ const FooterSection = styled.div`
   width: 100%;
   height: 300px;
   position: relative;
+  background: #f9f9f9;
   overflow: hidden;
 
   svg {

@@ -18,7 +18,12 @@ const ExperienceWrapper = styled.section`
   padding: 4rem 0 2rem; 
 
   @media (max-width: 768px) {
-    padding: 3rem 1.5rem 2rem; /* top 3rem, sides 1.5rem, bottom 2rem */
+    padding: 3rem 1rem 2rem; /* top 3rem, sides 1.5rem, bottom 2rem */
+  }
+
+   @media (min-width: 1000px) {
+    padding-left: 5rem;
+     padding-right: 5rem; /* add right padding too */
   }
 `;
 
@@ -56,8 +61,7 @@ function Experiences() {
           <SectionTitle>Projects</SectionTitle>
         </SectionBlock>
       </Container>
-                <ProjectCard />
-
+      <ProjectCard />
     </ExperienceWrapper>
   );
 }

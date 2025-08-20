@@ -7,39 +7,43 @@ const COLORS = {
   text: "#1e293b",     // dark gray
   background: "#f9fafb",
   white: "#ffffff",
-  accent: "#3b82f6"    // single blue accent
+  accent: "#3b82f6",   // blue accent
+  muted: "#64748b"     // muted text
 };
 
-const ExperienceGrid = styled.div`
+const ExperienceGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-top: 1.5rem;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   }
 `;
 
-const Card = styled.div`
+const Card = styled(motion.article)`
   background: ${COLORS.white};
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
   padding: 1.5rem;
   transition: all 0.3s ease;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 
   &:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(59, 130, 246, 0.12);
   }
 `;
 
 const CardHeader = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
   h3 {
     font-size: 1.1rem;
@@ -47,85 +51,209 @@ const CardHeader = styled.div`
     color: ${COLORS.text};
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     margin: 0;
   }
 
   h4 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: #475569;  /* muted slate gray */
-    margin: 0.25rem 0 0.4rem;
+    color: ${COLORS.muted};
+    margin: 0.3rem 0 0.2rem;
   }
 
   span {
-    font-size: 0.85rem;
-    color: #64748b;
+    font-size: 0.8rem;
+    color: ${COLORS.muted};
+    font-weight: 500;
   }
 `;
 
 const BulletList = styled.ul`
-  padding-left: 1rem; 
-  margin: 0.5rem 0 0.75rem;
+  margin: 0.5rem 0;
+  padding-left: 0;
 
   li {
     list-style: none;
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: ${COLORS.text};
-    line-height: 1.5;
-    padding-left: 1.25rem;
+    line-height: 1.45;
+    padding-left: 1.3rem;
     position: relative;
 
     &::before {
-      content: "";
+      content: "•";
       position: absolute;
-      left: 0; top: 0.55rem;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #475569; /* muted slate gray */
+      left: 0.4rem;
+      color: ${COLORS.accent};
+      font-weight: bold;
     }
 
     strong {
       color: ${COLORS.text};
+      font-weight: 600;
     }
   }
 `;
 
 const SectionHeader = styled.div`
-  padding-top: ${props => (props.withBorder ? "0.6rem" : "0")};
-  border-top: ${props => (props.withBorder ? "1px dashed #e5e7eb" : "none")};
+  margin: 1rem 0 0.5rem;
+  padding-top: ${({ withBorder }) => (withBorder ? "0.75rem" : "0")};
+  border-top: ${({ withBorder }) =>
+    withBorder ? "1px solid rgba(0, 0, 0, 0.05)" : "none"};
 
   strong {
-    color: ${props => (props.primary ? COLORS.accent : COLORS.text)};
+    color: ${COLORS.text};
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    margin-bottom: 0.4rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
   }
 `;
 
-const TechList = styled.div` 
-  display: flex; 
-  flex-wrap: wrap; 
-  gap: 0.5rem; 
-  margin-top: 0.5rem; 
+const TechList = styled(motion.div)`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 `;
 
-const Pill = styled.div`
-  background: ${COLORS.accent}15;
+const Pill = styled(motion.div)`
+  background: ${COLORS.accent}12;
   color: ${COLORS.accent};
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.75rem; 
+  padding: 0.35rem 0.65rem;
+  border-radius: 10px;
+  font-size: 0.72rem;
   font-weight: 500;
-  display: flex; 
-  align-items: center; 
-  gap: 0.3rem;
-  border: 1px solid ${COLORS.accent}30;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid ${COLORS.accent}25;
+  cursor: default;
 `;
+
+const IconWrapper = styled(motion.div)`
+  background: ${COLORS.accent}18;
+  border-radius: 8px;
+  padding: 0.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+`;
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 25, scale: 0.97 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", damping: 15, stiffness: 120 }
+  }
+};
+
+const techItemVariants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: "spring", stiffness: 220 }
+  }
+};
+
+function ExperienceCard({ exp }) {
+  return (
+    <Card variants={itemVariants} whileHover={{ y: -6 }}>
+      <CardHeader>
+        <h3>
+          <IconWrapper whileHover={{ scale: 1.1 }}>{exp.icon}</IconWrapper>{" "}
+          {exp.role}
+        </h3>
+        <h4>{exp.company}</h4>
+        <span>{exp.period}</span>
+      </CardHeader>
+
+      {exp.bullets && (
+        <>
+          <SectionHeader>
+            <strong>Academic Achievements</strong>
+          </SectionHeader>
+          <BulletList>
+            {exp.bullets.map((b, idx) => (
+              <li key={idx}>{b}</li>
+            ))}
+          </BulletList>
+        </>
+      )}
+
+      {exp.projects && (
+        <>
+          <SectionHeader>
+            <strong>Projects</strong>
+          </SectionHeader>
+          <BulletList>
+            {exp.projects.map((p, idx) => (
+              <li key={idx}>
+                <strong>{p.name}</strong> – {p.desc}
+              </li>
+            ))}
+          </BulletList>
+        </>
+      )}
+
+      {exp.techStack && (
+        <>
+          <SectionHeader withBorder>
+            <strong>Tech Stack</strong>
+          </SectionHeader>
+          <TechList variants={containerVariants} initial="hidden" whileInView="visible">
+            {exp.techStack.map((tech, idx) => (
+              <Pill
+                key={idx}
+                variants={techItemVariants}
+                whileHover={{
+                  scale: 1.07,
+                  backgroundColor: `${COLORS.accent}25`
+                }}
+              >
+                {tech}
+              </Pill>
+            ))}
+          </TechList>
+        </>
+      )}
+
+      {exp.highlights && (
+        <>
+          <SectionHeader withBorder>
+            <strong>
+              <FaAward size={12} /> Achievements
+            </strong>
+          </SectionHeader>
+          <TechList variants={containerVariants} initial="hidden" whileInView="visible">
+            {exp.highlights.map((h, idx) => (
+              <Pill
+                key={idx}
+                variants={techItemVariants}
+                whileHover={{ scale: 1.07, backgroundColor: `${COLORS.accent}25` }}
+              >
+                {h}
+              </Pill>
+            ))}
+          </TechList>
+        </>
+      )}
+    </Card>
+  );
+}
 
 function ExperienceSection() {
   const experiences = [
@@ -133,10 +261,10 @@ function ExperienceSection() {
       role: "Full Stack Developer",
       company: "Sta. Clara International Corp.",
       period: "Jan 2025 - Present",
-      icon: <FaBriefcase size={16} color={COLORS.accent} />,
+      icon: <FaBriefcase size={14} color={COLORS.accent} />,
       projects: [
         { name: "Canvassly", desc: "Automated canvassing platform with real-time collaboration" },
-        { name: "Certify", desc: "Certification management with learning paths" },
+        { name: "Certify", desc: "Certification management with learning paths" }
       ],
       techStack: ["Supabase", "Next.js", "Mantine", "TypeScript", "Zustand", "Node.js"]
     },
@@ -144,28 +272,18 @@ function ExperienceSection() {
       role: "Full Stack Developer",
       company: "Freelance (US Client)",
       period: "Feb 2023 - Nov 2024",
-      icon: <FaCode size={16} color={COLORS.accent} />,
+      icon: <FaCode size={14} color={COLORS.accent} />,
       projects: [
         { name: "HelpYou", desc: "Location-aware U.S. climate data app" },
-        { name: "WebHR", desc: "HR management system for records and workflows" },
+        { name: "WebHR", desc: "HR management system for records and workflows" }
       ],
-      techStack: [
-        "PostgreSQL",
-        "React",
-        "TypeScript",
-        "Node.js",
-        "Material UI",
-        "React.js",
-        "Next.js",
-        "Express.js",
-        "Tailwind CSS",
-      ]
+      techStack: ["PostgreSQL", "React", "TypeScript", "Node.js", "Material UI", "Next.js", "Express.js", "Tailwind CSS"]
     },
     {
       role: "BS Computer Science",
       company: "Our Lady of Fatima University",
       period: "2019 - 2023",
-      icon: <FaGraduationCap size={16} color={COLORS.accent} />,
+      icon: <FaGraduationCap size={14} color={COLORS.accent} />,
       bullets: [
         "Graduated with honors in Computer Science",
         "Specialized in software development",
@@ -176,68 +294,9 @@ function ExperienceSection() {
   ];
 
   return (
-    <ExperienceGrid>
+    <ExperienceGrid variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
       {experiences.map((exp, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: i * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <Card>
-            <CardHeader>
-              <h3>{exp.icon} {exp.role}</h3>
-              <h4>{exp.company}</h4>
-              <span>{exp.period}</span>
-            </CardHeader>
-
-            {exp.bullets && (
-              <BulletList>
-                {exp.bullets.map((b, idx) => <li key={idx}>{b}</li>)}
-              </BulletList>
-            )}
-
-            {exp.projects && (
-              <>
-                <SectionHeader>
-                  <strong>Projects</strong>
-                </SectionHeader>
-                <BulletList>
-                  {exp.projects.map((p, idx) => (
-                    <li key={idx}><strong>{p.name}</strong> - {p.desc}</li>
-                  ))}
-                </BulletList>
-              </>
-            )}
-
-            {exp.techStack && (
-              <>
-                <SectionHeader withBorder primary>
-                  <strong>Tech Stack</strong>
-                </SectionHeader>
-                <TechList>
-                  {exp.techStack.map((tech, idx) => (
-                    <Pill key={idx}>{tech}</Pill>
-                  ))}
-                </TechList>
-              </>
-            )}
-
-            {exp.highlights && (
-              <>
-                <SectionHeader withBorder primary>
-                  <strong>Achievements</strong>
-                </SectionHeader>
-                <TechList>
-                  {exp.highlights.map((h, idx) => (
-                    <Pill key={idx}><FaAward size={10}/> {h}</Pill>
-                  ))}
-                </TechList>
-              </>
-            )}
-          </Card>
-        </motion.div>
+        <ExperienceCard key={i} exp={exp} />
       ))}
     </ExperienceGrid>
   );
