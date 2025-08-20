@@ -18,7 +18,11 @@ const AboutContainer = styled.div`
   
   @media (min-width: 1000px) {
     padding-left: 5rem;
-     padding-right: 5rem; /* add right padding too */
+    padding-right: 5rem;
+  }
+
+   @media (max-width: 450px) {
+    padding: 2rem 1rem 0 1rem; /* symmetric left/right padding */
   }
 `;
 
@@ -43,13 +47,26 @@ const SectionTitle = styled.h2`
     border-radius: 2px;
 
     @media (max-width: 768px) {
-        bottom: -16px;
+      bottom: -13px;
+      width: 60px;
+      height: 3px;
+    }
+
+    @media (max-width: 450px) {
+      bottom: -10px;
+      width: 50px;
+      height: 2px;
     }
   }
 
   @media (max-width: 768px) {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
@@ -60,31 +77,140 @@ const BioSection = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 2rem;
-  
+
   @media (min-width: 992px) {
     flex-direction: row;
     align-items: flex-start;
+  }
+
+  @media (max-width: 450px) {
+    padding: 0 1rem;
   }
 `;
 
 const AboutBio = styled.div`
   flex: 1;
-  
+
   p {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 1.2rem;
     color: ${COLORS.textDark};
     text-align: left;
-    
+
     @media (max-width: 768px) {
       font-size: 1rem;
       margin-top: 2rem;
-      text-align: left;
       line-height: 1.5;
       max-width: 100%;
-      word-break: break-word;
     }
+
+    @media (max-width: 450px) {
+      font-size: 0.875rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+  }
+`;
+
+const Tagline = styled.p`
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: ${COLORS.textLight};
+  text-align: center;
+  position: relative;
+  padding-bottom: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+`;
+
+const TechItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem 0.6rem;
+  background: ${COLORS.background};
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  transition: all 0.2s ease;
+  width: 100%;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    background: ${COLORS.white};
+    
+    div:first-of-type {
+      transform: scale(1.08);
+      box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.7rem 0.5rem;
+  }
+
+  @media (max-width: 450px) {
+    padding: 0.5rem 0.4rem;
+  }
+`;
+
+const TechIcon = styled.div`
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: ${COLORS.white};
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 450px) {
+    padding: 0.35rem;
+  }
+`;
+
+const TechImg = styled.img`
+  height: 24px;
+  width: 24px;
+  object-fit: contain;
+
+  @media (max-width: 768px) {
+    height: 22px;
+    width: 22px;
+  }
+
+  @media (max-width: 450px) {
+    height: 18px;
+    width: 18px;
+  }
+`;
+
+const TechName = styled.div`
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  color: ${COLORS.textDark};
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 0.65rem;
   }
 `;
 
@@ -96,20 +222,10 @@ const HighlightText = styled.span`
 const TechSection = styled.div`
   max-width: 1200px;
   margin: 4rem auto 0;
-  padding: 2rem 0; /* only vertical padding */
-`;
+  padding: 2rem 0; 
 
-const Tagline = styled.p`
-  font-weight: 500;
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  color: ${COLORS.textLight};
-  text-align: center;
-  position: relative;
-  padding-bottom: 0.5rem;
-v
   @media (max-width: 768px) {
-    font-size: 1.1rem;
+    margin: 0.5rem auto 0;
   }
 `;
 
@@ -161,6 +277,15 @@ const CardTitle = styled.h3`
     height: 2px;
     background: ${COLORS.primary};
     border-radius: 2px;
+
+    @media (max-width: 450px) {
+      width: 25px;
+      height: 2px;
+    } 
+  }
+
+  @media (max-width: 450px) {
+    font-size: 0.9rem;
   }
 `;
 
@@ -169,70 +294,6 @@ const TechGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   gap: 0.8rem;
   justify-items: center;
-`;
-
-const TechItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.8rem 0.6rem;
-  background: ${COLORS.background};
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(229, 231, 235, 0.8);
-  transition: all 0.2s ease;
-  width: 100%;
-  cursor: pointer;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-    background: ${COLORS.white};
-    
-    div:first-of-type {
-      transform: scale(1.08);
-      box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
-    }
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.7rem 0.5rem;
-  }
-`;
-
-const TechIcon = styled.div`
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  background: ${COLORS.white};
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const TechImg = styled.img`
-  height: 24px;
-  width: 24px;
-  object-fit: contain;
-
-  @media (max-width: 768px) {
-    height: 22px;
-    width: 22px;
-  }
-`;
-
-const TechName = styled.div`
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-align: center;
-  color: ${COLORS.textDark};
-  line-height: 1.2;
-
-  @media (max-width: 768px) {
-    font-size: 0.7rem;
-  }
 `;
 
 const StyledSVG = styled.svg`

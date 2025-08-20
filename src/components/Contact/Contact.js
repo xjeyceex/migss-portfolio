@@ -27,7 +27,10 @@ const Container = styled(motion.div)`
   width: 100%;
   max-width: 1000px;
   position: relative;
-  z-index: 1;
+
+  @media (max-width: 478px) {
+    gap: 1rem;
+  }
 `;
 
 const BigCard = styled(motion.div)`
@@ -44,11 +47,11 @@ const BigCard = styled(motion.div)`
     0 10px 30px rgba(0, 0, 0, 0.08),
     0 6px 10px rgba(0, 0, 0, 0.03);
   width: 100%;
-`;
 
-const CardHeader = styled.div`
-  text-align: center;
-  margin-bottom: 0.75rem;
+  @media (max-width: 478px) {
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -56,6 +59,10 @@ const SectionTitle = styled.h2`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+
+  @media (max-width: 478px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -64,30 +71,10 @@ const Subtitle = styled.p`
   line-height: 1.5;
   max-width: 600px;
   margin: 0 auto;
-`;
 
-const ContactInfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  width: 100%;
-  max-width: 600px;
-`;
-
-const InfoGroup = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  width: 100%;
-`;
-
-const InfoLabel = styled.span`
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #555;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  @media (max-width: 478px) {
+    font-size: 0.875rem;
+  }
 `;
 
 const InfoRow = styled.div`
@@ -103,6 +90,10 @@ const InfoRow = styled.div`
   &:hover {
     background: #f1f5f9;
   }
+
+  @media (max-width: 478px) {
+    padding: 0.6rem 0.8rem;
+  }
 `;
 
 const InfoText = styled.span`
@@ -111,29 +102,10 @@ const InfoText = styled.span`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-`;
 
-const CopyButton = styled(IconButton)`
-  color: #1976d2;
-  padding: 0.4rem;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background-color: rgba(25, 118, 210, 0.1);
+  @media (max-width: 478px) {
+    font-size: 0.875rem;
   }
-
-  & svg {
-    font-size: 1.1rem;
-  }
-`;
-
-const Actions = styled(motion.div)`
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0.75rem;
 `;
 
 const StyledButton = styled(motion.a)`
@@ -173,6 +145,64 @@ const StyledButton = styled(motion.a)`
       transform: translateY(-2px);
     }
   }
+
+  @media (max-width: 478px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-height: 36px;
+  }
+`;
+
+const CardHeader = styled.div`
+  text-align: center;
+  margin-bottom: 0.75rem;
+`;
+
+const ContactInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 600px;
+`;
+
+const InfoGroup = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+`;
+
+const InfoLabel = styled.span`
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+`;
+
+const CopyButton = styled(IconButton)`
+  color: #1976d2;
+  padding: 0.4rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(25, 118, 210, 0.1);
+  }
+
+  & svg {
+    font-size: 1.1rem;
+  }
+`;
+
+const Actions = styled(motion.div)`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.75rem;
 `;
 
 // Animations

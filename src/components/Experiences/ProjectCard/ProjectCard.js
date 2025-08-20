@@ -12,22 +12,24 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  display:flex; justify-content:center; position:relative; padding:0 15px;
+  display:flex; justify-content:center; position:relative; 
+  padding:0 8px;
+  @media(min-width:500px){ padding:0 15px; }
 `;
 
 const Card = styled.div`
   display:flex; 
   flex-direction:column; 
   background:#fff; 
-  border-radius:12px; 
+  border-radius:10px; 
   overflow:hidden;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08); 
+  box-shadow:0 3px 8px rgba(0,0,0,0.08); 
   transition:.3s; 
   width:100%; 
   border:1px solid rgba(0,0,0,0.05); 
   margin:0;
   
-  &:hover{ box-shadow:0 8px 24px rgba(0,0,0,0.12); }
+  &:hover{ box-shadow:0 6px 16px rgba(0,0,0,0.12); }
   
   @media(min-width:768px){ 
     flex-direction:row; 
@@ -40,7 +42,7 @@ const Card = styled.div`
 
 const Image = styled.div`
   width: 100%;
-  height: 200px; // fixed height for mobile
+  height: 160px; // reduced height for small devices
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,7 +53,7 @@ const Image = styled.div`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover; // changed from 'contain' to 'cover' to fill the space
+    object-fit: cover;
     object-position: center;
     transition: transform 0.6s ease;
   }
@@ -60,9 +62,13 @@ const Image = styled.div`
     transform: scale(1.05);
   }
 
+  @media(min-width: 500px){
+    height: 200px;
+  }
+  
   @media(min-width: 768px){
     width: 50%;
-    height: auto; // let it grow with content on desktop
+    height: auto;
     min-height: 300px;
   }
 `;
@@ -72,47 +78,53 @@ const GradientOverlay = styled.div`
 `;
 
 const Badge = styled.span`
-  position:absolute; top:12px; left:12px; background:rgba(0,0,0,0.7); color:#fff; padding:.3rem .8rem; border-radius:20px;
-  font-size:.75rem; font-weight:500; backdrop-filter:blur(4px); z-index:2;
+  position:absolute; top:8px; left:8px; background:rgba(0,0,0,0.7); color:#fff; padding:.2rem .6rem; border-radius:16px;
+  font-size:.65rem; font-weight:500; backdrop-filter:blur(4px); z-index:2;
+  @media(min-width:500px){ font-size:.75rem; padding:.3rem .8rem; }
   @media(min-width:768px){ top:16px; padding:.35rem .9rem; font-size:.85rem; }
 `;
 
 const Content = styled.div`
-  padding:1.2rem; flex:1; display:flex; flex-direction:column; justify-content:space-between;
+  padding:1rem; flex:1; display:flex; flex-direction:column; justify-content:space-between;
+  @media(min-width:500px){ padding:1.2rem; }
   @media(min-width:768px){ width:50%; padding:2rem; }
 `;
 
 const Title = styled.h3`
-  font-size:1.3rem; margin-bottom:.5rem; color:#111827; font-weight:600; line-height:1.3;
+  font-size:1.1rem; margin-bottom:.4rem; color:#111827; font-weight:600; line-height:1.3;
+  @media(min-width:500px){ font-size:1.3rem; }
   @media(min-width:768px){ font-size:1.8rem; margin-bottom:.75rem; font-weight:700; }
 `;
 
 const Meta = styled.div`
-  display:flex; flex-wrap:wrap; gap:.5rem; font-size:.8rem; color:#6b7280; margin-bottom:1rem; align-items:center;
-  span:not(:first-of-type){ display:flex; align-items:center; &::before{ content:"•"; margin:0 0.3rem; color:#d1d5db; } }
+  display:flex; flex-wrap:wrap; gap:.4rem; font-size:.7rem; color:#6b7280; margin-bottom:.8rem; align-items:center;
+  span:not(:first-of-type){ display:flex; align-items:center; &::before{ content:"•"; margin:0 0.2rem; color:#d1d5db; } }
+  @media(min-width:500px){ font-size:.8rem; gap:.5rem; margin-bottom:1rem; }
   @media(min-width:768px){ font-size:.95rem; gap:1rem; margin-bottom:1.25rem; }
 `;
 
 const Desc = styled.p`
-  color:#4b5563; line-height:1.6; margin-bottom:1.2rem; font-size:.9rem; word-wrap:break-word;
+  color:#4b5563; line-height:1.5; margin-bottom:1rem; font-size:.8rem; word-wrap:break-word;
   overflow-y:visible;
+  @media(min-width:500px){ font-size:.9rem; }
   @media(min-width:768px){ font-size:1.05rem; margin-bottom:1.75rem; line-height:1.7; }
 `;
 
 const TechStack = styled.div`
-  display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.2rem; overflow-x:auto; padding-bottom:5px;
+  display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1rem; overflow-x:auto; padding-bottom:3px;
+  @media(min-width:500px){ gap:.5rem; margin-bottom:1.2rem; }
   @media(min-width:768px){ gap:.75rem; margin-bottom:1.5rem; overflow-x:visible; }
 `;
 
 const Tech = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.2rem;
   background: #f9fafb;
   border: 1px solid #e5e7eb;
-  padding: 0.3rem 0.5rem;
-  border-radius: 6px;
-  font-size: 0.7rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 5px;
+  font-size: 0.65rem;
   font-weight: 500;
   color: #374151;
   flex-shrink: 0;
@@ -121,6 +133,12 @@ const Tech = styled.div`
     background: #f3f4f6;
   }
 
+  @media(min-width:500px){
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+    gap: 0.3rem;
+  }
+  
   @media(min-width:768px){
     font-size: 0.85rem;
     padding: 0.5rem 0.9rem;
@@ -130,17 +148,22 @@ const Tech = styled.div`
 `;
 
 const TechIcon = styled.img`
-  width:14px; height:14px; object-fit:contain;
+  width:12px; height:12px; object-fit:contain;
+  @media(min-width:500px){ width:14px; height:14px; }
   @media(min-width:768px){ width:16px; height:16px; }
 `;
 
 const Buttons = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
   margin-top: auto;
   overflow-x: auto;
 
+  @media(min-width:500px){
+    gap: 0.5rem;
+  }
+  
   @media(min-width:768px){
     flex-wrap: wrap;
     gap: 0.8rem;
@@ -149,42 +172,47 @@ const Buttons = styled.div`
 `;
 
 const Btn = styled.a`
-  padding:.6rem 1rem; border-radius:8px; text-align:center; font-weight:600; min-width:100px;
-  display:inline-flex; align-items:center; justify-content:center; gap:.4rem; font-size:.85rem; transition:.2s ease;
+  padding:.5rem .8rem; border-radius:6px; text-align:center; font-weight:600; min-width:80px;
+  display:inline-flex; align-items:center; justify-content:center; gap:.3rem; font-size:.8rem; transition:.2s ease;
   &.primary{ background:linear-gradient(135deg,#3b82f6 0%,#2563eb 100%); color:white;
     box-shadow:0 2px 4px rgba(59,130,246,.2);
     &:hover{ background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%); transform:translateY(-1px); box-shadow:0 4px 8px rgba(59,130,246,.3); } }
   &.secondary{ background:#fff; color:#374151; border:1px solid #e5e7eb;
     &:hover{ background:#f9fafb; transform:translateY(-1px); border-color:#d1d5db; } }
+  @media(min-width:500px){ padding:.6rem 1rem; min-width:100px; font-size:.85rem; }
   @media(min-width:768px){ padding:.75rem 1.25rem; font-size:1rem; border-radius:10px; min-width:120px; }
 `;
 
 const NavButton = styled.button`
-  position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; border:none;
-  background:white; color:#3b82f6; cursor:pointer; font-size:16px; z-index:10; display:flex; align-items:center; justify-content:center;
-  transition:.2s ease; box-shadow:0 4px 12px rgba(0,0,0,.1); opacity:.9;
+  position:absolute; top:50%; transform:translateY(-50%); width:30px; height:30px; border-radius:50%; border:none;
+  background:white; color:#3b82f6; cursor:pointer; font-size:14px; z-index:10; display:flex; align-items:center; justify-content:center;
+  transition:.2s ease; box-shadow:0 3px 8px rgba(0,0,0,.1); opacity:.9;
   &:hover{ background:#3b82f6; color:#fff; transform:translateY(-50%) scale(1.05); opacity:1; }
-  &.prev{ left:0; } &.next{ right:0; }
+  &.prev{ left:-5px; } &.next{ right:-5px; }
   &:disabled{ opacity:.3; cursor:not-allowed; &:hover{ background:white; color:#3b82f6; transform:translateY(-50%); } }
+  @media(min-width:500px){ width:36px; height:36px; font-size:16px; &.prev{ left:0; } &.next{ right:0; } }
   @media(min-width:768px){ width:44px; height:44px; font-size:18px; &.prev{ left:-22px; } &.next{ right:-22px; } }
   @media(min-width:992px){ width:52px; height:52px; font-size:20px; &.prev{ left:-26px; } &.next{ right:-26px; } }
 `;
 
 const Dots = styled.div`
-  display:flex; justify-content:center; gap:.5rem; margin-top:1.5rem; padding:0 15px;
+  display:flex; justify-content:center; gap:.4rem; margin-top:1rem; padding:0 8px;
+  @media(min-width:500px){ gap:.5rem; margin-top:1.5rem; padding:0 15px; }
   @media(min-width:768px){ margin-top:2rem; gap:.6rem; padding:0; }
 `;
 
 const Dot = styled.button`
-  width:10px; height:10px; border-radius:50%; border:none; cursor:pointer;
+  width:8px; height:8px; border-radius:50%; border:none; cursor:pointer;
   background:${p=>p.active?"#3b82f6":"#e5e7eb"}; transition:.2s ease;
   &:hover{ background:${p=>p.active?"#2563eb":"#d1d5db"}; transform:scale(${p=>p.active?"1.1":"1.2"}); }
+  @media(min-width:500px){ width:10px; height:10px; }
   @media(min-width:768px){ width:12px; height:12px; }
 `;
 
 const Counter = styled.div`
-  position:absolute; top:12px; right:12px; background:rgba(0,0,0,.7); color:#fff; padding:.3rem .8rem;
-  border-radius:20px; font-size:.8rem; font-weight:500; backdrop-filter:blur(4px); z-index:2;
+  position:absolute; top:8px; right:8px; background:rgba(0,0,0,.7); color:#fff; padding:.2rem .6rem;
+  border-radius:16px; font-size:.7rem; font-weight:500; backdrop-filter:blur(4px); z-index:2;
+  @media(min-width:500px){ top:12px; right:12px; padding:.3rem .8rem; font-size:.8rem; }
   @media(min-width:768px){ top:16px; right:16px; padding:.4rem .9rem; font-size:.9rem; }
 `;
 
@@ -210,18 +238,17 @@ export default function ProjectCarousel() {
   const p = ProjectList[current];
 
   const BtnLabel = ({ desktop, mobile }) => {
-  const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
+    useEffect(() => {
+      const check = () => setIsMobile(window.innerWidth < 768);
+      check();
+      window.addEventListener("resize", check);
+      return () => window.removeEventListener("resize", check);
+    }, []);
 
-  return <>{isMobile ? mobile : desktop}</>;
-};
-
+    return <>{isMobile ? mobile : desktop}</>;
+  };
 
   return (
     <Container>
@@ -272,7 +299,7 @@ export default function ProjectCarousel() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FaGithub size={14} /> <BtnLabel desktop="View Code" mobile="Code" />
+                      <FaGithub size={12} /> <BtnLabel desktop="View Code" mobile="Code" />
                     </Btn>
                   )}
                   {p.demo_url && (
@@ -282,7 +309,7 @@ export default function ProjectCarousel() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FaExternalLinkAlt size={14} /> <BtnLabel desktop="Live Demo" mobile="Demo" />
+                      <FaExternalLinkAlt size={12} /> <BtnLabel desktop="Live Demo" mobile="Demo" />
                     </Btn>
                   )}
                 </Buttons>
