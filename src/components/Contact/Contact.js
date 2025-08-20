@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { MdContentCopy, MdEmail, MdDescription, MdPhone } from "react-icons/md";
+import { MdContentCopy, MdEmail, MdDescription, MdPhone, MdLocationOn } from "react-icons/md";
 import { IconButton, Tooltip, Zoom } from "@mui/material";
 import { motion } from "framer-motion";
 import PDF from "../../assets/resume/Migss_resume.pdf";
@@ -297,7 +297,17 @@ function Contact() {
                 </Tooltip>
               </InfoRow>
             </InfoGroup>
+
+            <InfoGroup variants={fadeUp}>
+              <InfoLabel>
+                <MdLocationOn /> Location
+              </InfoLabel>
+              <InfoRow>
+                <InfoText>Quezon City, Philippines</InfoText>
+              </InfoRow>
+            </InfoGroup>
           </ContactInfoContainer>
+
 
           {/* Actions */}
           <Actions variants={fadeUp}>
