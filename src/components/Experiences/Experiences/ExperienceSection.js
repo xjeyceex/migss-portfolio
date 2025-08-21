@@ -393,7 +393,7 @@ function ExperienceSection() {
         { name: "Canvassly", desc: "Automated canvassing platform with real-time collaboration" },
         { name: "Certify", desc: "Certification management with learning paths" }
       ],
-      techStack: ["Supabase", "Next.js", "Mantine", "TypeScript", "Zustand", "Node.js"]
+      techStack: ["Supabase", "Next.js", "Jest", "Mantine", "TypeScript", "Zustand", "Node.js"]
     },
     {
       role: "Full Stack Developer",

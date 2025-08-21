@@ -138,7 +138,8 @@ export const stackList = [
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", name: "TypeScript" },
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", name: "Tailwind CSS" },
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg", name: "Material UI" },
-      { img: "/mantine-logo.svg", name: "Mantine" }
+      { img: "/mantine-logo.svg", name: "Mantine" },
+      { img: "/zustand.svg", name: "Zustand" }
     ],
   },
   {
@@ -158,7 +159,8 @@ export const stackList = [
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", name: "Figma" },
       { img: "https://www.vectorlogo.zone/logos/canva/canva-icon.svg", name: "Canva" },
       { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg", name: "Jira" },
-      { img: "https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg", name: "VS Code" }
+      { img: "https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg", name: "VS Code" },
+      { img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg", name: "Jest" }
     ],
   },
 ];
