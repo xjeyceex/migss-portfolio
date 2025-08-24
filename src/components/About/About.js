@@ -22,7 +22,7 @@ const AboutContainer = styled.div`
   }
 
    @media (max-width: 450px) {
-    padding: 2rem 1rem 0 1rem; /* symmetric left/right padding */
+    padding: 2rem 0.5rem 0 0.5rem; /* even smaller padding for very small screens */
   }
 `;
 
@@ -84,7 +84,7 @@ const BioSection = styled.div`
   }
 
   @media (max-width: 450px) {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -103,13 +103,16 @@ const AboutBio = styled.div`
       margin-top: 2rem;
       line-height: 1.5;
       max-width: 100%;
+      text-align: justify; /* Apply justification for tablets and smaller */
     }
 
     @media (max-width: 450px) {
       font-size: 0.875rem;
       margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       line-height: 1.4;
+      text-align: justify !important; /* Force text justification on small screens */
+      text-justify: inter-word; /* Better word spacing for justified text */
     }
   }
 `;
@@ -128,8 +131,8 @@ const Tagline = styled.p`
   }
 
   @media (max-width: 450px) {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
@@ -162,7 +165,8 @@ const TechItem = styled.div`
   }
 
   @media (max-width: 450px) {
-    padding: 0.5rem 0.4rem;
+    padding: 0.4rem 0.3rem;
+    border-radius: 8px;
   }
 `;
 
@@ -178,7 +182,8 @@ const TechIcon = styled.div`
   justify-content: center;
 
   @media (max-width: 450px) {
-    padding: 0.35rem;
+    padding: 0.25rem;
+    margin-bottom: 0.3rem;
   }
 `;
 
@@ -193,8 +198,8 @@ const TechImg = styled.img`
   }
 
   @media (max-width: 450px) {
-    height: 18px;
-    width: 18px;
+    height: 16px;
+    width: 16px;
   }
 `;
 
@@ -210,7 +215,8 @@ const TechName = styled.div`
   }
 
   @media (max-width: 450px) {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
+    line-height: 1.1;
   }
 `;
 
@@ -227,6 +233,11 @@ const TechSection = styled.div`
   @media (max-width: 768px) {
     margin: 0.5rem auto 0;
   }
+
+  @media (max-width: 450px) {
+    margin: 1rem auto 0;
+    padding: 1.5rem 0;
+  }
 `;
 
 const TechCardsContainer = styled.div`
@@ -235,6 +246,12 @@ const TechCardsContainer = styled.div`
   gap: 1.5rem;
   padding: 0 1rem;
   margin: 0 auto;
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr; /* Single column on very small screens */
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
 `;
 
 const TechCard = styled.div`
@@ -251,12 +268,28 @@ const TechCard = styled.div`
     transform: translateY(-5px);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
   }
+
+  @media (max-width: 450px) {
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+  }
 `;
 
 const CardHeader = styled.div`
   text-align: center;
   margin-bottom: 1.5rem;
   padding-bottom: 0.8rem;
+
+  @media (max-width: 450px) {
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+  }
 `;
 
 const CardTitle = styled.h3`
@@ -281,11 +314,12 @@ const CardTitle = styled.h3`
     @media (max-width: 450px) {
       width: 25px;
       height: 2px;
+      bottom: -0.6rem;
     } 
   }
 
   @media (max-width: 450px) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 `;
 
@@ -294,6 +328,11 @@ const TechGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   gap: 0.8rem;
   justify-items: center;
+
+  @media (max-width: 450px) {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 0.6rem;
+  }
 `;
 
 const StyledSVG = styled.svg`
