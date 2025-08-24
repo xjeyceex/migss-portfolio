@@ -317,9 +317,15 @@ const Actions = styled(motion.div)`
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   margin-top: 0.75rem;
   width: 100%;
+
+  /* Buttons will share available width equally */
+  > * {
+    flex: 1;
+    min-width: 0; /* Allow buttons to shrink */
+  }
 
   @media (max-width: 768px) {
     gap: 0.8rem;
@@ -327,13 +333,23 @@ const Actions = styled(motion.div)`
   }
 
   @media (max-width: 450px) {
-    flex-direction: column;
     gap: 0.6rem;
     margin-top: 0.25rem;
+    
+    /* Stack buttons vertically on very small screens if needed */
+    > * {
+      min-width: 120px;
+    }
   }
 
   @media (max-width: 350px) {
     gap: 0.5rem;
+    flex-direction: column;
+    
+    > * {
+      flex: none;
+      min-width: auto;
+    }
   }
 `;
 
