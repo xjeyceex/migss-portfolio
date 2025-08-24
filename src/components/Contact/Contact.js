@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import PDF from "../../assets/resume/Migss_resume.pdf";
 
 const ContactWrapper = styled.section`
-  padding: 2.5rem 1.5rem;
+  margin: 2.5rem 1rem;
   background: #f9f9f9;
   display: flex;
   justify-content: center;
@@ -16,6 +16,14 @@ const ContactWrapper = styled.section`
   @media (min-width: 1000px) {
     padding-left: 5rem;
     padding-right: 5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
+
+  @media (max-width: 450px) {
+    padding: 1.5rem 1rem;
   }
 `;
 
@@ -28,7 +36,11 @@ const Container = styled(motion.div)`
   max-width: 1000px;
   position: relative;
 
-  @media (max-width: 478px) {
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 450px) {
     gap: 1rem;
   }
 `;
@@ -48,9 +60,19 @@ const BigCard = styled(motion.div)`
     0 6px 10px rgba(0, 0, 0, 0.03);
   width: 100%;
 
-  @media (max-width: 478px) {
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 450px) {
     padding: 1.5rem 1rem;
-    gap: 1rem;
+    gap: 1.2rem;
+    border-radius: 14px;
+    box-shadow: 
+      0 6px 20px rgba(0, 0, 0, 0.06),
+      0 4px 8px rgba(0, 0, 0, 0.03);
   }
 `;
 
@@ -59,9 +81,15 @@ const SectionTitle = styled.h2`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  text-align: center;
 
-  @media (max-width: 478px) {
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
+
+  @media (max-width: 450px) {
     font-size: 1.5rem;
+    margin-bottom: 0.25rem;
   }
 `;
 
@@ -71,9 +99,18 @@ const Subtitle = styled.p`
   line-height: 1.5;
   max-width: 600px;
   margin: 0 auto;
+  text-align: center;
 
-  @media (max-width: 478px) {
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  @media (max-width: 450px) {
     font-size: 0.875rem;
+    line-height: 1.4;
+    text-align: justify;
+    text-justify: inter-word;
   }
 `;
 
@@ -91,8 +128,13 @@ const InfoRow = styled.div`
     background: #f1f5f9;
   }
 
-  @media (max-width: 478px) {
+  @media (max-width: 768px) {
+    padding: 0.7rem 0.9rem;
+  }
+
+  @media (max-width: 450px) {
     padding: 0.6rem 0.8rem;
+    border-radius: 8px;
   }
 `;
 
@@ -102,9 +144,21 @@ const InfoText = styled.span`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-  @media (max-width: 478px) {
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 450px) {
     font-size: 0.875rem;
+    gap: 0.4rem;
+  }
+
+  @media (max-width: 350px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -122,6 +176,8 @@ const StyledButton = styled(motion.a)`
   min-height: 44px;
   transition: all 0.3s ease;
   cursor: pointer;
+  flex: 1;
+  min-width: 120px;
 
   &.primary {
     background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
@@ -146,16 +202,39 @@ const StyledButton = styled(motion.a)`
     }
   }
 
-  @media (max-width: 478px) {
-    padding: 0.5rem 1rem;
+  @media (max-width: 768px) {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.95rem;
+    gap: 0.4rem;
+  }
+
+  @media (max-width: 450px) {
+    padding: 0.6rem 1rem;
     font-size: 0.875rem;
+    min-height: 40px;
+    min-width: 100px;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 350px) {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
     min-height: 36px;
+    gap: 0.3rem;
   }
 `;
 
 const CardHeader = styled.div`
   text-align: center;
   margin-bottom: 0.75rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 450px) {
+    margin-bottom: 0.25rem;
+  }
 `;
 
 const ContactInfoContainer = styled.div`
@@ -164,6 +243,15 @@ const ContactInfoContainer = styled.div`
   gap: 1.25rem;
   width: 100%;
   max-width: 600px;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    max-width: 100%;
+  }
+
+  @media (max-width: 450px) {
+    gap: 0.8rem;
+  }
 `;
 
 const InfoGroup = styled(motion.div)`
@@ -171,6 +259,10 @@ const InfoGroup = styled(motion.div)`
   flex-direction: column;
   gap: 0.6rem;
   width: 100%;
+
+  @media (max-width: 450px) {
+    gap: 0.5rem;
+  }
 `;
 
 const InfoLabel = styled.span`
@@ -180,12 +272,28 @@ const InfoLabel = styled.span`
   display: flex;
   align-items: center;
   gap: 0.4rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 0.85rem;
+    gap: 0.3rem;
+  }
+
+  svg {
+    @media (max-width: 450px) {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const CopyButton = styled(IconButton)`
   color: #1976d2;
   padding: 0.4rem;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 
   &:hover {
     background-color: rgba(25, 118, 210, 0.1);
@@ -193,6 +301,14 @@ const CopyButton = styled(IconButton)`
 
   & svg {
     font-size: 1.1rem;
+  }
+
+  @media (max-width: 450px) {
+    padding: 0.3rem;
+    
+    & svg {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -203,6 +319,22 @@ const Actions = styled(motion.div)`
   justify-content: center;
   align-items: center;
   margin-top: 0.75rem;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 350px) {
+    gap: 0.5rem;
+  }
 `;
 
 // Animations
