@@ -327,28 +327,29 @@ const CopyButton = styled(IconButton)`
 const Actions = styled(motion.div)`
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
+  flex-wrap: wrap;
   margin-top: 0.75rem;
   width: 100%;
+  max-width: 600px;  /* ✅ matches InfoGroup width */
+  margin-left: auto;
+  margin-right: auto;
 
-  /* Buttons will share available width equally */
   > * {
-    flex: 1;
-    min-width: 0; /* Allow buttons to shrink */
+    flex: none;        /* ✅ don't force full width */
   }
 
   @media (max-width: 768px) {
     gap: 0.8rem;
     margin-top: 0.5rem;
+    > * {
+      flex: 1;         /* ✅ stretch on smaller screens */
+    }
   }
 
   @media (max-width: 450px) {
     gap: 0.6rem;
     margin-top: 0.25rem;
-    
-    /* Stack buttons vertically on very small screens if needed */
     > * {
       min-width: 120px;
     }
@@ -357,7 +358,6 @@ const Actions = styled(motion.div)`
   @media (max-width: 350px) {
     gap: 0.5rem;
     flex-direction: column;
-    
     > * {
       flex: none;
       min-width: auto;
