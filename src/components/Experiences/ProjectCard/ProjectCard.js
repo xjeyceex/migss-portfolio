@@ -219,20 +219,45 @@ const Counter = styled.div`
 export default function ProjectCarousel() {
   const [current, setCurrent] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
+  const [slideDirection, setSlideDirection] = useState(1); // 1 for right, -1 for left
   const touchStartX = useRef(0);
 
   useEffect(() => {
     if(!autoPlay) return;
-    const interval = setInterval(()=>setCurrent(prev => (prev+1)%ProjectList.length),6000);
+    const interval = setInterval(()=>{
+      setSlideDirection(1); // Auto-play always goes forward
+      setCurrent(prev => (prev+1)%ProjectList.length);
+    },6000);
     return ()=>clearInterval(interval);
   }, [autoPlay]);
 
-  const goSlide = i => { setAutoPlay(false); setCurrent(i); };
-  const goPrev = () => goSlide(current===0?ProjectList.length-1:current-1);
-  const goNext = () => goSlide((current+1)%ProjectList.length);
+  const goSlide = (i, direction = 1) => { 
+    setAutoPlay(false); 
+    setSlideDirection(direction);
+    setCurrent(i); 
+  };
+  
+  const goPrev = () => {
+    const newIndex = current === 0 ? ProjectList.length - 1 : current - 1;
+    goSlide(newIndex, -1); // Set direction to left for previous
+  };
+  
+  const goNext = () => {
+    const newIndex = (current + 1) % ProjectList.length;
+    goSlide(newIndex, 1); // Set direction to right for next
+  };
+  
   const handleTouch = e => {
     const diff = e.changedTouches[0].clientX - touchStartX.current;
-    if(diff>50) goPrev(); else if(diff<-50) goNext();
+    if(diff > 50) {
+      // Swiped right - show previous project, animate to right
+      const newIndex = current === 0 ? ProjectList.length - 1 : current - 1;
+      goSlide(newIndex, 1); // Animate to right (positive direction)
+    } else if(diff < -50) {
+      // Swiped left - show next project, animate to left  
+      const newIndex = (current + 1) % ProjectList.length;
+      goSlide(newIndex, -1); // Animate to left (negative direction)
+    }
   };
 
   const p = ProjectList[current];
@@ -262,9 +287,9 @@ export default function ProjectCarousel() {
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
-            initial={{opacity:0,x:50}}
-            animate={{opacity:1,x:0}}
-            exit={{opacity:0,x:-50}}
+            initial={{opacity:0, x: slideDirection * 50}}
+            animate={{opacity:1, x:0}}
+            exit={{opacity:0, x: slideDirection * -50}}
             transition={{duration:.4,ease:"easeInOut"}}
           >
             <Card>
@@ -325,7 +350,7 @@ export default function ProjectCarousel() {
       </Wrapper>
 
       {ProjectList.length>1 && <Dots>
-        {ProjectList.map((_,i)=><Dot key={i} active={i===current} onClick={()=>goSlide(i)} aria-label={`Go to project ${i+1}`}/>)}
+        {ProjectList.map((_,i)=><Dot key={i} active={i===current} onClick={()=>goSlide(i, i > current ? 1 : -1)} aria-label={`Go to project ${i+1}`}/>)}
       </Dots>}
     </Container>
   );
