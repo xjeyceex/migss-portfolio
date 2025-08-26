@@ -252,19 +252,19 @@ const SwipeHint = styled.div`
 
 const TouchIndicator = styled.div`
   position: absolute;
-  bottom: 12px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgba(0,0,0,0.6);
-  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.7);
+  color: rgba(255,255,255,0.9);
   padding: 4px 8px;
   border-radius: 12px;
   font-size: 10px;
   font-weight: 500;
-  z-index: 2;
+  z-index: 3;
   animation: touchHintFade 4s infinite ease-in-out;
   backdrop-filter: blur(4px);
 
@@ -366,10 +366,6 @@ export default function ProjectCarousel() {
           <>
             <SwipeHint className="left" />
             <SwipeHint className="right" />
-            <TouchIndicator>
-              <HiOutlineHandRaised size={10} className="swipe-icon" />
-              Swipe
-            </TouchIndicator>
           </>
         )}
         
@@ -386,6 +382,13 @@ export default function ProjectCarousel() {
                 <img src={p.img} alt={p.title} loading="lazy"/>
                 <GradientOverlay/>
                 {p.category && <Badge>{p.category}</Badge>}
+                {/* Swipe indicator - only show on mobile and if user hasn't interacted yet */}
+                {!hasInteracted && (
+                  <TouchIndicator>
+                    <HiOutlineHandRaised size={10} className="swipe-icon" />
+                    Swipe
+                  </TouchIndicator>
+                )}
               </Image>
               <Content>
                 <div>

@@ -178,6 +178,7 @@ const StyledButton = styled(motion.a)`
   cursor: pointer;
   flex: 1;
   min-width: 120px;
+  white-space: nowrap;
 
   &.primary {
     background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
@@ -203,24 +204,35 @@ const StyledButton = styled(motion.a)`
   }
 
   @media (max-width: 768px) {
-    padding: 0.65rem 1.2rem;
-    font-size: 0.95rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
     gap: 0.4rem;
+    min-width: 110px;
   }
 
   @media (max-width: 450px) {
-    padding: 0.6rem 1rem;
-    font-size: 0.875rem;
-    min-height: 40px;
-    min-width: 100px;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+    min-height: 38px;
+    min-width: 90px;
     border-radius: 8px;
+    gap: 0.3rem;
   }
 
-  @media (max-width: 350px) {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.8rem;
+  @media (max-width: 380px) {
+    padding: 0.55rem 0.6rem;
+    font-size: 0.75rem;
     min-height: 36px;
-    gap: 0.3rem;
+    min-width: 80px;
+    gap: 0.25rem;
+  }
+
+  @media (max-width: 320px) {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.7rem;
+    min-height: 34px;
+    min-width: 70px;
+    gap: 0.2rem;
   }
 `;
 

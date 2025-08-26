@@ -55,7 +55,7 @@ const SectionTitle = styled.h2`
     @media (max-width: 450px) {
       bottom: -10px;
       width: 50px;
-      height: 2px;
+      height: 3px;
     }
   }
 
