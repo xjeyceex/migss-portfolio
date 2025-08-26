@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styled from "@emotion/styled";
 import { ProjectList } from "../../../data/ProjectData";
 import { FaChevronLeft, FaChevronRight, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { HiOutlineHandRaised } from "react-icons/hi2";
 
 const Container = styled.div`
   max-width: 1200px;
@@ -216,10 +217,82 @@ const Counter = styled.div`
   @media(min-width:768px){ top:16px; right:16px; padding:.4rem .9rem; font-size:.9rem; }
 `;
 
+const SwipeHint = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 60px;
+  background: linear-gradient(to right, rgba(255,255,255,0.05), rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+  border-radius: 15px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.7;
+  animation: swipeHintPulse 3s infinite ease-in-out;
+  
+  &.left {
+    left: 10px;
+    animation-delay: 0s;
+  }
+  
+  &.right {
+    right: 10px;
+    animation-delay: 1.5s;
+  }
+
+  @keyframes swipeHintPulse {
+    0%, 20%, 100% { opacity: 0; transform: translateY(-50%) scale(0.8); }
+    10% { opacity: 0.4; transform: translateY(-50%) scale(1); }
+  }
+
+  @media(min-width: 768px) {
+    display: none; /* Hide on desktop since navigation buttons are visible */
+  }
+`;
+
+const TouchIndicator = styled.div`
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.8);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  z-index: 2;
+  animation: touchHintFade 4s infinite ease-in-out;
+  backdrop-filter: blur(4px);
+
+  @keyframes touchHintFade {
+    0%, 15%, 85%, 100% { opacity: 0; transform: translateX(-50%) translateY(5px); }
+    25%, 75% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  @media(min-width: 768px) {
+    display: none; /* Hide on desktop */
+  }
+
+  .swipe-icon {
+    animation: swipeGesture 2s infinite ease-in-out;
+  }
+
+  @keyframes swipeGesture {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+  }
+`;
+
 export default function ProjectCarousel() {
   const [current, setCurrent] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   const [slideDirection, setSlideDirection] = useState(1); // 1 for right, -1 for left
+  const [hasInteracted, setHasInteracted] = useState(false);
   const touchStartX = useRef(0);
 
   useEffect(() => {
@@ -234,6 +307,7 @@ export default function ProjectCarousel() {
   const goSlide = (i, direction = 1) => { 
     setAutoPlay(false); 
     setSlideDirection(direction);
+    setHasInteracted(true);
     setCurrent(i); 
   };
   
@@ -249,6 +323,8 @@ export default function ProjectCarousel() {
   
   const handleTouch = e => {
     const diff = e.changedTouches[0].clientX - touchStartX.current;
+    if(Math.abs(diff) > 20) setHasInteracted(true); // Mark as interacted on any significant swipe
+    
     if(diff > 50) {
       // Swiped right - show previous project, animate to right
       const newIndex = current === 0 ? ProjectList.length - 1 : current - 1;
@@ -284,6 +360,19 @@ export default function ProjectCarousel() {
         onTouchEnd={handleTouch}
       >
         <Counter>{current+1}/{ProjectList.length}</Counter>
+        
+        {/* Swipe hints - only show on mobile and if user hasn't interacted yet */}
+        {!hasInteracted && (
+          <>
+            <SwipeHint className="left" />
+            <SwipeHint className="right" />
+            <TouchIndicator>
+              <HiOutlineHandRaised size={10} className="swipe-icon" />
+              Swipe
+            </TouchIndicator>
+          </>
+        )}
+        
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
