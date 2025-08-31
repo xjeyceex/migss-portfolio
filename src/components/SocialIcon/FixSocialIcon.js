@@ -18,7 +18,7 @@ const SocialContainer = styled.div`
   }
 
   .item + .item {
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 
   a {
