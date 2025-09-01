@@ -6,10 +6,20 @@ export const Nav = styled.nav`
   background: transparent;
   height: 100px;
   display: flex;
+  position: fixed;
   align-items: center;
   justify-content: space-between;
   z-index: 10;
+
+  width: 90%;
+  max-width: 1000px; /* adjust to your liking, or use 50% */
+  margin: 0 auto;    /* centers when screen > max-width */
+
+  left: 0;
+  right: 0;
+  top: 0;
 `;
+
 
 export const NavLink = styled(ScrollLink)`
   color: rgb(119, 119, 121);
