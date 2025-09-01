@@ -426,7 +426,7 @@ export default function ProjectCarousel() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FaExternalLinkAlt size={12} /> <BtnLabel desktop="Live Demo" mobile="Demo" />
+                      <FaExternalLinkAlt size={12} /> <BtnLabel desktop="View Project" mobile="View" />
                     </Btn>
                   )}
                 </Buttons>

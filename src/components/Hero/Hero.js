@@ -36,6 +36,7 @@ function Hero() {
     <main>
       <Dropdown isOpen={isOpen} toggle={toggle} />
       <Header toggle={toggle} />
+      <div style={{ height: "100px" }} />
       <HeroContainer ref={heroRef}>
         <HeroWrapper>
           <HeroLeft>

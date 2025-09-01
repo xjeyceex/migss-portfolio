@@ -385,7 +385,8 @@ function About() {
 
             <ScrollAnimation animateIn="fadeInRight" delay={300}>
               <p>
-                As a full stack developer, I really enjoy working with a team to achieve shared goals. 
+                As a full stack developer with <HighlightText>2 years of experience</HighlightText>, 
+                I really enjoy working with a team to achieve shared goals. 
                 I love the excitement of creating both the visible parts of websites and the behind-the-scenes 
                 functionality, and I find great satisfaction in seeing how everything comes together 
                 into a product that people can actually use and enjoy.
@@ -434,6 +435,7 @@ function About() {
           </TechCardsContainer>
         </TechSection>
       </AboutContainer>
+
     </>
   );
 }

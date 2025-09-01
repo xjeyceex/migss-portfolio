@@ -135,7 +135,7 @@ function FixSocialIcon() {
               <FaLinkedin />
             </a>
           </li>
-          <li className="item">
+          {/* <li className="item">
             <a
               href="https://www.instagram.com/migelgugel/"
               target="_blank"
@@ -154,7 +154,7 @@ function FixSocialIcon() {
             >
               <FaFacebook />
             </a>
-          </li>
+          </li> */}
           <li className="item">
             <a
               href="https://github.com/xjeyceex/"
