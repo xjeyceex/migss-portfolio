@@ -62,7 +62,7 @@ const Card = styled.div`
     box-shadow: 0 6px 16px rgba(0,0,0,0.12); 
   }
   
-  @media(min-width:768px){ 
+  @media(min-width:1000px){ 
     flex-direction: row; 
     height: auto; 
     max-width: 1000px; 
@@ -97,7 +97,7 @@ const Image = styled.div`
     height: 200px;
   }
   
-  @media(min-width: 768px){
+  @media(min-width: 1000px){
     width: 50%;
     height: auto;
     min-height: 300px;
@@ -149,7 +149,7 @@ const Content = styled.div`
     padding: 1.2rem; 
   }
   
-  @media(min-width:768px){ 
+  @media(min-width:1000px){ 
     width: 50%; 
     padding: 2rem; 
   }
@@ -389,11 +389,11 @@ const NavButton = styled.button`
   }
   
   &.prev{ 
-    left: -15px; /* Adjusted positioning */
+    left: -15px; /* Reverted positioning */
   } 
   
   &.next{ 
-    right: -15px; /* Adjusted positioning */
+    right: -15px; /* Reverted positioning */
   }
   
   &:disabled{ 
@@ -435,7 +435,7 @@ const NavButton = styled.button`
     } 
   }
   
-  @media(min-width:992px){ 
+  @media(min-width:1000px){ 
     width: 50px; 
     height: 50px; 
     font-size: 20px; 
