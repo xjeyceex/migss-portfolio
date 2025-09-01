@@ -13,8 +13,9 @@ const COLORS = {
 };
 
 const AboutContainer = styled.div`
-  padding: 2rem 1rem 4rem 1rem; /* symmetric left/right padding */
+  padding: 2rem 1rem 4rem 1rem;
   background: ${COLORS.background};
+  overflow-x: hidden; /* Prevent horizontal scrolling from animations */
   
   @media (min-width: 1000px) {
     padding-left: 5rem;
@@ -22,7 +23,7 @@ const AboutContainer = styled.div`
   }
 
    @media (max-width: 450px) {
-    padding: 2rem 0.5rem 0 0.5rem; /* even smaller padding for very small screens */
+    padding: 2rem 0.5rem 0 0.5rem;
   }
 `;
 
@@ -77,6 +78,7 @@ const BioSection = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 2rem;
+  position: relative; /* Establish positioning context */
 
   @media (min-width: 992px) {
     flex-direction: row;
@@ -90,6 +92,8 @@ const BioSection = styled.div`
 
 const AboutBio = styled.div`
   flex: 1;
+  width: 100%; /* Ensure full width */
+  position: relative; /* Establish positioning context for animations */
 
   p {
     font-size: 1.1rem;
@@ -97,13 +101,14 @@ const AboutBio = styled.div`
     margin-bottom: 1.2rem;
     color: ${COLORS.textDark};
     text-align: left;
+    width: 100%; /* Ensure paragraphs take full width */
 
     @media (max-width: 768px) {
       font-size: 1rem;
       margin-top: 2rem;
       line-height: 1.5;
       max-width: 100%;
-      text-align: justify; /* Apply justification for tablets and smaller */
+      text-align: justify;
     }
 
     @media (max-width: 450px) {
@@ -111,9 +116,21 @@ const AboutBio = styled.div`
       margin-top: 1.5rem;
       margin-bottom: 0.8rem;
       line-height: 1.4;
-      text-align: justify !important; /* Force text justification on small screens */
-      text-justify: inter-word; /* Better word spacing for justified text */
+      text-align: justify !important;
+      text-justify: inter-word;
     }
+  }
+`;
+
+// Animation wrapper to contain animation effects
+const AnimationWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  
+  /* Ensure animations don't affect layout */
+  .animated {
+    width: 100%;
+    transform-origin: left center; /* Set transform origin to prevent shifting */
   }
 `;
 
@@ -248,7 +265,7 @@ const TechCardsContainer = styled.div`
   margin: 0 auto;
 
   @media (max-width: 450px) {
-    grid-template-columns: 1fr; /* Single column on very small screens */
+    grid-template-columns: 1fr;
     gap: 1rem;
     padding: 0 0.5rem;
   }
@@ -368,36 +385,61 @@ function About() {
         
         <BioSection>
           <AboutBio>
-            <ScrollAnimation animateIn="fadeInRight" delay={100}>
-              <p>
-                Hi there! My name is <HighlightText>Jc Miguel Beltran</HighlightText> from the Philippines, 
-                and I currently live in Quezon City. 
-              </p>
-            </ScrollAnimation>
+            <AnimationWrapper>
+              <ScrollAnimation 
+                animateIn="fadeInRight" 
+                delay={100}
+                animateOnce={true}
+                offset={100}
+              >
+                <p>
+                  Hi there! My name is <HighlightText>Jc Miguel Beltran</HighlightText> from the Philippines, 
+                  and I currently live in Quezon City. 
+                </p>
+              </ScrollAnimation>
+            </AnimationWrapper>
 
-            <ScrollAnimation animateIn="fadeInRight" delay={200}>
-              <p>
-                My love for problem-solving led me to study Computer Science. During my freshman year, 
-                I discovered how much I enjoyed turning ideas into real projects, and that's when I found 
-                my passion for solving problems and building applications and websites that make a difference. 
-              </p>
-            </ScrollAnimation>
+            <AnimationWrapper>
+              <ScrollAnimation 
+                animateIn="fadeInRight" 
+                delay={200}
+                animateOnce={true}
+                offset={100}
+              >
+                <p>
+                  My love for problem-solving led me to study Computer Science. During my freshman year, 
+                  I discovered how much I enjoyed turning ideas into real projects, and that's when I found 
+                  my passion for solving problems and building applications and websites that make a difference. 
+                </p>
+              </ScrollAnimation>
+            </AnimationWrapper>
 
-            <ScrollAnimation animateIn="fadeInRight" delay={300}>
-              <p>
-                As a full stack developer with <HighlightText>2 years of experience</HighlightText>, 
-                I really enjoy working with a team to achieve shared goals. 
-                I love the excitement of creating both the visible parts of websites and the behind-the-scenes 
-                functionality, and I find great satisfaction in seeing how everything comes together 
-                into a product that people can actually use and enjoy.
-              </p>
-            </ScrollAnimation>
-
+            <AnimationWrapper>
+              <ScrollAnimation 
+                animateIn="fadeInRight" 
+                delay={300}
+                animateOnce={true}
+                offset={100}
+              >
+                <p>
+                  As a full stack developer with <HighlightText>2 years of experience</HighlightText>, 
+                  I really enjoy working with a team to achieve shared goals. 
+                  I love the excitement of creating both the visible parts of websites and the behind-the-scenes 
+                  functionality, and I find great satisfaction in seeing how everything comes together 
+                  into a product that people can actually use and enjoy.
+                </p>
+              </ScrollAnimation>
+            </AnimationWrapper>
           </AboutBio>
         </BioSection>
         
         <TechSection>
-          <ScrollAnimation animateIn="fadeIn" delay={350}>
+          <ScrollAnimation 
+            animateIn="fadeIn" 
+            delay={350}
+            animateOnce={true}
+            offset={100}
+          >
             <Tagline>
               Technologies & Tools I Work With
             </Tagline>
@@ -409,6 +451,8 @@ function About() {
                 animateIn="fadeInUp"
                 delay={200 * groupIndex}
                 key={groupIndex}
+                animateOnce={true}
+                offset={100}
               >
                 <TechCard className="tech-card">
                   <CardHeader>
@@ -435,7 +479,6 @@ function About() {
           </TechCardsContainer>
         </TechSection>
       </AboutContainer>
-
     </>
   );
 }
