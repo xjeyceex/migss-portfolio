@@ -1,30 +1,30 @@
 // --------------------------------------- Project List
 export const ProjectList = [
-  {
-    img: "/canvassing.jpg",
-    title: "Canvassly",
-    description:
-      "Canvassly simplifies procurement by streamlining canvassing, supplier comparison, and purchase approvals. Built with Next.js, Supabase, and Mantine, it ensures an efficient and transparent sourcing process.",
-    tech_stack: [
-      { name: "NextJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-      { name: "NodeJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
-      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-      { name: "Mantine", icon: "https://mantine.dev/favicon.svg" },
-      { name: "Zustand", icon: "https://zustand-demo.pmnd.rs/favicon.ico" },
-    ],
-    github_url: "",
-    demo_url: "https://canvassly.vercel.app",
-    features: [
-      "Automated supplier comparison",
-      "Real-time collaboration",
-      "Purchase approval workflows",
-      "Responsive design"
-    ],
-    role: "Full-stack Developer",
-    year: 2025
-  },
+  // {
+  //   img: "/canvassing.jpg",
+  //   title: "Canvassly",
+  //   description:
+  //     "Canvassly simplifies procurement by streamlining canvassing, supplier comparison, and purchase approvals. Built with Next.js, Supabase, and Mantine, it ensures an efficient and transparent sourcing process.",
+  //   tech_stack: [
+  //     { name: "NextJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+  //     { name: "NodeJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  //     { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  //     { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+  //     { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  //     { name: "Mantine", icon: "https://mantine.dev/favicon.svg" },
+  //     { name: "Zustand", icon: "https://zustand-demo.pmnd.rs/favicon.ico" },
+  //   ],
+  //   github_url: "",
+  //   demo_url: "https://canvassly.vercel.app",
+  //   features: [
+  //     "Automated supplier comparison",
+  //     "Real-time collaboration",
+  //     "Purchase approval workflows",
+  //     "Responsive design"
+  //   ],
+  //   role: "Full-stack Developer",
+  //   year: 2025
+  // },
   {
     img: "/help-earth.jpg",
     title: "Help Earth",
@@ -49,31 +49,31 @@ export const ProjectList = [
     role: "Full-stack Developer",
     year: 2024
   },
-  {
-    img: "/certify.png",
-    title: "Certify",
-    description:
-      "Certify is a full-stack platform for creating, delivering, and managing certifications. It enables teams to build structured learning paths, issue verified certificates, and track learner progress across interactive content like documents, videos, and quizzes.",
-    tech_stack: [
-      { name: "NextJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-      { name: "NodeJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-      { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
-      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-      { name: "Mantine", icon: "https://mantine.dev/favicon.svg" },
-      { name: "Zustand", icon: "https://zustand-demo.pmnd.rs/favicon.ico" },
-    ],
-    github_url: "",
-    demo_url: "https://certify.com.ph/",
-    features: [
-      "Custom certification creation",
-      "Interactive learning paths",
-      "Progress tracking dashboard",
-      "Multi-media content support"
-    ],
-    role: "Full-stack Developer",
-    year: 2025
-  },
+  // {
+  //   img: "/certify.png",
+  //   title: "Certify",
+  //   description:
+  //     "Certify is a full-stack platform for creating, delivering, and managing certifications. It enables teams to build structured learning paths, issue verified certificates, and track learner progress across interactive content like documents, videos, and quizzes.",
+  //   tech_stack: [
+  //     { name: "NextJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+  //     { name: "NodeJS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  //     { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  //     { name: "Supabase", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+  //     { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  //     { name: "Mantine", icon: "https://mantine.dev/favicon.svg" },
+  //     { name: "Zustand", icon: "https://zustand-demo.pmnd.rs/favicon.ico" },
+  //   ],
+  //   github_url: "",
+  //   demo_url: "https://certify.com.ph/",
+  //   features: [
+  //     "Custom certification creation",
+  //     "Interactive learning paths",
+  //     "Progress tracking dashboard",
+  //     "Multi-media content support"
+  //   ],
+  //   role: "Full-stack Developer",
+  //   year: 2025
+  // },
   {
     img: "/pesowise.png",
     title: "PesoWise",

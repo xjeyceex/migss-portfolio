@@ -384,17 +384,17 @@ function ExperienceCard({ exp }) {
 
 function ExperienceSection() {
   const experiences = [
-    {
-      role: "Full Stack Developer",
-      company: "Sta. Clara International Corp.",
-      period: "Jan 2025 - Present",
-      icon: <FaBriefcase size={13} color={COLORS.accent} />,
-      projects: [
-        { name: "Canvassly", desc: "Automated canvassing platform with real-time collaboration" },
-        { name: "Certify", desc: "Certification management with learning paths" }
-      ],
-      techStack: ["Supabase", "Next.js", "Jest", "Mantine", "TypeScript", "Zustand", "Node.js"]
-    },
+    // {
+    //   role: "Full Stack Developer",
+    //   company: "Sta. Clara International Corp.",
+    //   period: "Jan 2025 - Present",
+    //   icon: <FaBriefcase size={13} color={COLORS.accent} />,
+    //   projects: [
+    //     { name: "Canvassly", desc: "Automated canvassing platform with real-time collaboration" },
+    //     { name: "Certify", desc: "Certification management with learning paths" }
+    //   ],
+    //   techStack: ["Supabase", "Next.js", "Jest", "Mantine", "TypeScript", "Zustand", "Node.js"]
+    // },
     {
       role: "Full Stack Developer",
       company: "Freelance (US Client)",
