@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
-import { FaBriefcase, FaGraduationCap, FaCode, FaAward } from "react-icons/fa";
+import { FaGraduationCap, FaCode, FaAward } from "react-icons/fa";
 
 const COLORS = {
   text: "#1e293b",     // dark gray
@@ -384,28 +384,6 @@ function ExperienceCard({ exp }) {
 
 function ExperienceSection() {
   const experiences = [
-    // {
-    //   role: "Full Stack Developer",
-    //   company: "Sta. Clara International Corp.",
-    //   period: "Jan 2025 - Present",
-    //   icon: <FaBriefcase size={13} color={COLORS.accent} />,
-    //   projects: [
-    //     { name: "Canvassly", desc: "Automated canvassing platform with real-time collaboration" },
-    //     { name: "Certify", desc: "Certification management with learning paths" }
-    //   ],
-    //   techStack: ["Supabase", "Next.js", "Jest", "Mantine", "TypeScript", "Zustand", "Node.js"]
-    // },
-    {
-      role: "Full Stack Developer",
-      company: "Freelance (US Client)",
-      period: "Feb 2023 - Nov 2024",
-      icon: <FaCode size={13} color={COLORS.accent} />,
-      projects: [
-        { name: "HelpYou", desc: "Location-aware U.S. climate data app" },
-        { name: "WebHR", desc: "HR management system for records and workflows" }
-      ],
-      techStack: ["PostgreSQL", "React", "TypeScript", "Node.js", "Material UI", "Next.js", "Express.js", "Tailwind CSS"]
-    },
     {
       role: "BS Computer Science",
       company: "Our Lady of Fatima University",
@@ -417,7 +395,56 @@ function ExperienceSection() {
         "Coursework in algorithms and database systems"
       ],
       highlights: ["Dean's Lister", "Best in Thesis"]
-    }
+    },
+    {
+      role: "Full Stack Developer",
+      company: "Jeonsoft Corporation",
+      period: "Jan 2024 - Jun 2024",
+      icon: <FaCode size={13} color={COLORS.accent} />,
+      projects: [
+        { name: "Support Central", desc: "Support ticketing system" },
+        { name: "WebHR", desc: "HR management system for records and workflows" }
+      ],
+      techStack: ["PostgreSQL", "React", "TypeScript", "Node.js", "Material UI", "Next.js", "Express.js"]
+    },
+    {
+      role: "Full Stack Developer",
+      company: "Freelance (Brian Atwood / Azr)",
+      period: "Jun 2024 - February 2025",
+      icon: <FaCode size={13} color={COLORS.accent} />,
+      projects: [
+        { name: "Help You", desc: "Location-aware U.S. climate data app" },
+      ],
+      techStack: ["React", "TypeScript", "Node.js", "Prisma", "Next.js", "Tailwind CSS"]
+    },
+    {
+      role: "Full Stack Developer",
+      company: "Sta. Clara International Corp",
+      period: "Jan 2025 - Nov 2025",
+      icon: <FaCode size={13} color={COLORS.accent} />,
+      bullets: [
+        "Built and deployed full-stack platforms with responsive, user-centric interfaces.",
+        "Optimized REST APIs and maintained clean, well-documented codebases."
+      ],
+      techStack: ["Supabase", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "PostgreSQL", "Mantine" ]
+    },
+    {
+      role: "Frontend-Focused Full Stack Developer",
+      company: "The Digital Room AU",
+      period: "Nov 2025 - Present",
+      icon: <FaCode size={13} color={COLORS.accent} />,
+      projects: [
+        {
+          name: "The Inspection Nest",
+          desc: "Frontend UI development, converting Figma designs into responsive, animated interfaces with smooth user interactions."
+        },
+        {
+          name: "The Digital Room",
+          desc: "Built a polished frontend UI from Figma designs, focusing on clean layout, responsiveness, and subtle animations."
+        }
+      ],
+      techStack: ["TypeScript", "Framer-Motion", "Next.js", "GSAP", "WordPress", "Tailwind CSS" ]
+    },
   ];
 
   return (

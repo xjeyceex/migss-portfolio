@@ -124,7 +124,57 @@ export const ProjectList = [
     ],
     role: "Software Developer",
     year: "2023-2024"
-  }
+    },
+    {
+    img: "/TIN-Logo.jpg", // add a screenshot of the homepage here
+    title: "The Inspection Nest™",
+    description:
+      "A production-grade property inspection platform delivering trusted, consumer-ready reports for buyers, sellers, agents, and inspectors. I built the full UI with smooth animations, responsive layouts, and seamless WordPress integration for dynamic content.",
+    tech_stack: [
+      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+      { name: "GSAP", icon: "/GSAP.png" },
+      { name: "WordPress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" },
+    ],
+    github_url: "",
+    demo_url: "https://theinspectionnest.com",
+    features: [
+      "Fully responsive, animated marketing website",
+      "Role-based content for buyers, agents, and inspectors",
+      "Reusable UI components with Framer Motion transitions",
+      "WordPress-powered CMS integration",
+      "Optimized performance and accessibility",
+    ],
+    role: "Frontend Developer",
+    year: 2025
+  },
+  {
+  img: "/TDR_Logo_2025_White.webp", // add a screenshot of the homepage here
+  title: "The Digital Room",
+  description:
+    "A full-service IT and software solutions website for an Australian tech company. Built with a modern, responsive UI showcasing services, industry expertise, case studies, and client-focused content, all powered by a scalable Next.js and WordPress integration.",
+  tech_stack: [
+    { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+    { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+    { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+    { name: "Framer Motion", icon: "/framer-motion-logo-png_seeklogo-446185.png" },
+    { name: "WordPress", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" },
+  ],
+  github_url: "",
+  demo_url: "https://stg-digitalroom.tdr-au.net/",
+  features: [
+    "Responsive multi-page marketing website",
+    "Dynamic service and industry sections",
+    "Client case studies and news integration",
+    "Interactive animations with Framer Motion & GSAP",
+    "WordPress CMS integration for easy content updates",
+    "Optimized for performance and accessibility"
+  ],
+  role: "Frontend Developer",
+  year: 2025
+}
+
 ];
 
 // --------------------------------------- Skills
