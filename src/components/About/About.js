@@ -259,15 +259,13 @@ const TechSection = styled.div`
 
 const TechCardsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
-  padding: 0 1rem;
-  margin: 0 auto;
-
+  margin-top: 2rem;
+  
   @media (max-width: 450px) {
-    grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 0 0.5rem;
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -280,6 +278,11 @@ const TechCard = styled.div`
   border: 1px solid rgba(229, 231, 235, 0.8);
   position: relative;
   overflow: hidden;
+  
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 280px;
 
   &:hover {
     transform: translateY(-5px);
@@ -290,6 +293,7 @@ const TechCard = styled.div`
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    min-height: 240px;
     
     &:hover {
       transform: translateY(-3px);
@@ -343,12 +347,13 @@ const CardTitle = styled.h3`
 const TechGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 0.8rem;
-  justify-items: center;
-
+  gap: 1rem;
+  flex: 1;
+  align-content: center;
+  
   @media (max-width: 450px) {
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-    gap: 0.6rem;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
   }
 `;
 
