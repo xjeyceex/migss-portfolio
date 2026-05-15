@@ -4,10 +4,11 @@ import { MdContentCopy, MdEmail, MdDescription, MdPhone, MdLocationOn } from "re
 import { IconButton, Tooltip, Zoom } from "@mui/material";
 import { motion } from "framer-motion";
 import PDF from "../../assets/resume/Migss_resume.pdf";
+import { theme } from "../../theme";
 
 const ContactWrapper = styled.section`
-  margin: 2.5rem 1rem;
-  background: #f9f9f9;
+  margin: 2.5rem 1rem 3rem;
+  background: ${theme.colors.surfaceMuted};
   display: flex;
   justify-content: center;
   position: relative;
@@ -77,24 +78,16 @@ const BigCard = styled(motion.div)`
 `;
 
 const SectionTitle = styled.h2`
-  color: #333;
-  font-size: 2rem;
+  color: ${theme.colors.text};
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 700;
   margin-bottom: 0.5rem;
   text-align: center;
-
-  @media (max-width: 768px) {
-    font-size: 1.75rem;
-  }
-
-  @media (max-width: 450px) {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
-  }
+  letter-spacing: -0.02em;
 `;
 
 const Subtitle = styled.p`
-  color: #666;
+  color: ${theme.colors.textMuted};
   font-size: 1rem;
   line-height: 1.5;
   max-width: 600px;
@@ -118,14 +111,15 @@ const InfoRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #f8f9fa;
+  background: ${theme.colors.surface};
   padding: 0.8rem 1rem;
-  border-radius: 10px;
-  border: 1px solid #e9ecef;
-  transition: all 0.3s ease;
+  border-radius: ${theme.radius.md};
+  border: 1px solid ${theme.colors.border};
+  transition: background-color 0.25s ${theme.motion.easeOut}, box-shadow 0.25s ${theme.motion.easeOut};
 
   &:hover {
-    background: #f1f5f9;
+    background: ${theme.colors.surfaceAlt};
+    box-shadow: ${theme.shadow.sm};
   }
 
   @media (max-width: 768px) {
@@ -140,7 +134,7 @@ const InfoRow = styled.div`
 
 const InfoText = styled.span`
   font-size: 1rem;
-  color: #333;
+  color: ${theme.colors.text};
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -181,24 +175,24 @@ const StyledButton = styled(motion.a)`
   white-space: nowrap;
 
   &.primary {
-    background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
+    background: linear-gradient(135deg, ${theme.colors.accent} 0%, ${theme.colors.accentHover} 100%);
     color: #fff;
-    box-shadow: 0 4px 10px rgba(25, 118, 210, 0.25);
-    
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
+
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(25, 118, 210, 0.35);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.35);
     }
   }
 
   &.secondary {
     background: #fff;
-    color: #1976d2;
-    border: 2px solid #e0e0e0;
-    
+    color: ${theme.colors.accent};
+    border: 2px solid ${theme.colors.border};
+
     &:hover {
-      background: #f8f9fa;
-      border-color: #1976d2;
+      background: ${theme.colors.surfaceMuted};
+      border-color: ${theme.colors.accent};
       transform: translateY(-2px);
     }
   }
@@ -280,7 +274,7 @@ const InfoGroup = styled(motion.div)`
 const InfoLabel = styled.span`
   font-size: 0.95rem;
   font-weight: 600;
-  color: #555;
+  color: ${theme.colors.textMuted};
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -302,13 +296,13 @@ const InfoLabel = styled.span`
 `;
 
 const CopyButton = styled(IconButton)`
-  color: #1976d2;
+  color: ${theme.colors.accent};
   padding: 0.4rem;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ${theme.motion.easeOut};
   flex-shrink: 0;
 
   &:hover {
-    background-color: rgba(25, 118, 210, 0.1);
+    background-color: ${theme.colors.accentSoft};
   }
 
   & svg {

@@ -7,15 +7,17 @@ const StyledIconButton = styled(IconButton)`
     position: fixed;
     bottom: 20px;
     right: 20px;
+    z-index: 1001;
     color: white;
     padding: 10px;
 `
 
 const StyledArrowIcon = styled(MdKeyboardArrowUp)`
-    background-color: #007bff;
+    background-color: #2563eb;
     border-radius: 50%;
     padding: 5px;
-    box-shadow: 0px 4px 20px rgba(160, 170, 180, 0.6);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+    transition: background-color 0.2s ease, transform 0.2s ease;
 `
 
 function ScrollToTop() {
@@ -24,7 +26,7 @@ function ScrollToTop() {
 
     const handleClick = () => {
         setOpen(false);
-        scroll.scrollToTop({ duration: 0 });
+        scroll.scrollToTop({ duration: 550, smooth: true });
     };
 
     useEffect(() => {

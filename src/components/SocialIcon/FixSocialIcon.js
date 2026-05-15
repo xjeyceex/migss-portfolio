@@ -2,6 +2,7 @@ import React from "react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import styled from "@emotion/styled";
 import ScrollAnimation from "react-animate-on-scroll";
+import { theme } from "../../theme";
 
 const SocialContainer = styled.div`
   position: fixed;
@@ -30,8 +31,8 @@ const SocialContainer = styled.div`
     justify-content: center;
     
     &:hover {
-      color: rgb(57, 134, 250);
-      transform: scale(1.1);
+      color: ${theme.colors.accent};
+      transform: scale(1.08);
     }
   }
 
@@ -54,7 +55,7 @@ const SocialContainer = styled.div`
       color: #151418;
       
       &:hover {
-        color: rgb(57, 134, 250);
+        color: ${theme.colors.accent};
       }
     }
 
@@ -96,8 +97,8 @@ const SocialContainer = styled.div`
       border: 1px solid rgba(255, 255, 255, 0.2);
       
       &:hover {
-        background: rgba(57, 134, 250, 0.1);
-        border-color: rgba(57, 134, 250, 0.3);
+        background: ${theme.colors.accentSoft};
+        border-color: rgba(37, 99, 235, 0.35);
         transform: scale(1.05);
       }
     }

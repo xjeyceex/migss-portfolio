@@ -1,12 +1,24 @@
 import styled, { keyframes } from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
 
+const blobUrl = `${process.env.PUBLIC_URL || ""}/blob-haikei.svg`;
+
+export const HeroSection = styled.section`
+  background: #151418;
+  background-image: url(${blobUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  width: 100%;
+`;
+
 export const HeroContainer = styled.div`
-  padding: 4rem 1rem 2rem 1rem;
+  position: relative;
+  padding: 4rem 1rem 3rem 1rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  max-width: 1200px; /* increased from 1000px */
+  max-width: 1200px;
   
   @media (min-width: 1000px) {
     padding-left: 5rem;
@@ -31,13 +43,19 @@ export const HeroLeft = styled.div`
   flex: 1.3; /* increased from 1 to give more space */
 
   h1 {
-    font-size: clamp(2.5rem, 4vw, 3.5rem); /* responsive font size */
+    font-size: clamp(2rem, 4vw, 3.25rem);
     color: #f6f6f6;
     opacity: 0.98;
-    font-weight: 400;
-    white-space: nowrap; /* prevent wrapping */
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-weight: 500;
+    line-height: 1.2;
+    max-width: 22ch;
+    white-space: normal;
+  }
+
+  @media (min-width: 993px) {
+    h1 {
+      white-space: nowrap;
+    }
   }
 
   h5 {

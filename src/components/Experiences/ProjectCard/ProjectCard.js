@@ -111,13 +111,30 @@ const Desc = styled.p`
   @media(min-width:768px){ font-size:1.05rem; margin-bottom:1.75rem; line-height:1.7; }
 `;
 
-const TechStack = styled.div`
+const techStackContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06, delayChildren: 0.06 },
+  },
+};
+
+const techPillVariants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: "spring", stiffness: 220, damping: 18 },
+  },
+};
+
+const TechStack = styled(motion.div)`
   display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1rem; overflow-x:auto; padding-bottom:3px;
   @media(min-width:500px){ gap:.5rem; margin-bottom:1.2rem; }
   @media(min-width:768px){ gap:.75rem; margin-bottom:1.5rem; overflow-x:visible; }
 `;
 
-const Tech = styled.div`
+const Tech = styled(motion.div)`
   display: flex;
   align-items: center;
   gap: 0.2rem;
@@ -293,7 +310,18 @@ export default function ProjectCarousel() {
   const [autoPlay, setAutoPlay] = useState(true);
   const [slideDirection, setSlideDirection] = useState(1); // 1 for right, -1 for left
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isNarrow, setIsNarrow] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
   const touchStartX = useRef(0);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const onChange = () => setIsNarrow(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   useEffect(() => {
     if(!autoPlay) return;
@@ -338,18 +366,7 @@ export default function ProjectCarousel() {
 
   const p = ProjectList[current];
 
-  const BtnLabel = ({ desktop, mobile }) => {
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-      const check = () => setIsMobile(window.innerWidth < 768);
-      check();
-      window.addEventListener("resize", check);
-      return () => window.removeEventListener("resize", check);
-    }, []);
-
-    return <>{isMobile ? mobile : desktop}</>;
-  };
+  const linkLabel = (desktop, mobile) => (isNarrow ? mobile : desktop);
 
   return (
     <Container>
@@ -375,7 +392,7 @@ export default function ProjectCarousel() {
             initial={{opacity:0, x: slideDirection * 50}}
             animate={{opacity:1, x:0}}
             exit={{opacity:0, x: slideDirection * -50}}
-            transition={{duration:.4,ease:"easeInOut"}}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
             <Card>
               <Image>
@@ -399,9 +416,14 @@ export default function ProjectCarousel() {
                     {p.duration && <span>{p.duration}</span>}
                   </Meta>
                   <Desc>{p.description}</Desc>
-                  <TechStack>
+                  <TechStack
+                    key={`tech-${current}`}
+                    variants={techStackContainerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
                     {p.tech_stack.map((t,i)=>(
-                      <Tech key={i}>
+                      <Tech key={i} variants={techPillVariants}>
                         <TechIcon src={t.icon} alt={t.name}/>
                         <span>{t.name}</span>
                       </Tech>
@@ -416,7 +438,7 @@ export default function ProjectCarousel() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FaGithub size={12} /> <BtnLabel desktop="View Code" mobile="Code" />
+                      <FaGithub size={12} /> {linkLabel("View Code", "Code")}
                     </Btn>
                   )}
                   {p.demo_url && (
@@ -426,7 +448,8 @@ export default function ProjectCarousel() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FaExternalLinkAlt size={12} /> <BtnLabel desktop="View Project" mobile="View" />
+                      <FaExternalLinkAlt size={12} />{" "}
+                      {linkLabel("View Project", "View")}
                     </Btn>
                   )}
                 </Buttons>

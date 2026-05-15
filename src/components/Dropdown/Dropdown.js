@@ -1,34 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import styled from "@emotion/styled";
 import { Link as ScrollLink } from "react-scroll";
-import PDF from '../../assets/resume/Migss_resume.pdf'
+import PDF from "../../assets/resume/Migss_resume.pdf";
+import { theme } from "../../theme";
 
-const SiderBar = styled.div`
-  background: #151418;
+const Overlay = styled.div`
+  background: ${theme.colors.bgHero};
   position: fixed;
-  height: 100%;
-  width: 100%;
-  /* top: 0; */
-  left: 0;
-  z-index: 999;
-  transition: 0.3s ease-in-out;
+  inset: 0;
+  z-index: 1000;
+  transition: opacity 0.35s ${theme.motion.easeOut},
+    visibility 0.35s ${theme.motion.easeOut},
+    transform 0.35s ${theme.motion.easeOut};
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
-  top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
+  transform: ${({ isOpen }) => (isOpen ? "translateY(0)" : "translateY(-8px)")};
+  pointer-events: ${({ isOpen }) => (isOpen ? "auto" : "none")};
 `;
 
 const CloseIcon = styled(FaTimes)`
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: #fff;
   position: absolute;
-  right: 2rem;
-  top: 2rem;
+  right: 1.5rem;
+  top: 1.5rem;
   cursor: pointer;
+  padding: 0.35rem;
+  transition: color 0.2s ${theme.motion.easeOut}, transform 0.2s ${theme.motion.easeOut};
+
+  &:hover {
+    color: ${theme.colors.textSubtleOnDark};
+    transform: scale(1.08);
+  }
 `;
+
 export const NavMenu = styled.div`
   display: flex;
   justify-content: center;
@@ -43,58 +53,63 @@ export const NavMenu = styled.div`
 export const NavLink = styled(ScrollLink)`
   color: #fff;
   cursor: pointer;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ${theme.motion.easeOut};
 
   &:hover {
-    color: rgb(119, 119, 121);
+    color: ${theme.colors.textSubtleOnDark};
   }
 `;
 
 export const NavBtn = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 5rem;
-  font-size: 1.7rem;
+  margin-top: 4rem;
 `;
 
 function Dropdown({ isOpen, toggle }) {
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isOpen]);
+
+  const close = (e) => {
+    e.stopPropagation();
+    toggle();
+  };
+
   return (
-    <SiderBar isOpen={isOpen} onClick={toggle}>
-      <CloseIcon onClick={toggle} />
-      <NavMenu>
-        <NavLink
-          onClick={toggle}
-          className="menu-item"
-          to="projects"
-        >
-          Projects
+    <Overlay
+      isOpen={isOpen}
+      role="dialog"
+      aria-modal="true"
+      aria-hidden={!isOpen}
+      onClick={toggle}
+    >
+      <CloseIcon onClick={close} aria-label="Close menu" />
+      <NavMenu onClick={(e) => e.stopPropagation()}>
+        <NavLink onClick={toggle} className="menu-item" to="projects" smooth duration={500} offset={-72} href="#projects">
+          Experiences
         </NavLink>
-        <NavLink
-          onClick={toggle}
-          className="menu-item"
-          to="about"
-        >
+        <NavLink onClick={toggle} className="menu-item" to="about" smooth duration={500} offset={-72} href="#about">
           About
         </NavLink>
-        <NavLink
-          onClick={toggle}
-          className="menu-item"
-          to="contact"
-        >
+        <NavLink onClick={toggle} className="menu-item" to="contact" smooth duration={500} offset={-72} href="#contact">
           Contact
         </NavLink>
       </NavMenu>
-      <NavBtn onClick={toggle}>
-        <a
-          className="btn PrimaryBtn"
-          href= {PDF}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      <NavBtn onClick={(e) => e.stopPropagation()}>
+        <a className="btn PrimaryBtn" href={PDF} target="_blank" rel="noopener noreferrer">
           Download Resume
         </a>
       </NavBtn>
-    </SiderBar>
+    </Overlay>
   );
 }
 

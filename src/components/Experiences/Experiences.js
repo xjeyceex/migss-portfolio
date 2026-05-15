@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Container } from "@mui/material";
+import { theme } from "../../theme";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import ExperienceSection from "./Experiences/ExperienceSection";
 
@@ -48,51 +49,50 @@ const StyledContainer = styled(Container)`
 const SectionTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-bottom: ${theme.layout.sectionTitleGap};
   text-align: left;
   letter-spacing: 2px;
   color: ${COLORS.textDark};
   position: relative;
-  
+
   &::after {
     content: "";
     position: absolute;
-    bottom: -8px;
+    bottom: ${theme.layout.sectionTitleDividerOffset};
     left: 0;
     width: 60px;
     height: 4px;
     background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
     border-radius: 2px;
+
+    @media (max-width: 768px) {
+      bottom: ${theme.layout.sectionTitleDividerOffsetMd};
+      width: 50px;
+      height: 3px;
+    }
+
+    @media (max-width: 450px) {
+      bottom: ${theme.layout.sectionTitleDividerOffsetSm};
+      width: 40px;
+      height: 3px;
+    }
   }
 
   @media (max-width: 768px) {
     font-size: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: ${theme.layout.sectionTitleGapMd};
     letter-spacing: 1.5px;
-    
-    &::after {
-      width: 50px;
-      height: 3px;
-      bottom: -6px;
-    }
   }
 
   @media (max-width: 450px) {
     font-size: 1.75rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: ${theme.layout.sectionTitleGapSm};
     letter-spacing: 1px;
-    
-    &::after {
-      width: 40px;
-      height: 3px;
-      bottom: -5px;
-    }
   }
 
   @media (max-width: 350px) {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
-    
+
     &::after {
       width: 35px;
       height: 2px;
@@ -101,31 +101,23 @@ const SectionTitle = styled.h2`
 `;
 
 const SectionBlock = styled.div`
-  margin-bottom: 5rem;
+  margin-bottom: 3.25rem;
 
   @media (max-width: 768px) {
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.75rem;
   }
 
   @media (max-width: 450px) {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   @media (max-width: 350px) {
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 `;
 
 const ProjectCardWrapper = styled.div`
-  margin-top: 2rem;
-
-  @media (max-width: 768px) {
-    margin-top: 1.5rem;
-  }
-
-  @media (max-width: 450px) {
-    margin-top: 1rem;
-  }
+  margin-top: 0;
 `;
 
 function Experiences() {

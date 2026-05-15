@@ -1,10 +1,12 @@
 import { FaBars } from "react-icons/fa";
 import { Link as ScrollLink } from "react-scroll";
 import styled from "@emotion/styled";
+import { theme } from "../../theme";
 
 export const Nav = styled.nav`
-  background: ${props => props.scrolled ? 'rgba(0, 0, 0, 0.6)' : 'transparent'};
-  height: 80px;
+  background: ${(props) =>
+    props.scrolled ? theme.colors.overlay : "transparent"};
+  height: ${theme.layout.headerHeight};
   display: flex;
   position: fixed;
   align-items: center;
@@ -14,36 +16,54 @@ export const Nav = styled.nav`
   left: 0;
   right: 0;
   top: 0;
-  transition: background-color 0.3s ease;
-  backdrop-filter: ${props => props.scrolled ? 'blur(10px)' : 'none'};
-`;
+  transition: background-color 0.35s ${theme.motion.easeOut},
+    backdrop-filter 0.35s ${theme.motion.easeOut};
+  backdrop-filter: ${(props) => (props.scrolled ? "blur(12px)" : "none")};`;
 
 export const NavContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
-  max-width: 1000px;
+  width: 92%;
+  max-width: ${theme.layout.maxWidth};
 `;
 
 export const NavLink = styled(ScrollLink)`
-  color: ${props => props.scrolled ? 'rgba(221, 221, 221, 1)' : 'rgb(119, 119, 121)'};
+  color: ${(props) =>
+    props.scrolled ? "rgba(248, 250, 252, 0.95)" : theme.colors.textSubtleOnDark};
   display: flex;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 500;
   align-items: center;
   height: 100%;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.25s ${theme.motion.easeOut};
   &:hover {
-    color: #f6f6f6;
+    color: ${theme.colors.textOnDark};
   }
 `;
 
-export const Logo = styled('div')`
+export const Logo = styled(ScrollLink)`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
   img {
-    width: 100px;
-    height: 100px;
+    width: 72px;
+    height: 72px;
     object-fit: contain;
+    transition: transform 0.25s ${theme.motion.easeOut};
+  }
+
+  &:hover img {
+    transform: scale(1.03);
+  }
+
+  @media screen and (max-width: 768px) {
+    img {
+      width: 56px;
+      height: 56px;
+    }
   }
 `;
 

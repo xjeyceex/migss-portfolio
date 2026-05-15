@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import Header from "../Header/Header";
 import {
+  HeroSection,
   HeroContainer,
   HeroWrapper,
   HeroLeft,
@@ -33,10 +34,10 @@ function Hero() {
   };
 
   return (
-    <main>
+    <HeroSection id="hero" aria-label="Introduction">
       <Dropdown isOpen={isOpen} toggle={toggle} />
       <Header toggle={toggle} />
-      <div style={{ height: "100px" }} />
+      <div style={{ height: "var(--header-offset, 80px)" }} aria-hidden />
       <HeroContainer ref={heroRef}>
         <HeroWrapper>
           <HeroLeft>
@@ -107,7 +108,7 @@ function Hero() {
           </ScrollAnimation>
         )}
       </HeroContainer>
-    </main>
+    </HeroSection>
   );
 }
 

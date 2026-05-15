@@ -2,14 +2,14 @@ import React from "react";
 import styled from "@emotion/styled";
 import ScrollAnimation from "react-animate-on-scroll";
 import { stackList } from "../../data/ProjectData";
+import { theme } from "../../theme";
 
-// Unified color palette
 const COLORS = {
-  primary: "#3b82f6",
-  background: "#f8fafc",
-  textDark: "#1e293b",
-  textLight: "#64748b",
-  white: "#ffffff"
+  primary: theme.colors.accent,
+  background: theme.colors.surfaceMuted,
+  textDark: theme.colors.text,
+  textLight: theme.colors.textMuted,
+  white: theme.colors.surface,
 };
 
 const AboutContainer = styled.div`
@@ -32,14 +32,14 @@ const SectionTitle = styled.h2`
   font-size: 2.5rem;
   font-weight: 700;
   margin-top: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: ${theme.layout.sectionTitleGap};
   color: ${COLORS.textDark};
   position: relative;
-  
+
   &::after {
     content: "";
     position: absolute;
-    bottom: -12px;
+    bottom: ${theme.layout.sectionTitleDividerOffset};
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
@@ -48,13 +48,13 @@ const SectionTitle = styled.h2`
     border-radius: 2px;
 
     @media (max-width: 768px) {
-      bottom: -13px;
+      bottom: ${theme.layout.sectionTitleDividerOffsetMd};
       width: 60px;
       height: 3px;
     }
 
     @media (max-width: 450px) {
-      bottom: -10px;
+      bottom: ${theme.layout.sectionTitleDividerOffsetSm};
       width: 50px;
       height: 3px;
     }
@@ -62,12 +62,12 @@ const SectionTitle = styled.h2`
 
   @media (max-width: 768px) {
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: ${theme.layout.sectionTitleGapMd};
   }
 
   @media (max-width: 450px) {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: ${theme.layout.sectionTitleGapSm};
   }
 `;
 

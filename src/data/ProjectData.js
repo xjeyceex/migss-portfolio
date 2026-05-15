@@ -1,5 +1,27 @@
 // --------------------------------------- Project List
 export const ProjectList = [
+  {
+    img: "/image.png",
+    title: "Small business & retail ops",
+    description:
+      "Custom lightweight systems for real storefronts: PC shop inventory and sales, cafe ordering with simple loyalty, and propane delivery with cylinder tracking and scheduling—built for clarity and daily use, not enterprise bloat.",
+    tech_stack: [
+      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+      { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+    ],
+    github_url: "",
+    demo_url: "",
+    features: [
+      "Inventory and point-of-sale style flows",
+      "Cafe menu and repeat-customer perks",
+      "Delivery routes and tank/cylinder records",
+    ],
+    role: "Solo / lead developer",
+    year: "2023 – Present",
+  },
   // {
   //   img: "/canvassing.jpg",
   //   title: "Canvassly",

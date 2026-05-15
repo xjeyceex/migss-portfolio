@@ -1,204 +1,135 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import styled from "@emotion/styled";
-import { FaGraduationCap, FaCode, FaAward } from "react-icons/fa";
+import { FaGraduationCap, FaCode, FaStore } from "react-icons/fa";
+import { theme } from "../../../theme";
 
 const COLORS = {
-  text: "#1e293b",     // dark gray
+  text: "#1e293b",
   background: "#f9fafb",
   white: "#ffffff",
-  accent: "#3b82f6",   // blue accent
-  muted: "#64748b"     // muted text
+  accent: "#3b82f6",
+  muted: "#64748b",
 };
 
 const ExperienceGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 0.75rem;
+  margin-top: 0;
 
-  @media (min-width: 500px) {
-    gap: 1.25rem;
-    margin-top: 1.25rem;
+  @media (min-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
   }
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+  @media (min-width: 1080px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
   }
 `;
 
 const Card = styled(motion.article)`
-  background: ${COLORS.white};
-  border-radius: 12px;
-  padding: 1.25rem;
-  transition: all 0.3s ease;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+`;
+
+const CardSurface = styled(motion.div)`
+  height: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: ${COLORS.white};
+  border-radius: 10px;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+  transition:
+    transform ${theme.motion.duration} ${theme.motion.easeOut},
+    box-shadow ${theme.motion.duration} ${theme.motion.easeOut};
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.12);
+    box-shadow: 0 8px 22px rgba(59, 130, 246, 0.12);
   }
 
-  @media (min-width: 500px) {
-    border-radius: 14px;
-    padding: 1.5rem;
-    box-shadow: 0 3px 16px rgba(0, 0, 0, 0.04);
-  }
-
-  @media (min-width: 768px) {
-    border-radius: 16px;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.04);
-    
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(59, 130, 246, 0.12);
-    }
+  @media (min-width: 700px) {
+    border-radius: 11px;
+    padding: 0.95rem 1rem;
   }
 `;
 
-const CardHeader = styled.div`
-  margin-bottom: 1rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+const CardHeader = styled(motion.div)`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  .meta {
+    flex: 1;
+    min-width: 0;
+  }
 
   h3 {
-    font-size: 1rem;
+    font-size: 0.88rem;
     font-weight: 700;
     color: ${COLORS.text};
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
     margin: 0;
+    line-height: 1.25;
   }
 
   h4 {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: ${COLORS.muted};
-    margin: 0.25rem 0 0.15rem;
+    margin: 0.2rem 0 0;
+    line-height: 1.3;
   }
 
   span {
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     color: ${COLORS.muted};
     font-weight: 500;
-  }
-
-  @media (min-width: 500px) {
-    margin-bottom: 1.1rem;
-    padding-bottom: 0.7rem;
-
-    h3 {
-      font-size: 1.05rem;
-      gap: 0.6rem;
-    }
-
-    h4 {
-      font-size: 0.9rem;
-      margin: 0.3rem 0 0.2rem;
-    }
-
-    span {
-      font-size: 0.8rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.75rem;
-
-    h3 {
-      font-size: 1.1rem;
-    }
+    display: block;
+    margin-top: 0.15rem;
   }
 `;
 
-const BulletList = styled.ul`
-  margin: 0.4rem 0;
+const Summary = styled(motion.p)`
+  margin: 0 0 0.55rem;
+  font-size: 0.72rem;
+  color: ${COLORS.text};
+  line-height: 1.45;
+`;
+
+const BulletList = styled(motion.ul)`
+  margin: 0 0 0.5rem;
   padding-left: 0;
 
   li {
     list-style: none;
-    margin-bottom: 0.4rem;
-    font-size: 0.8rem;
+    margin-bottom: 0.28rem;
+    font-size: 0.72rem;
     color: ${COLORS.text};
     line-height: 1.4;
-    padding-left: 1.1rem;
+    padding-left: 0.85rem;
     position: relative;
 
     &::before {
       content: "•";
       position: absolute;
-      left: 0.3rem;
+      left: 0.2rem;
       color: ${COLORS.accent};
       font-weight: bold;
     }
 
     strong {
-      color: ${COLORS.text};
       font-weight: 600;
-    }
-  }
-
-  @media (min-width: 500px) {
-    margin: 0.45rem 0;
-
-    li {
-      margin-bottom: 0.45rem;
-      font-size: 0.82rem;
-      padding-left: 1.2rem;
-      line-height: 1.45;
-    }
-  }
-
-  @media (min-width: 768px) {
-    margin: 0.5rem 0;
-
-    li {
-      font-size: 0.85rem;
-      padding-left: 1.3rem;
-    }
-  }
-`;
-
-const SectionHeader = styled.div`
-  margin: 0.8rem 0 0.4rem;
-  padding-top: ${({ withBorder }) => (withBorder ? "0.6rem" : "0")};
-  border-top: ${({ withBorder }) =>
-    withBorder ? "1px solid rgba(0, 0, 0, 0.05)" : "none"};
-
-  strong {
-    color: ${COLORS.text};
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-
-  @media (min-width: 500px) {
-    margin: 0.9rem 0 0.5rem;
-    padding-top: ${({ withBorder }) => (withBorder ? "0.7rem" : "0")};
-
-    strong {
-      font-size: 0.88rem;
-      gap: 0.4rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    margin: 1rem 0 0.5rem;
-    padding-top: ${({ withBorder }) => (withBorder ? "0.75rem" : "0")};
-
-    strong {
-      font-size: 0.9rem;
     }
   }
 `;
@@ -206,85 +137,97 @@ const SectionHeader = styled.div`
 const TechList = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.4rem;
-
-  @media (min-width: 500px) {
-    gap: 0.45rem;
-    margin-top: 0.45rem;
-  }
-
-  @media (min-width: 768px) {
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
+  gap: 0.32rem;
+  margin-top: 0.35rem;
 `;
 
-const Pill = styled(motion.div)`
+const Pill = styled(motion.span)`
   background: ${COLORS.accent}12;
   color: ${COLORS.accent};
-  padding: 0.3rem 0.55rem;
-  border-radius: 8px;
-  font-size: 0.68rem;
+  padding: 0.22rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.62rem;
   font-weight: 500;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.2rem;
-  border: 1px solid ${COLORS.accent}25;
+  border: 1px solid ${COLORS.accent}22;
   cursor: default;
+  transition:
+    background-color ${theme.motion.duration} ${theme.motion.easeOut},
+    box-shadow ${theme.motion.duration} ${theme.motion.easeOut},
+    border-color ${theme.motion.duration} ${theme.motion.easeOut};
 
-  @media (min-width: 500px) {
-    padding: 0.32rem 0.6rem;
-    font-size: 0.7rem;
-    border-radius: 9px;
-    gap: 0.25rem;
-  }
-
-  @media (min-width: 768px) {
-    padding: 0.35rem 0.65rem;
-    font-size: 0.72rem;
-    border-radius: 10px;
+  &:hover {
+    background-color: ${COLORS.accent}22;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.14);
+    border-color: ${COLORS.accent}55;
   }
 `;
 
-const IconWrapper = styled(motion.div)`
+const IconWrapper = styled.div`
   background: ${COLORS.accent}18;
-  border-radius: 7px;
-  padding: 0.4rem;
+  border-radius: 6px;
+  padding: 0.32rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  transition: transform ${theme.motion.duration} ${theme.motion.easeOut};
 
-  @media (min-width: 500px) {
-    border-radius: 8px;
-    padding: 0.42rem;
-    width: 32px;
-    height: 32px;
-  }
-
-  @media (min-width: 768px) {
-    border-radius: 8px;
-    padding: 0.45rem;
-    width: 34px;
-    height: 34px;
+  &:hover {
+    transform: scale(1.05);
   }
 `;
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.07, delayChildren: 0.04 },
+  },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.97 },
+const cardVariants = {
+  hidden: { opacity: 0, y: 18, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { type: "spring", damping: 15, stiffness: 120 }
-  }
+    transition: {
+      type: "spring",
+      damping: 16,
+      stiffness: 130,
+    },
+  },
+};
+
+/** Stagger inner blocks; lives on CardSurface so variant tree stays connected. */
+const cardContentVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.055,
+      delayChildren: 0.06,
+    },
+  },
+};
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 6 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 200, damping: 22 },
+  },
+};
+
+const techContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.06, delayChildren: 0.02 },
+  },
 };
 
 const techItemVariants = {
@@ -292,163 +235,154 @@ const techItemVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { type: "spring", stiffness: 220 }
-  }
+    transition: { type: "spring", stiffness: 220, damping: 18 },
+  },
 };
 
 function ExperienceCard({ exp }) {
   return (
-    <Card variants={itemVariants} whileHover={{ y: -5 }}>
-      <CardHeader>
-        <h3>
-          <IconWrapper whileHover={{ scale: 1.08 }}>{exp.icon}</IconWrapper>{" "}
-          {exp.role}
-        </h3>
-        <h4>{exp.company}</h4>
-        <span>{exp.period}</span>
-      </CardHeader>
+    <Card variants={cardVariants}>
+      <CardSurface variants={cardContentVariants}>
+        <CardHeader variants={sectionVariants}>
+          <IconWrapper>{exp.icon}</IconWrapper>
+          <div className="meta">
+            <h3>{exp.role}</h3>
+            <h4>{exp.company}</h4>
+            <span>{exp.period}</span>
+          </div>
+        </CardHeader>
 
-      {exp.bullets && (
-        <>
-          <SectionHeader>
-            <strong>Academic Achievements</strong>
-          </SectionHeader>
-          <BulletList>
-            {exp.bullets.map((b, idx) => (
-              <li key={idx}>{b}</li>
+        {exp.summary && (
+          <Summary variants={sectionVariants}>{exp.summary}</Summary>
+        )}
+
+        {exp.lines && (
+          <BulletList variants={sectionVariants}>
+            {exp.lines.map((line, idx) => (
+              <li key={idx}>{line}</li>
             ))}
           </BulletList>
-        </>
-      )}
+        )}
 
-      {exp.projects && (
-        <>
-          <SectionHeader>
-            <strong>Projects</strong>
-          </SectionHeader>
-          <BulletList>
-            {exp.projects.map((p, idx) => (
-              <li key={idx}>
-                <strong>{p.name}</strong> – {p.desc}
-              </li>
-            ))}
-          </BulletList>
-        </>
-      )}
-
-      {exp.techStack && (
-        <>
-          <SectionHeader withBorder>
-            <strong>Tech Stack</strong>
-          </SectionHeader>
-          <TechList variants={containerVariants} initial="hidden" whileInView="visible">
+        {exp.techStack && exp.techStack.length > 0 && (
+          <TechList variants={techContainerVariants}>
             {exp.techStack.map((tech, idx) => (
-              <Pill
-                key={idx}
-                variants={techItemVariants}
-                whileHover={{
-                  scale: 1.06,
-                  backgroundColor: `${COLORS.accent}25`
-                }}
-              >
+              <Pill key={idx} variants={techItemVariants}>
                 {tech}
               </Pill>
             ))}
           </TechList>
-        </>
-      )}
-
-      {exp.highlights && (
-        <>
-          <SectionHeader withBorder>
-            <strong>
-              <FaAward size={11} /> Achievements
-            </strong>
-          </SectionHeader>
-          <TechList variants={containerVariants} initial="hidden" whileInView="visible">
-            {exp.highlights.map((h, idx) => (
-              <Pill
-                key={idx}
-                variants={techItemVariants}
-                whileHover={{ scale: 1.06, backgroundColor: `${COLORS.accent}25` }}
-              >
-                {h}
-              </Pill>
-            ))}
-          </TechList>
-        </>
-      )}
+        )}
+      </CardSurface>
     </Card>
   );
 }
 
 function ExperienceSection() {
+  const gridRef = useRef(null);
+  const gridInView = useInView(gridRef, {
+    once: true,
+    amount: 0.06,
+    margin: "0px 0px -24px 0px",
+  });
+
   const experiences = [
     {
       role: "BS Computer Science",
       company: "Our Lady of Fatima University",
-      period: "2019 - 2023",
-      icon: <FaGraduationCap size={13} color={COLORS.accent} />,
-      bullets: [
-        "Graduated with honors in Computer Science",
-        "Specialized in software development",
-        "Coursework in algorithms and database systems"
-      ],
-      highlights: ["Dean's Lister", "Best in Thesis"]
+      period: "2019 – 2023",
+      icon: <FaGraduationCap size={12} color={COLORS.accent} />,
+      summary: "Honors graduate focused on software engineering, algorithms, and databases.",
+      techStack: ["Honors", "Dean's Lister", "Best Thesis"],
+    },
+    {
+      role: "SMB & retail software",
+      company: "Freelance — local clients",
+      period: "2023 – Present",
+      icon: <FaStore size={12} color={COLORS.accent} />,
+      summary:
+        "Tailored web apps for day-to-day operations: inventory and sales for computer shops, cafe menus and loyalty, propane cylinder tracking and delivery scheduling.",
+      techStack: ["Next.js", "React", "PostgreSQL", "TypeScript", "Tailwind CSS"],
     },
     {
       role: "Full Stack Developer",
       company: "Jeonsoft Corporation",
-      period: "Jan 2024 - Jun 2024",
-      icon: <FaCode size={13} color={COLORS.accent} />,
-      projects: [
-        { name: "Support Central", desc: "Support ticketing system" },
-        { name: "WebHR", desc: "HR management system for records and workflows" }
+      period: "Jan 2024 – Jun 2024",
+      icon: <FaCode size={12} color={COLORS.accent} />,
+      lines: [
+        <>Support Central — ticketing and workflows</>,
+        <>WebHR — HR records and internal tools</>,
       ],
-      techStack: ["PostgreSQL", "React", "TypeScript", "Node.js", "Material UI", "Next.js", "Express.js"]
+      techStack: [
+        "PostgreSQL",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "MUI",
+        "Next.js",
+        "Express",
+      ],
     },
     {
       role: "Full Stack Developer",
       company: "Freelance (Brian Atwood / Azr)",
-      period: "Jun 2024 - February 2025",
-      icon: <FaCode size={13} color={COLORS.accent} />,
-      projects: [
-        { name: "Help You", desc: "Location-aware U.S. climate data app" },
+      period: "Jun 2024 – Feb 2025",
+      icon: <FaCode size={12} color={COLORS.accent} />,
+      lines: [
+        <>
+          <strong>Help You</strong> — U.S. climate data by location
+        </>,
       ],
-      techStack: ["React", "TypeScript", "Node.js", "Prisma", "Next.js", "Tailwind CSS"]
+      techStack: ["React", "TypeScript", "Node.js", "Prisma", "Next.js", "Tailwind"],
     },
     {
       role: "Full Stack Developer",
       company: "Sta. Clara International Corp",
-      period: "Jan 2025 - Nov 2025",
-      icon: <FaCode size={13} color={COLORS.accent} />,
-      bullets: [
-        "Built and deployed full-stack platforms with responsive, user-centric interfaces.",
-        "Optimized REST APIs and maintained clean, well-documented codebases."
+      period: "Jan 2025 – Nov 2025",
+      icon: <FaCode size={12} color={COLORS.accent} />,
+      summary:
+        "Shipped full-stack platforms, responsive UI, and maintainable REST APIs.",
+      techStack: [
+        "Supabase",
+        "TypeScript",
+        "Node.js",
+        "Next.js",
+        "Tailwind",
+        "PostgreSQL",
+        "Mantine",
       ],
-      techStack: ["Supabase", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "PostgreSQL", "Mantine" ]
     },
     {
-      role: "Frontend-Focused Full Stack Developer",
+      role: "Frontend-focused Full Stack",
       company: "The Digital Room AU",
-      period: "Nov 2025 - Present",
-      icon: <FaCode size={13} color={COLORS.accent} />,
-      projects: [
-        {
-          name: "The Inspection Nest",
-          desc: "Frontend UI development, converting Figma designs into responsive, animated interfaces with smooth user interactions."
-        },
-        {
-          name: "The Digital Room",
-          desc: "Built a polished frontend UI from Figma designs, focusing on clean layout, responsiveness, and subtle animations."
-        }
+      period: "Nov 2025 – Present",
+      icon: <FaCode size={12} color={COLORS.accent} />,
+      lines: [
+        <>
+          <strong>The Inspection Nest</strong> — Figma to animated Next.js UI
+        </>,
+        <>
+          <strong>The Digital Room</strong> — marketing site, motion, WordPress
+        </>,
       ],
-      techStack: ["TypeScript", "Framer-Motion", "Next.js", "GSAP", "WordPress", "Tailwind CSS" ]
+      techStack: [
+        "TypeScript",
+        "Framer Motion",
+        "Next.js",
+        "GSAP",
+        "WordPress",
+        "Tailwind",
+      ],
     },
   ];
 
   return (
-    <ExperienceGrid variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+    <ExperienceGrid
+      ref={gridRef}
+      variants={containerVariants}
+      initial="hidden"
+      animate={gridInView ? "visible" : "hidden"}
+    >
       {experiences.map((exp, i) => (
         <ExperienceCard key={i} exp={exp} />
       ))}

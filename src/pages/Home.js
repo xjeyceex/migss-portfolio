@@ -10,11 +10,18 @@ import ScrollToTop from "../components/SocialIcon/ScrollToTop";
 function Home() {
   return (
     <>
-      <Hero />
-      <About />
-      <Experiences />
-      <Contact />      
-      <FixSocialIcon />
+      <a className="skip-link" href="#about">
+        Skip to content
+      </a>
+      <main>
+        <Hero />
+        <About />
+        <Experiences />
+        <Contact />
+        {/* In-flow on tablet/mobile (≤1000px); fixed rail on desktop — must stay after
+            page sections or it incorrectly appears above the hero */}
+        <FixSocialIcon />
+      </main>
       <Footer />
       <ScrollToTop />
     </>

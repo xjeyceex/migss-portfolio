@@ -23,20 +23,48 @@ const Header = ({ toggle }) => {
     <div className="Container" style={{padding: 0}}>
       <Nav scrolled={scrolled}>
         <NavContent>
-          <Logo to="/">
-            <img
-              src="/logo.png"
-              alt="logo"
-            />
+          <Logo
+            to="hero"
+            smooth
+            duration={500}
+            offset={-80}
+            href="#hero"
+            aria-label="Back to top"
+          >
+            <img src="/logo.png" alt="" width={72} height={72} />
           </Logo>
           <NavMenu>
-            <NavLink className="menu-item" to="projects" scrolled={scrolled}>
+            <NavLink
+              className="menu-item"
+              to="projects"
+              scrolled={scrolled}
+              smooth
+              duration={500}
+              offset={-72}
+              href="#projects"
+            >
               Experiences
             </NavLink>
-            <NavLink className="menu-item" to="about" scrolled={scrolled}>
+            <NavLink
+              className="menu-item"
+              to="about"
+              scrolled={scrolled}
+              smooth
+              duration={500}
+              offset={-72}
+              href="#about"
+            >
               About
             </NavLink>
-            <NavLink className="menu-item" to="contact" scrolled={scrolled}>
+            <NavLink
+              className="menu-item"
+              to="contact"
+              scrolled={scrolled}
+              smooth
+              duration={500}
+              offset={-72}
+              href="#contact"
+            >
               Contact
             </NavLink>
           </NavMenu>
