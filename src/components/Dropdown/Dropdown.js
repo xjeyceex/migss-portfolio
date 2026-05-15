@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import styled from "@emotion/styled";
 import { Link as ScrollLink } from "react-scroll";
-import PDF from "../../assets/resume/Migss_resume.pdf";
+import PDF from "../../assets/resume/Resume.pdf";
 import { theme } from "../../theme";
 
 const Overlay = styled.div`

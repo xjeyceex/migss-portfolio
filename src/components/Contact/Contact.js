@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { MdContentCopy, MdEmail, MdDescription, MdPhone, MdLocationOn } from "react-icons/md";
 import { IconButton, Tooltip, Zoom } from "@mui/material";
 import { motion } from "framer-motion";
-import PDF from "../../assets/resume/Migss_resume.pdf";
+import PDF from "../../assets/resume/Resume.pdf";
 import { theme } from "../../theme";
 
 const ContactWrapper = styled.section`

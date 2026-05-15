@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PDF from '../../assets/resume/Migss_resume.pdf'
+import PDF from '../../assets/resume/Resume.pdf'
 import { Nav, NavContent, Logo, NavLink, Bars, NavMenu, NavBtn } from "./HeaderElements";
 
 const Header = ({ toggle }) => {
