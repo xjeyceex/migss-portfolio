@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Dropdown from "../Dropdown/Dropdown";
 import Header from "../Header/Header";
 import {
@@ -11,26 +11,23 @@ import {
   ScrollDown,
   ScrollLink,
 } from "./HeroElements";
-import { TypeAnimation } from 'react-type-animation';
+import { TypeAnimation } from "react-type-animation";
 import ScrollAnimation from "react-animate-on-scroll";
+
+/** Hero is above the fold — must animate on first paint, not only after scroll. */
+const heroScrollProps = {
+  animateIn: "fadeIn",
+  initiallyVisible: true,
+  animateOnce: true,
+};
 
 function Hero() {
   const [isOpen, setIsOpen] = useState(false);
   const [showSubtitle, setShowSubtitle] = useState(false);
   const [showScrollDown, setShowScrollDown] = useState(false);
-  const [isInView, setIsInView] = useState(false);
-  const heroRef = useRef(null);
 
   const toggle = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleInView = () => {
-    setIsInView(true);
-  };
-
-  const handleOutOfView = () => {
-    setIsInView(false);
   };
 
   return (
@@ -38,25 +35,19 @@ function Hero() {
       <Dropdown isOpen={isOpen} toggle={toggle} />
       <Header toggle={toggle} />
       <div style={{ height: "var(--header-offset, 80px)" }} aria-hidden />
-      <HeroContainer ref={heroRef}>
+      <HeroContainer>
         <HeroWrapper>
           <HeroLeft>
-            <ScrollAnimation 
-              animateIn="fadeIn"
-              afterAnimatedIn={handleInView}
-              afterAnimatedOut={handleOutOfView}
-            >
-             {isInView && (
-                <TypeAnimation
-                  cursor={false}
-                  sequence={["Hello There! I'm Migss.", () => setShowSubtitle(true)]}
-                  speed={150}          // simpler, same effect
-                  wrapper="h1"
-                  repeat={0}
-                  style={{ whiteSpace: "normal", wordWrap: "break-word" }}
-                />
-              )}
-              {showSubtitle && isInView && (
+            <ScrollAnimation {...heroScrollProps}>
+              <TypeAnimation
+                cursor={false}
+                sequence={["Hello There! I'm Migss.", () => setShowSubtitle(true)]}
+                speed={150}
+                wrapper="h1"
+                repeat={0}
+                style={{ whiteSpace: "normal", wordWrap: "break-word" }}
+              />
+              {showSubtitle && (
                 <TypeAnimation
                   cursor={true}
                   sequence={[
@@ -86,16 +77,18 @@ function Hero() {
             </ScrollAnimation>
           </HeroLeft>
           <HeroRight>
-            <ScrollAnimation animateIn="fadeIn">
-              <Image
-                src="/myself.png"
-                alt="man-svgrepo"
-              />
+            <ScrollAnimation {...heroScrollProps}>
+              <Image src="/myself.png" alt="Portrait of Migss" />
             </ScrollAnimation>
           </HeroRight>
         </HeroWrapper>
-        {showScrollDown && isInView && (
-          <ScrollAnimation animateIn="flipInX" offset={0}>
+        {showScrollDown && (
+          <ScrollAnimation
+            animateIn="flipInX"
+            initiallyVisible
+            animateOnce
+            offset={0}
+          >
             <ScrollDown to="about" id="scrollDown">
               <ScrollLink>
                 Scroll down
