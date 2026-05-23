@@ -5,6 +5,8 @@ import { Link as ScrollLink } from "react-scroll";
 import PDF from "../../assets/resume/Resume.pdf";
 import { theme } from "../../theme";
 
+const { typography: t } = theme;
+
 const Overlay = styled.div`
   background: ${theme.colors.bgHero};
   position: fixed;
@@ -53,9 +55,9 @@ export const NavMenu = styled.div`
 export const NavLink = styled(ScrollLink)`
   color: #fff;
   cursor: pointer;
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  font-size: ${t.size.h3};
+  font-weight: ${t.weight.medium};
+  letter-spacing: ${t.letterSpacing.nav};
   transition: color 0.2s ${theme.motion.easeOut};
 
   &:hover {

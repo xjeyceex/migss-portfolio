@@ -3,6 +3,10 @@ import styled from "@emotion/styled";
 import ScrollAnimation from "react-animate-on-scroll";
 import { stackList } from "../../data/ProjectData";
 import { theme } from "../../theme";
+import SectionHeading from "../ui/SectionHeading";
+import { CardTitle } from "../ui/typography";
+
+const { typography: t } = theme;
 
 const COLORS = {
   primary: theme.colors.accent,
@@ -24,50 +28,6 @@ const AboutContainer = styled.div`
 
    @media (max-width: 450px) {
     padding: 2rem 0.5rem 0 0.5rem;
-  }
-`;
-
-const SectionTitle = styled.h2`
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-bottom: ${theme.layout.sectionTitleGap};
-  color: ${COLORS.textDark};
-  position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: ${theme.layout.sectionTitleDividerOffset};
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: ${COLORS.primary};
-    border-radius: 2px;
-
-    @media (max-width: 768px) {
-      bottom: ${theme.layout.sectionTitleDividerOffsetMd};
-      width: 60px;
-      height: 3px;
-    }
-
-    @media (max-width: 450px) {
-      bottom: ${theme.layout.sectionTitleDividerOffsetSm};
-      width: 50px;
-      height: 3px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-    margin-bottom: ${theme.layout.sectionTitleGapMd};
-  }
-
-  @media (max-width: 450px) {
-    font-size: 1.5rem;
-    margin-bottom: ${theme.layout.sectionTitleGapSm};
   }
 `;
 
@@ -96,26 +56,26 @@ const AboutBio = styled.div`
   position: relative; /* Establish positioning context for animations */
 
   p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: ${t.size.body};
+    line-height: ${t.lineHeight.relaxed};
     margin-bottom: 1.2rem;
     color: ${COLORS.textDark};
     text-align: left;
-    width: 100%; /* Ensure paragraphs take full width */
+    width: 100%;
 
     @media (max-width: 768px) {
-      font-size: 1rem;
+      font-size: ${t.size.bodySm};
       margin-top: 2rem;
-      line-height: 1.5;
+      line-height: ${t.lineHeight.normal};
       max-width: 100%;
       text-align: justify;
     }
 
     @media (max-width: 450px) {
-      font-size: 0.875rem;
+      font-size: ${t.size.small};
       margin-top: 1.5rem;
       margin-bottom: 0.8rem;
-      line-height: 1.4;
+      line-height: ${t.lineHeight.snug};
       text-align: justify !important;
       text-justify: inter-word;
     }
@@ -135,8 +95,9 @@ const AnimationWrapper = styled.div`
 `;
 
 const Tagline = styled.p`
-  font-weight: 500;
-  font-size: 1.2rem;
+  font-weight: ${t.weight.medium};
+  font-size: ${t.size.lead};
+  line-height: ${t.lineHeight.relaxed};
   margin-bottom: 2rem;
   color: ${COLORS.textLight};
   text-align: center;
@@ -144,11 +105,11 @@ const Tagline = styled.p`
   padding-bottom: 0.5rem;
 
   @media (max-width: 768px) {
-    font-size: 1.1rem;
+    font-size: ${t.size.body};
   }
 
   @media (max-width: 450px) {
-    font-size: 0.95rem;
+    font-size: ${t.size.bodySm};
     margin-bottom: 1.5rem;
   }
 `;
@@ -221,25 +182,20 @@ const TechImg = styled.img`
 `;
 
 const TechName = styled.div`
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: ${t.size.caption};
+  font-weight: ${t.weight.medium};
   text-align: center;
   color: ${COLORS.textDark};
-  line-height: 1.2;
-
-  @media (max-width: 768px) {
-    font-size: 0.7rem;
-  }
+  line-height: ${t.lineHeight.snug};
 
   @media (max-width: 450px) {
-    font-size: 0.6rem;
-    line-height: 1.1;
+    font-size: ${t.size.captionSm};
   }
 `;
 
 const HighlightText = styled.span`
   color: ${COLORS.textDark};
-  font-weight: 600;
+  font-weight: ${t.weight.semibold};
 `;
 
 const TechSection = styled.div`
@@ -313,37 +269,6 @@ const CardHeader = styled.div`
   }
 `;
 
-const CardTitle = styled.h3`
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: ${COLORS.textDark};
-  margin: 0;
-  position: relative;
-  display: inline-block;
-  
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -0.8rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 2px;
-    background: ${COLORS.primary};
-    border-radius: 2px;
-
-    @media (max-width: 450px) {
-      width: 25px;
-      height: 2px;
-      bottom: -0.6rem;
-    } 
-  }
-
-  @media (max-width: 450px) {
-    font-size: 1rem;
-  }
-`;
-
 const TechGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -386,7 +311,7 @@ function About() {
       </StyledSVG>
       
       <AboutContainer id="about">
-        <SectionTitle>About Me</SectionTitle>
+        <SectionHeading title="About Me" align="center" topMargin="2rem" />
         
         <BioSection>
           <AboutBio>
@@ -461,7 +386,7 @@ function About() {
               >
                 <TechCard className="tech-card">
                   <CardHeader>
-                    <CardTitle>{group.category.name}</CardTitle>
+                    <CardTitle $decorated>{group.category.name}</CardTitle>
                   </CardHeader>
                   
                   <TechGrid>

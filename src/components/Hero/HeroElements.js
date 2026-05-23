@@ -1,5 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
+import { theme } from "../../theme";
+
+const { typography: t } = theme;
 
 const blobUrl = `${process.env.PUBLIC_URL || ""}/blob-haikei.svg`;
 
@@ -43,11 +46,12 @@ export const HeroLeft = styled.div`
   flex: 1.3; /* increased from 1 to give more space */
 
   h1 {
-    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-size: ${t.size.display};
     color: #f6f6f6;
     opacity: 0.98;
-    font-weight: 500;
-    line-height: 1.2;
+    font-weight: ${t.weight.medium};
+    line-height: ${t.lineHeight.tight};
+    letter-spacing: ${t.letterSpacing.tight};
     max-width: 22ch;
     white-space: normal;
   }
@@ -59,14 +63,16 @@ export const HeroLeft = styled.div`
   }
 
   h5 {
-    font-size: clamp(1rem, 2vw, 1.6rem);
+    font-size: ${t.size.heroLead};
     color: rgb(119, 119, 121);
     margin-bottom: 1rem;
-    font-weight: 400;
+    font-weight: ${t.weight.normal};
+    line-height: ${t.lineHeight.normal};
   }
 
   p {
-    font-size: 17px;
+    font-size: ${t.size.body};
+    line-height: ${t.lineHeight.relaxed};
     color: #f6f6f6;
     opacity: 0.85;
   }
@@ -150,7 +156,8 @@ export const ScrollDown = styled(LinkScroll)`
 export const ScrollLink = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.3rem;
+  font-size: ${t.size.lead};
+  font-weight: ${t.weight.medium};
   color: #f6f6f6;
 
   img {

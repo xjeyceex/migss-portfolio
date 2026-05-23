@@ -5,6 +5,9 @@ import { IconButton, Tooltip, Zoom } from "@mui/material";
 import { motion } from "framer-motion";
 import PDF from "../../assets/resume/Resume.pdf";
 import { theme } from "../../theme";
+import SectionHeading from "../ui/SectionHeading";
+
+const { typography: t } = theme;
 
 const ContactWrapper = styled.section`
   margin: 2.5rem 1rem 3rem;
@@ -77,31 +80,22 @@ const BigCard = styled(motion.div)`
   }
 `;
 
-const SectionTitle = styled.h2`
-  color: ${theme.colors.text};
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  text-align: center;
-  letter-spacing: -0.02em;
-`;
-
 const Subtitle = styled.p`
   color: ${theme.colors.textMuted};
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: ${t.size.body};
+  line-height: ${t.lineHeight.relaxed};
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
 
   @media (max-width: 768px) {
-    font-size: 0.95rem;
+    font-size: ${t.size.bodySm};
     max-width: 100%;
   }
 
   @media (max-width: 450px) {
-    font-size: 0.875rem;
-    line-height: 1.4;
+    font-size: ${t.size.small};
+    line-height: ${t.lineHeight.snug};
     text-align: justify;
     text-justify: inter-word;
   }
@@ -133,7 +127,8 @@ const InfoRow = styled.div`
 `;
 
 const InfoText = styled.span`
-  font-size: 1rem;
+  font-size: ${t.size.body};
+  line-height: ${t.lineHeight.normal};
   color: ${theme.colors.text};
   display: flex;
   align-items: center;
@@ -143,16 +138,12 @@ const InfoText = styled.span`
   text-overflow: ellipsis;
 
   @media (max-width: 768px) {
-    font-size: 0.95rem;
+    font-size: ${t.size.bodySm};
   }
 
   @media (max-width: 450px) {
-    font-size: 0.875rem;
+    font-size: ${t.size.small};
     gap: 0.4rem;
-  }
-
-  @media (max-width: 350px) {
-    font-size: 0.8rem;
   }
 `;
 
@@ -163,8 +154,8 @@ const StyledButton = styled(motion.a)`
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   border-radius: 10px;
-  font-weight: 500;
-  font-size: 1rem;
+  font-weight: ${t.weight.medium};
+  font-size: ${t.size.body};
   text-decoration: none;
   border: 2px solid transparent;
   min-height: 44px;
@@ -199,14 +190,14 @@ const StyledButton = styled(motion.a)`
 
   @media (max-width: 768px) {
     padding: 0.65rem 1rem;
-    font-size: 0.9rem;
+    font-size: ${t.size.bodySm};
     gap: 0.4rem;
     min-width: 110px;
   }
 
   @media (max-width: 450px) {
     padding: 0.6rem 0.75rem;
-    font-size: 0.8rem;
+    font-size: ${t.size.small};
     min-height: 38px;
     min-width: 90px;
     border-radius: 8px;
@@ -215,18 +206,10 @@ const StyledButton = styled(motion.a)`
 
   @media (max-width: 380px) {
     padding: 0.55rem 0.6rem;
-    font-size: 0.75rem;
+    font-size: ${t.size.caption};
     min-height: 36px;
     min-width: 80px;
     gap: 0.25rem;
-  }
-
-  @media (max-width: 320px) {
-    padding: 0.5rem 0.5rem;
-    font-size: 0.7rem;
-    min-height: 34px;
-    min-width: 70px;
-    gap: 0.2rem;
   }
 `;
 
@@ -272,25 +255,22 @@ const InfoGroup = styled(motion.div)`
 `;
 
 const InfoLabel = styled.span`
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: ${t.size.small};
+  font-weight: ${t.weight.semibold};
+  line-height: ${t.lineHeight.normal};
   color: ${theme.colors.textMuted};
   display: flex;
   align-items: center;
   gap: 0.4rem;
 
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-  }
-
   @media (max-width: 450px) {
-    font-size: 0.85rem;
+    font-size: ${t.size.caption};
     gap: 0.3rem;
   }
 
   svg {
     @media (max-width: 450px) {
-      font-size: 1rem;
+      font-size: ${t.size.body};
     }
   }
 `;
@@ -393,7 +373,7 @@ function Contact() {
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeUp}
       >
-        <SectionTitle>Get In Touch</SectionTitle>
+        <SectionHeading title="Get In Touch" align="center" compact />
         
         <BigCard variants={fadeUp}>
           <CardHeader>

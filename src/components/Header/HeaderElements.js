@@ -3,6 +3,8 @@ import { Link as ScrollLink } from "react-scroll";
 import styled from "@emotion/styled";
 import { theme } from "../../theme";
 
+const { typography: t } = theme;
+
 export const Nav = styled.nav`
   background: ${(props) =>
     props.scrolled ? theme.colors.overlay : "transparent"};
@@ -32,8 +34,8 @@ export const NavLink = styled(ScrollLink)`
   color: ${(props) =>
     props.scrolled ? "rgba(248, 250, 252, 0.95)" : theme.colors.textSubtleOnDark};
   display: flex;
-  font-size: 1.05rem;
-  font-weight: 500;
+  font-size: ${t.size.nav};
+  font-weight: ${t.weight.medium};
   align-items: center;
   height: 100%;
   cursor: pointer;

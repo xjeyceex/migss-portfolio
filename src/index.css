@@ -15,6 +15,18 @@
   --shadow-md: 0 4px 20px rgba(15, 23, 42, 0.08);
   --header-offset: 80px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-family: "Poppins", sans-serif;
+  --text-display: clamp(2rem, 4vw, 3.25rem);
+  --text-section: clamp(1.75rem, 4vw, 2.5rem);
+  --text-body: 1rem;
+  --text-body-sm: 0.95rem;
+  --text-small: 0.875rem;
+  --text-lead: 1.125rem;
+  --leading-relaxed: 1.6;
+  --leading-normal: 1.5;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
 }
 
 *,
@@ -44,7 +56,9 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family);
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--color-bg);
@@ -185,7 +199,8 @@ video {
   max-width: 750px;
   margin: 0 auto;
   color: #151418;
-  line-height: 1.65;
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
 }
 
 .tagline2 {
@@ -193,13 +208,15 @@ video {
   max-width: 650px;
   margin: 1rem 0 2rem 0;
   color: #151418;
-  line-height: 1.65;
+  font-size: var(--text-lead);
+  line-height: var(--leading-relaxed);
 }
 
 .SectionTitle {
-  font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+  font-size: var(--text-section);
   color: #151418;
-  font-weight: 700;
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
   margin-bottom: 3.5rem;
 }
 

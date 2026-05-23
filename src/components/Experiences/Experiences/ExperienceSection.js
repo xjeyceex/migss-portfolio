@@ -3,6 +3,9 @@ import { motion, useInView } from "framer-motion";
 import styled from "@emotion/styled";
 import { FaGraduationCap, FaCode, FaStore } from "react-icons/fa";
 import { theme } from "../../../theme";
+import { CardTitle } from "../../ui/typography";
+
+const { typography: t } = theme;
 
 const COLORS = {
   text: "#1e293b",
@@ -44,7 +47,7 @@ const CardSurface = styled(motion.div)`
   flex-direction: column;
   background: ${COLORS.white};
   border-radius: 10px;
-  padding: 0.85rem 0.95rem;
+  padding: 1rem 1.05rem;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
   transition:
@@ -58,7 +61,11 @@ const CardSurface = styled(motion.div)`
 
   @media (min-width: 700px) {
     border-radius: 11px;
-    padding: 0.95rem 1rem;
+    padding: 1.1rem 1.15rem;
+  }
+
+  @media (min-width: 1080px) {
+    padding: 1.15rem 1.2rem;
   }
 `;
 
@@ -75,36 +82,37 @@ const CardHeader = styled(motion.div)`
     min-width: 0;
   }
 
-  h3 {
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: ${COLORS.text};
-    margin: 0;
-    line-height: 1.25;
-  }
-
   h4 {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: ${t.size.cardSubtitle};
+    font-weight: ${t.weight.semibold};
     color: ${COLORS.muted};
-    margin: 0.2rem 0 0;
-    line-height: 1.3;
+    margin: 0.25rem 0 0;
+    line-height: ${t.lineHeight.normal};
   }
 
   span {
-    font-size: 0.68rem;
+    font-size: ${t.size.cardMeta};
     color: ${COLORS.muted};
-    font-weight: 500;
+    font-weight: ${t.weight.medium};
     display: block;
-    margin-top: 0.15rem;
+    margin-top: 0.2rem;
+    line-height: ${t.lineHeight.normal};
   }
 `;
 
 const Summary = styled(motion.p)`
-  margin: 0 0 0.55rem;
-  font-size: 0.72rem;
+  margin: 0 0 0.6rem;
+  font-size: ${t.size.cardBody};
   color: ${COLORS.text};
-  line-height: 1.45;
+  line-height: ${t.lineHeight.relaxed};
+
+  @media (min-width: 700px) {
+    font-size: ${t.size.cardBodyLg};
+  }
+
+  @media (min-width: 1080px) {
+    font-size: ${t.size.bodySm};
+  }
 `;
 
 const BulletList = styled(motion.ul)`
@@ -113,23 +121,31 @@ const BulletList = styled(motion.ul)`
 
   li {
     list-style: none;
-    margin-bottom: 0.28rem;
-    font-size: 0.72rem;
+    margin-bottom: 0.35rem;
+    font-size: ${t.size.cardBody};
     color: ${COLORS.text};
-    line-height: 1.4;
-    padding-left: 0.85rem;
+    line-height: ${t.lineHeight.relaxed};
+    padding-left: 0.9rem;
     position: relative;
+
+    @media (min-width: 700px) {
+      font-size: ${t.size.cardBodyLg};
+    }
+
+    @media (min-width: 1080px) {
+      font-size: ${t.size.bodySm};
+    }
 
     &::before {
       content: "•";
       position: absolute;
       left: 0.2rem;
       color: ${COLORS.accent};
-      font-weight: bold;
+      font-weight: ${t.weight.bold};
     }
 
     strong {
-      font-weight: 600;
+      font-weight: ${t.weight.semibold};
     }
   }
 `;
@@ -144,10 +160,11 @@ const TechList = styled(motion.div)`
 const Pill = styled(motion.span)`
   background: ${COLORS.accent}12;
   color: ${COLORS.accent};
-  padding: 0.22rem 0.45rem;
+  padding: 0.28rem 0.5rem;
   border-radius: 6px;
-  font-size: 0.62rem;
-  font-weight: 500;
+  font-size: ${t.size.pill};
+  font-weight: ${t.weight.medium};
+  line-height: ${t.lineHeight.snug};
   display: inline-flex;
   align-items: center;
   border: 1px solid ${COLORS.accent}22;
@@ -166,13 +183,13 @@ const Pill = styled(motion.span)`
 
 const IconWrapper = styled.div`
   background: ${COLORS.accent}18;
-  border-radius: 6px;
-  padding: 0.32rem;
+  border-radius: 8px;
+  padding: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   flex-shrink: 0;
   transition: transform ${theme.motion.duration} ${theme.motion.easeOut};
 
@@ -246,7 +263,7 @@ function ExperienceCard({ exp }) {
         <CardHeader variants={sectionVariants}>
           <IconWrapper>{exp.icon}</IconWrapper>
           <div className="meta">
-            <h3>{exp.role}</h3>
+            <CardTitle>{exp.role}</CardTitle>
             <h4>{exp.company}</h4>
             <span>{exp.period}</span>
           </div>
@@ -291,7 +308,7 @@ function ExperienceSection() {
       role: "BS Computer Science",
       company: "Our Lady of Fatima University",
       period: "2019 – 2023",
-      icon: <FaGraduationCap size={12} color={COLORS.accent} />,
+      icon: <FaGraduationCap size={15} color={COLORS.accent} />,
       summary: "Honors graduate focused on software engineering, algorithms, and databases.",
       techStack: ["Honors", "Dean's Lister", "Best Thesis"],
     },
@@ -299,7 +316,7 @@ function ExperienceSection() {
       role: "SMB & retail software",
       company: "Freelance — local clients",
       period: "2023 – Present",
-      icon: <FaStore size={12} color={COLORS.accent} />,
+      icon: <FaStore size={15} color={COLORS.accent} />,
       summary:
         "Tailored web apps for day-to-day operations: inventory and sales for computer shops, cafe menus and loyalty, propane cylinder tracking and delivery scheduling.",
       techStack: ["Next.js", "React", "PostgreSQL", "TypeScript", "Tailwind CSS"],
@@ -308,7 +325,7 @@ function ExperienceSection() {
       role: "Full Stack Developer",
       company: "Jeonsoft Corporation",
       period: "Jan 2024 – Jun 2024",
-      icon: <FaCode size={12} color={COLORS.accent} />,
+      icon: <FaCode size={15} color={COLORS.accent} />,
       lines: [
         <>Support Central — ticketing and workflows</>,
         <>WebHR — HR records and internal tools</>,
@@ -327,7 +344,7 @@ function ExperienceSection() {
       role: "Full Stack Developer",
       company: "Freelance (Brian Atwood / Azr)",
       period: "Jun 2024 – Feb 2025",
-      icon: <FaCode size={12} color={COLORS.accent} />,
+      icon: <FaCode size={15} color={COLORS.accent} />,
       lines: [
         <>
           <strong>Help You</strong> — U.S. climate data by location
@@ -339,7 +356,7 @@ function ExperienceSection() {
       role: "Full Stack Developer",
       company: "Sta. Clara International Corp",
       period: "Jan 2025 – Nov 2025",
-      icon: <FaCode size={12} color={COLORS.accent} />,
+      icon: <FaCode size={15} color={COLORS.accent} />,
       summary:
         "Shipped full-stack platforms, responsive UI, and maintainable REST APIs.",
       techStack: [
@@ -356,7 +373,7 @@ function ExperienceSection() {
       role: "Frontend-focused Full Stack",
       company: "The Digital Room AU",
       period: "Nov 2025 – Present",
-      icon: <FaCode size={12} color={COLORS.accent} />,
+      icon: <FaCode size={15} color={COLORS.accent} />,
       lines: [
         <>
           <strong>The Inspection Nest</strong> — Figma to animated Next.js UI

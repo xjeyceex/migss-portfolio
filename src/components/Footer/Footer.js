@@ -2,6 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import { theme } from "../../theme";
 
+const { typography: t } = theme;
+
 const FooterSection = styled.footer`
   width: 100%;
   min-height: 220px;
@@ -34,20 +36,20 @@ const FooterSection = styled.footer`
 const Credit = styled.p`
   position: relative;
   z-index: 1;
-  font-size: 0.9rem;
+  font-size: ${t.size.footer};
   color: ${theme.colors.textMuted};
   text-align: center;
   padding: 0 1rem;
   max-width: 40rem;
-  line-height: 1.5;
+  line-height: ${t.lineHeight.normal};
 
   strong {
     color: ${theme.colors.textSubtleOnDark};
-    font-weight: 600;
+    font-weight: ${t.weight.semibold};
   }
 
   @media (max-width: 768px) {
-    font-size: 0.85rem;
+    font-size: ${t.size.footerSm};
   }
 `;
 
